@@ -13,9 +13,9 @@ import java.net.URI;
 
 public class MyApplication extends Application {
 
-    public MyApplication() {
-        super();
-
+    @Override
+    public void onCreate() {
+        super.onCreate();
         initNet();
     }
 
@@ -24,7 +24,7 @@ public class MyApplication extends Application {
      */
     private void initNet() {
         //nohttp 配置
-        InitializationConfig config=InitializationConfig.newBuilder(this)
+        InitializationConfig config=InitializationConfig.newBuilder(MyApplication.this)
                 .readTimeout(30 * 1000) // 全局服务器响应超时时间，单位毫秒。
                 .connectionTimeout(30 * 1000) // 全局连接超时时间，单位毫秒。
                 .cacheStore(new DiskCacheStore(this))// 配置缓存到SD卡。
