@@ -1,6 +1,12 @@
 package com.bigpush;
 
 import android.app.Application;
+import android.support.multidex.MultiDex;
+import android.widget.Toast;
+import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
+import com.alibaba.baichuan.android.trade.adapter.ut.AlibcUserTracker;
+import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
+import com.ut.mini.internal.UTTeamWork;
 import com.yanzhenjie.nohttp.InitializationConfig;
 import com.yanzhenjie.nohttp.Logger;
 import com.yanzhenjie.nohttp.NoHttp;
@@ -10,13 +16,56 @@ import com.yanzhenjie.nohttp.cookie.DBCookieStore;
 
 import java.net.HttpCookie;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyApplication extends Application {
+
+    public static MyApplication application = null;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        application=this;
+
         initNet();
+
+        initAli();
+
+        MultiDex.install(this);
+    }
+
+
+
+    /**
+     * 初始化阿里百川
+     */
+    private void initAli() {
+
+
+        //电商SDK初始化
+        AlibcTradeSDK.asyncInit(this, new AlibcTradeInitCallback() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(MyApplication.this, "初始化成功", Toast.LENGTH_SHORT).show();
+
+                Map utMap = new HashMap<>();
+                utMap.put("debug_api_url","http://muvp.alibaba-inc.com/online/UploadRecords.do");
+                utMap.put("debug_key","baichuan_sdk_utDetection");
+                UTTeamWork.getInstance().turnOnRealTimeDebug(utMap);
+//                AlibcUserTracker.getInstance().sendInitHit4DAU("19","3.1.1.100");
+                AlibcUserTracker.getInstance().sendInitHit4DAU();
+
+            }
+
+            @Override
+            public void onFailure(int code, String msg) {
+                Toast.makeText(MyApplication.this, "初始化失败,错误码="+code+" / 错误消息="+msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     /**
@@ -57,4 +106,5 @@ public class MyApplication extends Application {
         public void onRemoveCookie(URI uri, HttpCookie cookie) {// Cookie被移除时被调用。
         }
     };
+
 }
