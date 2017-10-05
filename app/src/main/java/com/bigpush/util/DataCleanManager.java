@@ -92,7 +92,7 @@ public class DataCleanManager {
         cleanDatabases(context);
         cleanSharedPreference(context);
         cleanFiles(context);
-        if (filepath == null) {
+        if (filepath == null||filepath.length==0) {
             return;
         }
         for (String filePath : filepath) {
