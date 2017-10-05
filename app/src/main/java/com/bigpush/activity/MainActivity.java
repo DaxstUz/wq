@@ -32,14 +32,14 @@ public class MainActivity extends FragmentActivity {
     /**
      * 标签卡图标
      */
-    private int mImageArray[] = { R.drawable.tab_book_btn, R.drawable.tab_search_btn,
+    private int mImageArray[] = { R.drawable.tab_home_btn, R.drawable.tab_search_btn,
             R.drawable.tab_cate_btn,
             R.drawable.tab_my_btn };
 
     /**
      * 标签名字
      */
-    private String mTextArray[] = { "首页", "爆料", "好物", "我的" };
+    private String mTextArray[] = { "首页", "挖券", "9.9", "我的" };
 
 
 //    private int reqbaidu= Constant.NET_WHAT++;
@@ -53,11 +53,6 @@ public class MainActivity extends FragmentActivity {
         initView();
 
     }
-
-//    private void getData() {
-//        Request<JSONObject> reqJson=NoHttp.createJsonObjectRequest(Constant.loginUrl, RequestMethod.POST);
-//        request(reqbaidu,reqJson,this);
-//    }
 
 
     /**
@@ -78,6 +73,8 @@ public class MainActivity extends FragmentActivity {
             mTabHost.getTabWidget().getChildAt(i)
                     .setBackgroundResource(R.drawable.selector_tab_background);
         }
+
+        mTabHost.getTabWidget().setDividerDrawable(android.R.color.transparent);//去掉其分割线的方法
 
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override

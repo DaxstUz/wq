@@ -1,12 +1,17 @@
 package com.bigpush.activity;
 
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import com.bigpush.util.CallServer;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Request;
 import com.yanzhenjie.nohttp.rest.Response;
 
 public class BaseActivity <T>  extends AppCompatActivity implements OnResponseListener<T> {
+
+    protected <T extends View> T findView(int resId) {
+        return (T) (findViewById(resId));
+    }
 
     private Object cancelObject = new Object();
 

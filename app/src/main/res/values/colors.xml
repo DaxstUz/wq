@@ -3,4 +3,83 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorRed">#FF0000</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorDivideLine">#dbdbdb</color>
+
+    <color name="colorMainBg">#dbdbdb</color>
+
+
+
+    <!-- 主题色 -->
+    <color name="s1">#22b6e7</color>
+    <color name="s01">#379fd7</color>
+    <color name="s2">#82e664</color>
+    <color name="s02">#78c864</color>
+    <color name="s3">#ffc83c</color>
+    <color name="s03">#ffa03c</color>
+    <color name="s4">#ff96a0</color>
+    <color name="s04">#ff7882</color>
+    <color name="s5">#96a3fa</color>
+    <color name="s05">#9682fa</color>
+    <color name="s6">#ff6e6e</color>
+    <color name="s06">#f05a50</color>
+
+    <!-- 文字色 -->
+    <color name="w1">#828282</color>
+    <color name="w2">#b1b1b1</color>
+    <color name="w3">#e3e3e3</color>
+    <color name="w4">#ffffff</color>
+    <color name="w5">#000000</color>
+    <color name="w6">#22b6e7</color>
+    <color name="w7">#82e664</color>
+    <color name="w8">#ffc83c</color>
+    <color name="w9">#ff96a0</color>
+    <color name="w10">#96a3fa</color>
+    <color name="w11">#ff6e6e</color>
+
+    <!-- 分割线，描边 -->
+    <color name="x1">#e3e3e3</color>
+    <color name="m1">#e3e3e3</color>
+    <color name="m2">#ffffff</color>
+    <color name="m3">#96c846</color>
+    <color name="m4">#b1b1b1</color>
+    <color name="m5">#22b6e7</color>
+
+    <!-- 背景色 -->
+    <color name="b1">#ffffff</color>
+    <color name="b2">#fcfcfc</color>
+    <color name="b3">#f5f5f5</color>
+    <color name="b4">#22b6e7</color>
+    <color name="b5">#82e664</color>
+    <color name="b6">#bee664</color>
+
+    <!-- 按钮色 -->
+    <color name="a1">#22b6e7</color>
+    <color name="a01">#379fd7</color>
+    <color name="a2">#82e664</color>
+    <color name="a02">#78c864</color>
+    <color name="a3">#ffc83c</color>
+    <color name="a03">#ffa03c</color>
+    <color name="a4">#ff96a0</color>
+    <color name="a04">#ff7882</color>
+    <color name="a5">#96a3fa</color>
+    <color name="a05">#9682fa</color>
+    <color name="a6">#ff6e6e</color>
+    <color name="a06">#f05a50</color>
+    <color name="a7">#e3e3e3</color>
+    <color name="a07">#b1b1b1</color>
+    <color name="a8">#28d2e6</color>
+    <color name="a08">#28b4c8</color>
+    <color name="a9">#f5f5f5</color>
+    <color name="a09">#e3e3e3</color>
+    <color name="a10">#c8c8c8</color>
+    <color name="a11">#beff64</color>
+    <color name="a12">#ffffff</color>
+    <!--按下去的颜色-->
+    <color name="jyq_touch">#10000000</color>
+
+    <color name="bg_none">#00000000</color>
 </resources>

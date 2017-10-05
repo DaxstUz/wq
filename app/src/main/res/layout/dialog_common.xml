@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/x800"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_dialog_main"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_dialog_top"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/x46"
+                android:text="提示"
+                android:textColor="@color/w4"
+                android:textSize="@dimen/z3" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x2"
+                android:layout_gravity="bottom"
+                android:background="@color/x1" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="@dimen/y300"
+            android:padding="@dimen/x46"
+            android:text="您确定删除吗？"
+            android:textColor="@color/w5"
+            android:textSize="@dimen/z3" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y2"
+            android:background="@color/m1" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll_con"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y160"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_canser"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_bg_left"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="取消"
+                    android:textColor="@color/w6"
+                    android:textSize="@dimen/z3" />
+
+                <View
+                    android:layout_width="@dimen/x2"
+                    android:layout_height="wrap_content"
+                    android:background="@color/x1" />
+
+                <TextView
+                    android:id="@+id/tv_sure"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x2"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_bg_right"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textColor="@color/w6"
+                    android:textSize="@dimen/z3" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_sure2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg_sure"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="@dimen/x46"
+                android:text="确定"
+                android:textColor="@color/w6"
+                android:textSize="@dimen/z3"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

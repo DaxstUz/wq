@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/imgbtn_home_flash"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_home_flash_cancel"
+        android:padding="0dp"
+        android:layout_width="@dimen/x960"
+        android:layout_height="@dimen/y1200"
+        android:scaleType="fitXY"
+        android:clickable="true"
+        android:src="@mipmap/home_bg"/>
+
+    <TextView
+        android:id="@+id/tv_home_flash_cancel"
+        android:layout_width="@dimen/x100"
+        android:layout_height="@dimen/y160"
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x100"
+        android:background="@mipmap/home_icon_advertisement"
+        />
+</RelativeLayout>

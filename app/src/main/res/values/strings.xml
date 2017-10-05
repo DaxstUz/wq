@@ -36,4 +36,15 @@
     <string name="show_order">分域显示我的订单</string>
     <string name="show_allorder">全部显示我的订单</string>
     <string name="show_cart">显示我的购物车</string>
+
+    <string name="shar_down">分享下载</string>
+
+    <string name="my_help">客户帮助</string>
+    <string name="my_return">意见反馈</string>
+    <string name="my_clean">清理缓存</string>
+    <string name="my_about">关于</string>
+    <string name="my_stat">免责声明</string>
+
+    <string name="my_order">淘宝订单</string>
+    <string name="my_cart">购物车</string>
 </resources>
