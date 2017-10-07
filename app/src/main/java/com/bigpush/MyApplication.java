@@ -6,6 +6,9 @@ import android.widget.Toast;
 import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
 import com.alibaba.baichuan.android.trade.adapter.ut.AlibcUserTracker;
 import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 import com.ut.mini.internal.UTTeamWork;
 import com.yanzhenjie.nohttp.InitializationConfig;
 import com.yanzhenjie.nohttp.Logger;
@@ -21,11 +24,23 @@ import java.util.Map;
 
 public class MyApplication extends Application {
 
+//    APP ID1106386079
+//    APP KEYUPvsJUHNCm1J8Xpk
+
+    static{
+//        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setQQZone("1106386079", "UPvsJUHNCm1J8Xpk");
+//        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
+    }
+
     public static MyApplication application = null;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+        UMShareAPI.get(this);
 
         application=this;
 

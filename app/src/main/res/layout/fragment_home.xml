@@ -49,6 +49,14 @@
                 android:layout_marginTop="@dimen/small_margin_size"
                 android:onClick="webview"
                 android:text="@string/webview_test" />
+
+        <Button
+                android:id="@+id/share"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin_size"
+                android:onClick="share"
+                android:text="分享" />
     </LinearLayout>
 
 </FrameLayout>
