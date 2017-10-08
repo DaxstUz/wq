@@ -3,6 +3,7 @@ package com.bigpush;
 import android.app.Application;
 import android.support.multidex.MultiDex;
 import android.widget.Toast;
+import cn.jpush.android.api.JPushInterface;
 import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
 import com.alibaba.baichuan.android.trade.adapter.ut.AlibcUserTracker;
 import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
@@ -30,7 +31,7 @@ public class MyApplication extends Application {
     static{
 //        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
         PlatformConfig.setQQZone("1106386079", "UPvsJUHNCm1J8Xpk");
-//        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
+        PlatformConfig.setSinaWeibo("4172881057", "ae15fd6cb12f3e50c727b3a469f6dacc", "http://sns.whalecloud.com");
     }
 
     public static MyApplication application = null;
@@ -38,6 +39,9 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
         UMShareAPI.get(this);
@@ -63,13 +67,12 @@ public class MyApplication extends Application {
         AlibcTradeSDK.asyncInit(this, new AlibcTradeInitCallback() {
             @Override
             public void onSuccess() {
-                Toast.makeText(MyApplication.this, "初始化成功", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MyApplication.this, "初始化成功", Toast.LENGTH_SHORT).show();
 
                 Map utMap = new HashMap<>();
                 utMap.put("debug_api_url","http://muvp.alibaba-inc.com/online/UploadRecords.do");
                 utMap.put("debug_key","baichuan_sdk_utDetection");
                 UTTeamWork.getInstance().turnOnRealTimeDebug(utMap);
-//                AlibcUserTracker.getInstance().sendInitHit4DAU("19","3.1.1.100");
                 AlibcUserTracker.getInstance().sendInitHit4DAU();
 
             }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,17 +20,28 @@ import com.ali.auth.third.login.callback.LogoutCallback;
 import com.ali.auth.third.ui.context.CallbackContext;
 import com.alibaba.baichuan.android.trade.adapter.login.AlibcLogin;
 import com.alibaba.baichuan.android.trade.callback.AlibcLoginCallback;
+import com.bigpush.MyApplication;
 import com.bigpush.R;
 import com.bigpush.fragment.FindFragment;
 import com.bigpush.fragment.HomeFragment;
 import com.bigpush.fragment.HospitalFragment;
 import com.bigpush.fragment.MyFragment;
+import com.bigpush.util.*;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.ShareContent;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
+import com.yanzhenjie.nohttp.RequestMethod;
+import com.yanzhenjie.nohttp.rest.JsonObjectRequest;
+import com.yanzhenjie.nohttp.rest.OnResponseListener;
+import com.yanzhenjie.nohttp.rest.Response;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends FragmentActivity {
 
@@ -59,9 +72,64 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initView();
-
         getPermission();
+
+        if(TextUtils.isEmpty(UserUtils.getKey(this))){
+            Log.d("uz","获取key");
+            getKey();
+        }
+        initView();
+    }
+
+    /**
+     * 到服务器获取key
+     */
+    private void getKey() {
+
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Constant.deviceReg, RequestMethod.POST);
+
+        Map<String ,Object> param=new HashMap<>();
+        param.put("mobileModel",SystemUtils.getSystemModel());
+        param.put("mobileSysType","android");
+        param.put("mobileCode", SystemUtils.getImei());
+        param.put("appVer",SystemUtils.getVersionCode());
+        param.put("mobileSysVer",SystemUtils.getSystemVersion());
+
+        jsonObjectRequest.add(param);
+
+        CallServer.getInstance().add(0,jsonObjectRequest, new OnResponseListener<JSONObject>() {
+            @Override
+            public void onStart(int what) {
+
+            }
+
+            @Override
+            public void onSucceed(int what, Response response) {
+                Toast.makeText(MainActivity.this, "设备注册成功！"+response.toString(), Toast.LENGTH_SHORT).show();
+                Object object=response.get();
+
+                JSONObject jsonObject= (JSONObject) object;
+                try {
+                    Log.d("uz",object.toString()+ "    "+jsonObject.getJSONObject("Data").getString("key"));
+                    if(jsonObject!=null&&jsonObject.has("Data")){
+                        UserUtils.saveKey(MainActivity.this,jsonObject.getJSONObject("Data").getString("key"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailed(int what, Response response) {
+                Toast.makeText(MainActivity.this, "设备注册失败！"+response.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFinish(int what) {
+
+            }
+        });
     }
 
     /**
