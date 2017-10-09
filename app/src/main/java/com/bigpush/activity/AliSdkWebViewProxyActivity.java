@@ -26,7 +26,7 @@ import java.util.Map;
  * <p/>
  * 功能说明：WebView代理页面
  */
-public class AliSdkWebViewProxyActivity extends Activity {
+public class AliSdkWebViewProxyActivity extends BaseActivity {
 
 
     private WebView webView;

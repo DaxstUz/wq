@@ -99,7 +99,7 @@ dependencies {
 
     compile 'com.github.bumptech.glide:glide:3.7.0'//Glide最新的稳定版本是3.7.0
 
-//    compile 'cn.jiguang.sdk:jpush:3.0.9'//极光推送
+    compile 'com.linsea:universalvideoview:1.1.0@aar' //视频播放
 
     /*  引入百川sdk*/
     //fastjson

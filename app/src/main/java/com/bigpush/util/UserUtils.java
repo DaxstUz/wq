@@ -53,6 +53,18 @@ public class UserUtils {
     }
 
     /**
+     * 游客代码
+     * @param context
+     * @param key
+     */
+    public static void saveUserCode(Activity context, String key) {
+        SharedPreferences sp = context.getSharedPreferences("userinfo", 0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("userCode", key);
+        editor.commit();
+    }
+
+    /**
      * 获取设备注册key
      * @param context
      * @return
@@ -61,5 +73,11 @@ public class UserUtils {
         SharedPreferences sp = context.getSharedPreferences("userinfo", 0);
         String key = sp.getString("key", "");
         return  key;
+    }
+
+    public static String getUserCode(Activity context) {
+        SharedPreferences sp = context.getSharedPreferences("userinfo", 0);
+        String userCode = sp.getString("userCode", "");
+        return  userCode;
     }
 }

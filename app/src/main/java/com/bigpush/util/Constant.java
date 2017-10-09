@@ -14,6 +14,7 @@ public class Constant {
     private static String   HOSTSERVER="http://47.95.220.122/6api";
 
     public static final String deviceReg=HOSTSERVER+"/user/reg";//注册硬件设备
+    public static final String userInit=HOSTSERVER+"/user/init";//游客账号分配
 
 
 

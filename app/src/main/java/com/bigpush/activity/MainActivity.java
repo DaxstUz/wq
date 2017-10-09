@@ -43,28 +43,28 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements OnResponseListener {
+
+    private int DEVICEREGWHAT = Constant.NET_WHAT++;
+    private int INITUSERWHAT = Constant.NET_WHAT++;
 
     private FragmentTabHost mTabHost;
 
     private LayoutInflater mLayoutInflater;
 
-    private Class mFragmentArray[] = { HomeFragment.class, HospitalFragment.class,
-            FindFragment.class, MyFragment.class };
+    private Class mFragmentArray[] = {HomeFragment.class, HospitalFragment.class,
+            FindFragment.class, MyFragment.class};
     /**
      * 标签卡图标
      */
-    private int mImageArray[] = { R.drawable.tab_home_btn, R.drawable.tab_search_btn,
+    private int mImageArray[] = {R.drawable.tab_home_btn, R.drawable.tab_search_btn,
             R.drawable.tab_cate_btn,
-            R.drawable.tab_my_btn };
+            R.drawable.tab_my_btn};
 
     /**
      * 标签名字
      */
-    private String mTextArray[] = { "首页", "挖券", "9.9", "我的" };
-
-
-//    private int reqbaidu= Constant.NET_WHAT++;
+    private String mTextArray[] = {"首页", "挖券", "9.9", "我的"};
 
 
     @Override
@@ -74,9 +74,11 @@ public class MainActivity extends FragmentActivity {
 
         getPermission();
 
-        if(TextUtils.isEmpty(UserUtils.getKey(this))){
-            Log.d("uz","获取key");
+        if (TextUtils.isEmpty(UserUtils.getKey(this))) {
+            Log.d("uz", "获取key");
             getKey();
+        } else {
+            initUser();
         }
         initView();
     }
@@ -85,60 +87,39 @@ public class MainActivity extends FragmentActivity {
      * 到服务器获取key
      */
     private void getKey() {
-
-        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Constant.deviceReg, RequestMethod.POST);
-
-        Map<String ,Object> param=new HashMap<>();
-        param.put("mobileModel",SystemUtils.getSystemModel());
-        param.put("mobileSysType","android");
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.deviceReg, RequestMethod.POST);
+        Map<String, Object> param = new HashMap<>();
+        param.put("mobileModel", SystemUtils.getSystemModel());
+        param.put("mobileSysType", "android");
         param.put("mobileCode", SystemUtils.getImei());
-        param.put("appVer",SystemUtils.getVersionCode());
-        param.put("mobileSysVer",SystemUtils.getSystemVersion());
-
+        param.put("appVer", SystemUtils.getVersionCode());
+        param.put("mobileSysVer", SystemUtils.getSystemVersion());
         jsonObjectRequest.add(param);
 
-        CallServer.getInstance().add(0,jsonObjectRequest, new OnResponseListener<JSONObject>() {
-            @Override
-            public void onStart(int what) {
+        CallServer.getInstance().add(DEVICEREGWHAT, jsonObjectRequest, this);
+    }
 
-            }
-
-            @Override
-            public void onSucceed(int what, Response response) {
-                Toast.makeText(MainActivity.this, "设备注册成功！"+response.toString(), Toast.LENGTH_SHORT).show();
-                Object object=response.get();
-
-                JSONObject jsonObject= (JSONObject) object;
-                try {
-                    Log.d("uz",object.toString()+ "    "+jsonObject.getJSONObject("Data").getString("key"));
-                    if(jsonObject!=null&&jsonObject.has("Data")){
-                        UserUtils.saveKey(MainActivity.this,jsonObject.getJSONObject("Data").getString("key"));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void onFailed(int what, Response response) {
-                Toast.makeText(MainActivity.this, "设备注册失败！"+response.toString(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFinish(int what) {
-
-            }
-        });
+    /**
+     * 到服务器初始化游客信息
+     */
+    private void initUser() {
+        if (TextUtils.isEmpty(UserUtils.getUserCode(this))) {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.userInit, RequestMethod.POST);
+            Map<String, Object> param = new HashMap<>();
+            param.put("numCode", "123456");
+            param.put("key", UserUtils.getKey(this));
+            jsonObjectRequest.add(param);
+            CallServer.getInstance().add(INITUSERWHAT, jsonObjectRequest, this);
+        }
     }
 
     /**
      * 动态获取权限
      */
     private void getPermission() {
-        if(Build.VERSION.SDK_INT>=23){
-            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_LOGS,Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.SET_DEBUG_APP,Manifest.permission.SYSTEM_ALERT_WINDOW,Manifest.permission.GET_ACCOUNTS,Manifest.permission.WRITE_APN_SETTINGS};
-            ActivityCompat.requestPermissions(this,mPermissionList,123);
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+            ActivityCompat.requestPermissions(this, mPermissionList, 123);
         }
     }
 
@@ -217,7 +198,7 @@ public class MainActivity extends FragmentActivity {
 
         AlibcLogin alibcLogin = AlibcLogin.getInstance();
 
-        alibcLogin.showLogin(MainActivity.this,new AlibcLoginCallback() {
+        alibcLogin.showLogin(MainActivity.this, new AlibcLoginCallback() {
             @Override
             public void onSuccess() {
                 Toast.makeText(MainActivity.this, "登录成功 ",
@@ -293,14 +274,17 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-
+    public void play(View view) {
+        Intent playIntent = new Intent(MainActivity.this, VideoPlayActivity.class);
+        startActivity(playIntent);
+    }
 
     public void share(View view) {
-        ShareContent sc=new ShareContent();
-        sc.mText="挖券";
-        sc.mFollow="我是follow";
+        ShareContent sc = new ShareContent();
+        sc.mText = "挖券";
+        sc.mFollow = "我是follow";
 
-        UMWeb  web = new UMWeb("http://www.baidu.com");
+        UMWeb web = new UMWeb("http://www.baidu.com");
         web.setTitle("This is music title");//标题
         web.setThumb(new UMImage(this, R.mipmap.wq));  //缩略图
         web.setDescription("my description");//描述
@@ -309,7 +293,7 @@ public class MainActivity extends FragmentActivity {
                 .withText("hahahha ")
                 .setShareContent(sc)
                 .withMedia(web)
-                .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+                .setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
                 .withSubject("2323232")
                 .setCallback(shareListener)
                 .open();
@@ -331,7 +315,7 @@ public class MainActivity extends FragmentActivity {
          */
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            Toast.makeText(MainActivity.this,"成功了",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "成功了", Toast.LENGTH_LONG).show();
         }
 
         /**
@@ -341,7 +325,7 @@ public class MainActivity extends FragmentActivity {
          */
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(MainActivity.this,"失败"+t.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "失败" + t.getMessage(), Toast.LENGTH_LONG).show();
         }
 
         /**
@@ -350,9 +334,48 @@ public class MainActivity extends FragmentActivity {
          */
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(MainActivity.this,"取消了",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "取消了", Toast.LENGTH_LONG).show();
 
         }
     };
 
+    @Override
+    public void onStart(int what) {
+
+    }
+
+    @Override
+    public void onSucceed(int what, Response response) {
+
+        Object object = response.get();
+
+        JSONObject jsonObject = (JSONObject) object;
+        try {
+            if (jsonObject != null && jsonObject.has("Data")) {
+                if (DEVICEREGWHAT == what) {
+                    UserUtils.saveKey(MainActivity.this, jsonObject.getJSONObject("Data").getString("key"));
+                    initUser();
+                } else if (INITUSERWHAT == what) {
+                    UserUtils.saveUserCode(MainActivity.this, jsonObject.getJSONObject("Data").getString("userCode"));
+                    Log.d("uz", "获取userCode  "+jsonObject);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Override
+    public void onFailed(int what, Response response) {
+        if (DEVICEREGWHAT == what) {
+            Toast.makeText(MainActivity.this, "设备注册失败！" + response.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onFinish(int what) {
+
+    }
 }

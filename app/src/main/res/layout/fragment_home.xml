@@ -57,6 +57,13 @@
                 android:layout_marginTop="@dimen/small_margin_size"
                 android:onClick="share"
                 android:text="分享" />
+        <Button
+                android:id="@+id/play"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin_size"
+                android:onClick="play"
+                android:text="播放" />
     </LinearLayout>
 
 </FrameLayout>
