@@ -29,7 +29,7 @@ public class MyApplication extends Application {
 //    APP KEYUPvsJUHNCm1J8Xpk
 
     static{
-//        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setWeixin("wxa9defcd81f24ca06", "b8903cae400b03c87f886dcc98df6d2d");
         PlatformConfig.setQQZone("1106386079", "UPvsJUHNCm1J8Xpk");
         PlatformConfig.setSinaWeibo("4172881057", "ae15fd6cb12f3e50c727b3a469f6dacc", "http://sns.whalecloud.com");
     }

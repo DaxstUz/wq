@@ -1,69 +1,47 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
->
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="#ff0000"
+              android:orientation="vertical"
+              android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="@dimen/y100"
+                    android:background="@color/colorRed"
+    >
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_centerVertical="true"
+                android:text="首页"
+        />
+
+        <LinearLayout
+                android:layout_toRightOf="@+id/tv_title"
+                android:layout_margin="@dimen/x10"
+                android:background="@drawable/bg_search"
+                android:layout_toLeftOf="@+id/iv_help"
+                android:layout_width="match_parent" android:layout_height="match_parent"></LinearLayout>
+        <ImageView
+                android:id="@+id/iv_help"
+                android:src="@mipmap/help"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x30"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <HorizontalScrollView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:background="@color/colorMainBg"
+                          android:scrollbars="none"
+    >
+        <LinearLayout android:id="@+id/ll_tab" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </HorizontalScrollView>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/myViewPager"
+            android:background="#ffff00"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/small_margin_size"
-            android:layout_marginRight="@dimen/small_margin_size"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+    />
 
-        <Button
-                android:id="@+id/alisdk_btn_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/large_margin_size"
-                android:onClick="login"
-                android:text="@string/login_test" />
-
-        <Button
-                android:id="@+id/alisdk_btn_logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin_size"
-                android:onClick="logout"
-                android:text="@string/logout_test" />
-
-        <Button
-                android:id="@+id/alisdk_btn_transaction"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin_size"
-                android:onClick="trade"
-                android:text="@string/transaction_test" />
-
-        <Button
-                android:id="@+id/alisdk_btn_mine"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin_size"
-                android:onClick="orderAndCart"
-                android:text="@string/mine_test" />
-
-        <Button
-                android:id="@+id/alisdk_btn_webview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin_size"
-                android:onClick="webview"
-                android:text="@string/webview_test" />
-
-        <Button
-                android:id="@+id/share"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin_size"
-                android:onClick="share"
-                android:text="分享" />
-        <Button
-                android:id="@+id/play"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin_size"
-                android:onClick="play"
-                android:text="播放" />
-    </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>
