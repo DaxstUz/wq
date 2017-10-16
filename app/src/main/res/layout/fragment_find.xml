@@ -1,11 +1,33 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+              android:orientation="vertical"
 >
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView发现" />
-</FrameLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="@dimen/y100"
+                    android:background="@color/colorRed"
+    >
+
+        <LinearLayout
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/x10"
+                android:background="@drawable/bg_search"
+                android:layout_toLeftOf="@+id/iv_help"
+                android:layout_width="@dimen/x400" android:layout_height="match_parent">
+           <TextView
+                   android:id="@+id/tv_selectone"
+                   android:background="@drawable/bg_title_select"
+                   android:gravity="center" android:text="9.9" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+           <TextView
+                   android:id="@+id/tv_selecttwo"
+                   android:gravity="center" android:text="19.9" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+            android:background="#ffff00"
+            android:id="@+id/typeViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    />
+</LinearLayout>

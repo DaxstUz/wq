@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@android:color/white"
+              android:orientation="vertical"
+              android:layout_height="match_parent">
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
+        <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_1" android:text="@string/person_head"
+                  android:layout_marginLeft="@dimen/border_padding_5"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_centerInParent="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/iv_head"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:src="@mipmap/head"
+                app:riv_corner_radius="50dp"
+                android:scaleType="fitXY"
+                app:riv_oval="true"
+                android:layout_marginRight="@dimen/border_padding_10"
+                android:layout_toLeftOf="@+id/iv_go"
+        />
+        <ImageView
+                android:id="@+id/iv_go"
+                android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"
+                   android:layout_width="wrap_content"
+                   android:layout_marginRight="@dimen/border_padding_5"
+                   android:src="@mipmap/go"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorDivideLine"
+          android:layout_marginLeft="@dimen/border_padding_5"
+          android:layout_marginRight="@dimen/border_padding_5"
+    />
+
+    <RelativeLayout
+            android:id="@+id/rl_help"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
+        <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_2" android:text="@string/person_nickname"
+                  android:layout_marginLeft="@dimen/border_padding_5"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_centerVertical="true"
+                  android:layout_alignParentRight="true"
+                   android:layout_width="wrap_content"
+                  android:hint="@string/notext"
+                   android:layout_marginRight="@dimen/border_padding_5"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorDivideLine"
+          android:layout_marginLeft="@dimen/border_padding_5"
+          android:layout_marginRight="@dimen/border_padding_5"
+    />
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
+        <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_3" android:text="@string/person_code"
+                  android:layout_marginLeft="@dimen/border_padding_5"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:layout_centerVertical="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_width="wrap_content"
+                  android:hint="@string/notext"
+                  android:layout_marginRight="@dimen/border_padding_5"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorDivideLine"
+          android:layout_marginLeft="@dimen/border_padding_5"
+          android:layout_marginRight="@dimen/border_padding_5"
+    />
+
+    <RelativeLayout
+            android:id="@+id/rl_clean"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
+        <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_4" android:text="@string/person_qq"
+                  android:layout_marginLeft="@dimen/border_padding_5"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:layout_centerVertical="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_width="wrap_content"
+                  android:hint="@string/notext"
+                  android:layout_marginRight="@dimen/border_padding_5"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorDivideLine"
+          android:layout_marginLeft="@dimen/border_padding_5"
+          android:layout_marginRight="@dimen/border_padding_5"
+    />
+
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
+        <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_5" android:text="@string/person_taobao"
+                  android:layout_marginLeft="@dimen/border_padding_5"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:layout_centerVertical="true"
+                  android:layout_alignParentRight="true"
+                  android:text="已授权"
+                  android:layout_width="wrap_content"
+                  android:hint="@string/notext"
+                  android:layout_marginRight="@dimen/border_padding_5"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</LinearLayout>

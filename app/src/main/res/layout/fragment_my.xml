@@ -10,7 +10,7 @@
                 android:layout_height="wrap_content">
 
             <RelativeLayout android:layout_width="match_parent"
-                            android:background="#ff0000"
+                            android:background="@color/colorRed"
                             android:layout_height="160dp">
                 <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_centerInParent="true"

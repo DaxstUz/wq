@@ -2,8 +2,13 @@ package com.bigpush.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.bigpush.R;
 import com.bigpush.util.CallServer;
+import com.github.lzyzsd.jsbridge.BridgeHandler;
+import com.github.lzyzsd.jsbridge.BridgeWebView;
+import com.github.lzyzsd.jsbridge.CallBackFunction;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -20,6 +25,16 @@ public class BaseActivity <T>  extends AppCompatActivity implements OnResponseLi
         request.setCancelSign(cancelObject);
 
         CallServer.getInstance().add(what, request, listener);
+    }
+
+    protected <T extends View> T findView(int resId) {
+        return (T) (findViewById(resId));
+    }
+
+    private TextView tv_title;
+    protected void setTitle(String title){
+        tv_title= (TextView) findViewById(R.id.tv_title);
+        tv_title.setText(title);
     }
 
     @Override
@@ -46,7 +61,6 @@ public class BaseActivity <T>  extends AppCompatActivity implements OnResponseLi
 
     @Override
     public void onFinish(int what) {
-
     }
 
     @Override
@@ -101,4 +115,42 @@ public class BaseActivity <T>  extends AppCompatActivity implements OnResponseLi
 
         }
     };
+
+
+    protected BridgeWebView wv_show;
+
+    public void setWebParam (String url ,String handlerMethod,String commodityType) {
+
+//        mWebView.loadUrl("file:///android_asset/test.html");
+        wv_show.loadUrl(url);
+
+//js调native
+        wv_show.registerHandler(handlerMethod, new BridgeHandler() {
+            @Override
+            public void handler(String data, CallBackFunction function) {
+//                Toast.makeText(getActivity(), "pay--->，"+ data, Toast.LENGTH_SHORT).show();
+                function.onCallBack("测试blog");
+            }
+        });
+
+        wv_show.callHandler("sendGoodsParas", commodityType, new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+//                Toast.makeText(getActivity(), "传参成功！"+ data, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //native调js （native按钮）
+    public void sendNative(View view) {
+        if(wv_show!=null){
+            wv_show.callHandler("sendGoodsParas", "fuck awesome!!!", new CallBackFunction() {
+                @Override
+                public void onCallBack(String data) {
+//                    Toast.makeText(getActivity(), "buttonjs--->，"+ data, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+    }
 }

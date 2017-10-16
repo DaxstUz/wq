@@ -22,10 +22,7 @@ import com.alibaba.baichuan.android.trade.adapter.login.AlibcLogin;
 import com.alibaba.baichuan.android.trade.callback.AlibcLoginCallback;
 import com.bigpush.MyApplication;
 import com.bigpush.R;
-import com.bigpush.fragment.FindFragment;
-import com.bigpush.fragment.HomeFragment;
-import com.bigpush.fragment.HospitalFragment;
-import com.bigpush.fragment.MyFragment;
+import com.bigpush.fragment.*;
 import com.bigpush.util.*;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.ShareContent;
@@ -53,7 +50,7 @@ public class MainActivity extends FragmentActivity implements OnResponseListener
     private LayoutInflater mLayoutInflater;
 
     private Class mFragmentArray[] = {HomeFragment.class, HospitalFragment.class,
-            FindFragment.class, MyFragment.class};
+            QuatoFragment.class, MyFragment.class};
     /**
      * 标签卡图标
      */
@@ -118,7 +115,7 @@ public class MainActivity extends FragmentActivity implements OnResponseListener
      */
     private void getPermission() {
         if (Build.VERSION.SDK_INT >= 23) {
-            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS,Manifest.permission.WRITE_SETTINGS};
             ActivityCompat.requestPermissions(this, mPermissionList, 123);
         }
     }
@@ -131,7 +128,7 @@ public class MainActivity extends FragmentActivity implements OnResponseListener
         mLayoutInflater = LayoutInflater.from(this);
 
         // �ҵ�TabHost
-        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        mTabHost = findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         // �õ�fragment�ĸ���
         int count = mFragmentArray.length;

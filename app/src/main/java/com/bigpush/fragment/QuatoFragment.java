@@ -7,7 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.bigpush.R;
 
-public class HospitalFragment extends BaseFragment {
+/**
+ * 9块9
+ */
+public class QuatoFragment extends BaseFragment {
+
 
     private  View v;
 
@@ -25,8 +29,7 @@ public class HospitalFragment extends BaseFragment {
         v = inflater.inflate(R.layout.fragment_goods_show, container, false);
 
         wv_show = v.findViewById(R.id.wv_show);
-        setWebParam("http://47.95.202.75:8090/bigpush/infolist.html","gotoGoodsDetailHandler","");
+        setWebParam("http://47.95.202.75:8090/bigpush/ninenine.html","gotoGoodsDetailHandler","");
         return v;
     }
-
 }

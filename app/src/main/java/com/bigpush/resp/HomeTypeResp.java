@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public class HomeTypeResp implements Serializable {
+
+    private String errorMsg;
+
     private int status;
 
     public int getStatus() {
@@ -24,5 +27,13 @@ public class HomeTypeResp implements Serializable {
 
     public void setData(List<HomeType> data) {
         Data = data;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }

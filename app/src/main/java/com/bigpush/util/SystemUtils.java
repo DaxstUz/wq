@@ -2,15 +2,32 @@ package com.bigpush.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.widget.Toast;
 import com.bigpush.MyApplication;
 
-import java.util.Locale;
+import java.util.*;
 
 public class SystemUtils {
+
+    public static Set<String> cachKeys=new HashSet<>();
+
+    public static void saveKeys(Activity context, Set<String> data) {
+        SharedPreferences sp = context.getSharedPreferences("systeminfo", 0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putStringSet("keys",data);
+        editor.commit();
+
+    }
+    public static Set<String> getKeys(Activity context) {
+        SharedPreferences sp = context.getSharedPreferences("systeminfo", 0);
+       return   sp.getStringSet("keys",new HashSet<String>());
+    }
+
 
     /**
      * 获取设备号
@@ -103,6 +120,10 @@ public class SystemUtils {
      */
     public static String getDeviceBrand() {
         return android.os.Build.BRAND;
+    }
+
+    public static void showText(String msg){
+        Toast.makeText(MyApplication.application, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -7,17 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.bigpush.R;
+import com.github.lzyzsd.jsbridge.BridgeWebView;
 
 /**
  * 商品显示
  */
 public class GoodsShowFragment extends BaseFragment {
 
-    public static GoodsShowFragment newInstance(String url) {
+    public static GoodsShowFragment newInstance(String commodityType) {
         GoodsShowFragment fragment = new GoodsShowFragment();
         Bundle bdl = new Bundle();
 //        bdl.putSerializable("data",url);
-        bdl.putString("url",url);
+        bdl.putString("commodityType",commodityType);
         fragment.setArguments(bdl);
         return fragment;
     }
@@ -38,11 +39,12 @@ public class GoodsShowFragment extends BaseFragment {
         v = inflater.inflate(R.layout.fragment_goods_show, container, false);
         Bundle bdl = getArguments();
 //        String url= (String) bdl.getSerializable("url");
-        String url= bdl.getString("url");
+        String commodityType= bdl.getString("commodityType");
 
-       TextView meg = v.findViewById(R.id.meg);
-       meg.setText(url);
-
+        wv_show = v.findViewById(R.id.wv_show);
+//       meg.setText(url);
+//        setWebParam("http://47.95.202.75:8090/bigpush/goodsdetail.html","gotoGoodsDetailHandler");
+        setWebParam("http://47.95.202.75:8090/bigpush/index.html","gotoGoodsDetailHandler",commodityType);
         return v;
     }
 }

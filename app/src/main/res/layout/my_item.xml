@@ -45,7 +45,9 @@
           android:layout_marginRight="@dimen/border_padding_5"
     />
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
+    <RelativeLayout
+            android:id="@+id/rl_feedback"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
         <ImageView android:id="@+id/iv_3" android:layout_width="wrap_content" android:layout_height="wrap_content"
                    android:src="@mipmap/feedback"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_3" android:text="@string/my_return"
@@ -84,7 +86,9 @@
     />
 
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
+    <RelativeLayout
+            android:id="@+id/rl_stat"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
         <ImageView android:id="@+id/iv_5" android:layout_width="wrap_content" android:layout_height="wrap_content"
                    android:src="@mipmap/stat"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_5" android:text="@string/my_stat"
@@ -103,7 +107,9 @@
           android:layout_marginRight="@dimen/border_padding_5"
     />
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
+    <RelativeLayout
+            android:id="@+id/rl_about"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
         <ImageView android:id="@+id/iv_6" android:layout_width="wrap_content" android:layout_height="wrap_content"
                    android:src="@mipmap/about"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_6" android:text="@string/my_about"

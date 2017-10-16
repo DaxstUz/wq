@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:background="#ff0000"
               android:orientation="vertical"
               android:layout_height="match_parent">
 
@@ -16,6 +15,7 @@
         />
 
         <LinearLayout
+                android:id="@+id/ll_search"
                 android:layout_toRightOf="@+id/tv_title"
                 android:layout_margin="@dimen/x10"
                 android:background="@drawable/bg_search"
@@ -30,16 +30,44 @@
                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     </RelativeLayout>
 
-    <HorizontalScrollView android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:background="@color/colorMainBg"
-                          android:scrollbars="none"
-    >
-        <LinearLayout android:id="@+id/ll_tab" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    </HorizontalScrollView>
+
+    <LinearLayout
+            android:id="@+id/news_fragment_main_horizontalscrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lyj_title_bar_layout_main"
+            android:orientation="horizontal">
+
+        <com.bigpush.view.NewsTitleHorizontalScrollView
+                android:id="@+id/myHorizeontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:layout_below="@+id/news_activity_main_title_down"
+                android:layout_weight="5"
+                android:scrollbars="none" />
+
+        <!--<LinearLayout
+                android:id="@+id/news_fragment_main_layout_addtitle"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+            <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="11dp"
+                    android:scaleType="fitXY"
+                    android:clickable="false"
+                    android:duplicateParentState="true"
+                    android:background="@drawable/biz_news_column_edit_arrow_down"/>
+        </LinearLayout>-->
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager
             android:id="@+id/myViewPager"
-            android:background="#ffff00"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
     />

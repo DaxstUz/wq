@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_height="match_parent">
+    <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y600"
+            android:id="@+id/iv_goods_pic"
+            android:scaleType="fitXY"
+    />
+
+    <LinearLayout
+            android:background="@color/b1"
+            android:orientation="vertical"
+            android:padding="@dimen/border_padding_10"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:id="@+id/tv_goods_title"
+                 android:maxLines="1"
+                  android:textSize="@dimen/z3"
+        />
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tv_goods_price"
+                      android:text="5656565"
+                      android:textColor="@color/colorRed"
+            />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tv_goods_count"
+                      android:layout_alignParentRight="true"
+                      android:layout_centerVertical="true"
+                      android:textSize="@dimen/z5"
+                      android:text="5656565"
+                      android:layout_marginRight="@dimen/border_padding_10"
+                      android:textColor="@color/w2"
+            />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

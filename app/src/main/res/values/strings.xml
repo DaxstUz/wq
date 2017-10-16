@@ -43,8 +43,28 @@
     <string name="my_return">意见反馈</string>
     <string name="my_clean">清理缓存</string>
     <string name="my_about">关于</string>
+
     <string name="my_stat">免责声明</string>
+
+    <string name="goods_accept">领券购买</string>
+
+    <string name="notext">未填写</string>
 
     <string name="my_order">淘宝订单</string>
     <string name="my_cart">购物车</string>
+
+    <string name="person_head">头像</string>
+    <string name="person_nickname">昵称</string>
+    <string name="person_code">邀请码</string>
+    <string name="person_qq">客服QQ</string>
+    <string name="person_taobao">淘宝账号授权状态</string>
+
+    <string name="news_title_ttTxt">头条</string>
+    <string name="news_title_ycTxt">宜昌</string>
+    <string name="news_title_qsycTxt">轻松一刻</string>
+    <string name="news_title_caijinTxt">财经</string>
+    <string name="news_title_kejiTxt">科技</string>
+
+    <string name="search_search">搜索</string>
+    <string name="search_canser">取消</string>
 </resources>
