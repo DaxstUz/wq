@@ -79,6 +79,6 @@ public class UserUtils {
         SharedPreferences sp = context.getSharedPreferences("userinfo", 0);
         String userCode = sp.getString("userCode", "");
 //        return  userCode;
-        return  "47bfb9683cf0a6533303c16af5f525d419542361";
+        return  "U1508167911379";
     }
 }

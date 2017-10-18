@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">挖券</string>
+    <string name="app_name">哇券</string>
 
     <string name="webview_test">WebView代理</string>
     <string name="login_test">登录</string>

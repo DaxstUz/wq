@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:orientation="vertical"
               android:layout_height="match_parent">
     <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y600"
+            android:layout_width="@dimen/x300"
+            android:layout_height="@dimen/y300"
             android:id="@+id/iv_goods_pic"
             android:scaleType="fitXY"
     />
 
     <LinearLayout
+            android:layout_toRightOf="@+id/iv_goods_pic"
             android:background="@color/b1"
             android:orientation="vertical"
             android:padding="@dimen/border_padding_10"
@@ -40,4 +41,4 @@
             />
         </RelativeLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

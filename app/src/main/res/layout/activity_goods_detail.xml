@@ -109,7 +109,7 @@ android:id="@+id/iv_more"
     <TextView
             android:layout_alignParentBottom="true"
             android:text="@string/goods_accept"
-            android:background="@drawable/bg_select"
+            android:background="@drawable/bg_btn_select"
             android:gravity="center"
             android:padding="@dimen/border_padding_10"
             android:textColor="@color/w4"

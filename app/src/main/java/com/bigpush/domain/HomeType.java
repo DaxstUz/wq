@@ -7,6 +7,14 @@ public class HomeType implements Serializable {
     private String text;
     private String  commodityType;
 
+    public HomeType() {
+    }
+
+    public HomeType(String text, String commodityType) {
+        this.text = text;
+        this.commodityType = commodityType;
+    }
+
     public String getText() {
         return text;
     }

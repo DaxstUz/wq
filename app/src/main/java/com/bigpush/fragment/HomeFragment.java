@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebViewFragment;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
@@ -74,16 +75,6 @@ public class HomeFragment extends BaseFragment implements NewsTitleHorizontalScr
 
         CallServer.getInstance().add(HOMETYPEWHAT, jsonObjectRequest, this);
 
-        SSLContext sslContext = SSLContextUtil.getSSLContext();
-        if (sslContext != null) {
-            //支持HTTPS，解决Android 4.x中HTTPS不支持TLS v1.1、TLS v1.2的BUG
-//            SSLSocketFactory NoSSLv3Factory = new NoSSLv3SocketFactory(sslContext.getSocketFactory());
-//            jsonObjectRequest.setSSLSocketFactory(sslContext.getSocketFactory());
-            //加入队列
-//            mRequestQueue.add(what, request, onResponseListener);
-//            jsonObjectRequest.setHostnameVerifier(SSLContextUtil.hostnameVerifier);
-            CallServer.getInstance().add(HOMETYPEWHAT, jsonObjectRequest, this);
-        }
     }
 
     private NewsTitleHorizontalScrollView newsTitleHorizontalScrollView;
@@ -93,7 +84,12 @@ public class HomeFragment extends BaseFragment implements NewsTitleHorizontalScr
 
         for (int i = 0; i < data.size(); i++) {
             newsTitleHorizontalScrollView.addTextViewTitle(data.get(i).getText(),getActivity());
-            listfragment.add(  GoodsShowFragment.newInstance(data.get(i).getCommodityType()));
+            String url=Constant.WEBSERVER+"index.html";
+            if(0!=i){
+                url=Constant.WEBSERVER+"goodslist.html??cat="+data.get(i).getCommodityType()+"&state=fenlei";
+            }
+
+                listfragment.add(  GoodsShowFragment.newInstance(url));
         }
         mfpa.notifyDataSetChanged();
 
@@ -153,6 +149,7 @@ public class HomeFragment extends BaseFragment implements NewsTitleHorizontalScr
             if(1==homeTypeResp.getStatus()){
                 if(homeTypeResp!=null&&homeTypeResp.getData()!=null){
                     data.clear();
+                    data.add(new HomeType("上新","-1"));
                     data.addAll(homeTypeResp.getData());
                     initTab();
                 }

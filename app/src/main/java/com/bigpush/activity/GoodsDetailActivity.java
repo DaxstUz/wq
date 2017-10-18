@@ -190,8 +190,12 @@ public class GoodsDetailActivity extends BaseActivity {
     }
 
     private boolean open=false;
+
     public void onclick(View view) {
         switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
             case R.id.rl_more:
                 open=!open;
                 if(open){
@@ -205,6 +209,6 @@ public class GoodsDetailActivity extends BaseActivity {
             default:
                 break;
         }
-
     }
+
 }

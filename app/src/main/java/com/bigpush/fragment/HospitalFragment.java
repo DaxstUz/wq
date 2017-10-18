@@ -25,7 +25,7 @@ public class HospitalFragment extends BaseFragment {
         v = inflater.inflate(R.layout.fragment_goods_show, container, false);
 
         wv_show = v.findViewById(R.id.wv_show);
-        setWebParam("http://47.95.202.75:8090/bigpush/infolist.html","gotoGoodsDetailHandler","");
+        setWebParam("http://47.95.202.75:8090/bigpush/infolist.html","gotoGoodsDetailHandler");
         return v;
     }
 

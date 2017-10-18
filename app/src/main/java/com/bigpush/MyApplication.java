@@ -25,11 +25,8 @@ import java.util.Map;
 
 public class MyApplication extends Application {
 
-//    APP ID1106386079
-//    APP KEYUPvsJUHNCm1J8Xpk
-
     static{
-        PlatformConfig.setWeixin("wxa9defcd81f24ca06", "b8903cae400b03c87f886dcc98df6d2d");
+        PlatformConfig.setWeixin("wxa9defcd81f24ca06", "f5faf415809a985a28e9d27b15bce0cd");
         PlatformConfig.setQQZone("1106386079", "UPvsJUHNCm1J8Xpk");
         PlatformConfig.setSinaWeibo("4172881057", "ae15fd6cb12f3e50c727b3a469f6dacc", "http://sns.whalecloud.com");
     }

@@ -101,6 +101,8 @@ dependencies {
 
     compile 'com.linsea:universalvideoview:1.1.0@aar' //视频播放
 
+    compile 'com.github.lzyzsd:jsbridge:1.0.4'
+
     /*  引入百川sdk*/
     //fastjson
     compile 'com.alibaba:fastjson:1.2.9'
