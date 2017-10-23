@@ -10,7 +10,7 @@
                 android:layout_height="wrap_content">
 
             <RelativeLayout android:layout_width="match_parent"
-                            android:background="@color/colorRed"
+                            android:background="@mipmap/bg_myhead"
                             android:layout_height="160dp">
                 <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_centerInParent="true"
@@ -87,6 +87,23 @@
                         <TextView
                                 android:layout_marginTop="5dp"
                                 android:text="@string/my_cart"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#dbdbdb"/>
+
+                    <LinearLayout android:layout_width="0dp"
+                                  android:id="@+id/ll_jf"
+                                  android:layout_height="wrap_content"
+                                  android:gravity="center"
+                                  android:orientation="vertical"
+                                  android:layout_weight="1">
+                        <ImageView android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:src="@mipmap/grade"
+                        />
+                        <TextView
+                                android:layout_marginTop="5dp"
+                                android:text="@string/my_jf"
                                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </LinearLayout>

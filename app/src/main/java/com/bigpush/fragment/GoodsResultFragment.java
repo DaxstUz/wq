@@ -27,11 +27,11 @@ public class GoodsResultFragment extends BaseFragment {
 
     private int GOODSRESULTWHAT=Constant.NET_WHAT++;
 
-    public static GoodsResultFragment newInstance(String url) {
+    public static GoodsResultFragment newInstance(String key) {
         GoodsResultFragment fragment = new GoodsResultFragment();
         Bundle bdl = new Bundle();
 //        bdl.putSerializable("data",url);
-        bdl.putString("url", url);
+        bdl.putString("key", key);
         fragment.setArguments(bdl);
         return fragment;
     }
@@ -62,11 +62,14 @@ public class GoodsResultFragment extends BaseFragment {
         return view;
     }
     private void getResult(String key) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.homeType, RequestMethod.POST);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.overallGetResult, RequestMethod.POST);
         Map<String, Object> param = new HashMap<>();
         param.put("userCode", UserUtils.getUserCode(getActivity()));
         param.put("dataType", "commodity");
         param.put("text", key);
+        param.put("type", "Hot");
+        param.put("value", "desc");
+        param.put("pages", "0");
         jsonObjectRequest.add(param);
 
         CallServer.getInstance().add(GOODSRESULTWHAT, jsonObjectRequest, this);

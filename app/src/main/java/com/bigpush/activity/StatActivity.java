@@ -2,6 +2,7 @@ package com.bigpush.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import com.bigpush.R;
 
 /**
@@ -14,5 +15,15 @@ public class StatActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat);
         setTitle("免责声明");
+    }
+
+    public void onclick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }

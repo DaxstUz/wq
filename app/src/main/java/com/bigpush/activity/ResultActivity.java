@@ -23,14 +23,14 @@ public class ResultActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_msg_result);
         String key=getIntent().getStringExtra("key");
         setTitle("搜索“"+key+"”");
 
         fm=getSupportFragmentManager();
 
-        consultResultFragment=ConsultResultFragment.newInstance("");
-        goodsResultFragment=GoodsResultFragment.newInstance("");
+        consultResultFragment=ConsultResultFragment.newInstance(key);
+        goodsResultFragment=GoodsResultFragment.newInstance(key);
 
         ft=fm.beginTransaction();
         ft.replace(R.id.realtabcontent,consultResultFragment);

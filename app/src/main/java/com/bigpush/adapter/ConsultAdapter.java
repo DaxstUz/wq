@@ -48,7 +48,7 @@ public class ConsultAdapter extends BaseAdapter {
          TextView tv_goods_price=viewItem.findViewById(R.id.tv_goods_price);
          TextView tv_goods_count=viewItem.findViewById(R.id.tv_goods_count);
 //        tv_goods_price.setText("¥"+data.get(i).getRow().getPrice()+"元");
-//        tv_goods_title.setText(data.get(i).getRow().getTitle());
+        tv_goods_title.setText(data.get(i).getRow().getTitle());
 //        tv_goods_count.setText(data.get(i).getRow().getOnlines()+"人已买");
         return viewItem;
     }

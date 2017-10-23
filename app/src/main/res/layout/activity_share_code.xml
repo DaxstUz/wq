@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:gravity="center"
+            android:background="@color/b1"
+            android:layout_width="match_parent" android:layout_height="@dimen/y900">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_goods_pic_share"
+        />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="@dimen/y480">
+        <RelativeLayout
+                android:padding="@dimen/border_padding_5"
+                android:layout_weight="3"
+                android:background="@color/b1"
+                android:layout_width="0dp" android:layout_height="match_parent">
+            <LinearLayout
+                    android:id="@+id/ll_title"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+                <ImageView
+                        android:id="@+id/tv_goods_icon"
+                        android:src="@mipmap/taobao"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/tv_share_title"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:maxLines="2"
+                />
+            </LinearLayout>
+            <TextView
+                    android:id="@+id/tv_share_intro"
+                    android:layout_below="@+id/ll_title"
+                    android:layout_marginTop="@dimen/border_padding_10"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textColor="@color/colorRed"
+                    android:maxLines="4"
+            />
+
+            <TextView
+                    android:id="@+id/tv_quan"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:maxLines="2"
+                    android:gravity="bottom"
+                    android:layout_alignParentBottom="true"
+                    android:text="0元券"
+            />
+            <TextView
+                    android:id="@+id/tv_share_price"
+                    android:layout_toLeftOf="@+id/tvf"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/colorRed"
+                    android:maxLines="2"
+                    android:textSize="@dimen/z2"
+                    android:layout_marginRight="@dimen/border_padding_5"
+                    android:layout_alignParentBottom="true"
+                    android:text="¥13.0"
+            />
+            <TextView
+                    android:id="@+id/tvf"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:maxLines="2"
+                    android:layout_alignParentBottom="true"
+                    android:text="券后价"
+            />
+        </RelativeLayout>
+        <LinearLayout
+                android:padding="@dimen/border_padding_10"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:background="@color/b1"
+                android:layout_width="0dp" android:layout_height="match_parent">
+            <RelativeLayout
+                    android:id="@+id/rl_code"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="@dimen/y360" android:layout_height="@dimen/y360">
+
+                <ImageView
+                        android:id="@+id/iv_share_code"
+                        android:layout_centerInParent="true"
+                        android:layout_width="@dimen/x420"
+                        android:layout_height="@dimen/x420"
+                        android:scaleType="fitXY"
+                />
+                <ImageView
+                        android:src="@mipmap/ul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                />
+                <ImageView
+                        android:src="@mipmap/dl"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                />
+                <ImageView
+                        android:src="@mipmap/dr"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                />
+                <ImageView
+                        android:src="@mipmap/ur"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                />
+            </RelativeLayout>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:textColor="@color/colorBlack"
+                      android:gravity="center"
+                      android:text="长按识别二维码"
+            />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

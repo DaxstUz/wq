@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+    <include
+            android:id="@+id/view_share"
+            layout="@layout/activity_share_code"
+            android:visibility="visible"
+    />
+
+    <ScrollView
+            android:background="@color/colorMainBg"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -49,10 +57,10 @@
                 </RelativeLayout>
             </LinearLayout>
 
-          <RelativeLayout
-                  android:id="@+id/rl_more"
+            <RelativeLayout
+                    android:id="@+id/rl_more"
                     android:padding="@dimen/border_padding_10"
-                  android:onClick="onclick"
+                    android:onClick="onclick"
                     android:layout_marginTop="@dimen/border_padding_10"
                     android:background="@color/b1"
                     android:orientation="horizontal"
@@ -69,12 +77,12 @@
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
                 />
 
-              <ImageView
-android:id="@+id/iv_more"
-                      android:layout_centerVertical="true"
-                      android:layout_alignParentRight="true"
-                      android:src="@mipmap/down"
-                      android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <ImageView
+                        android:id="@+id/iv_more"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@mipmap/down"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             </RelativeLayout>
 
             <com.github.lzyzsd.jsbridge.BridgeWebView
@@ -94,26 +102,37 @@ android:id="@+id/iv_more"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
                 />
 
-                <com.bigpush.view.MyGridView
-                        android:layout_marginBottom="@dimen/y100"
+                <!--<com.bigpush.view.MyGridView-->
+                <!--android:layout_marginBottom="@dimen/y100"-->
+                <!--android:layout_below="@+id/tv_rec"-->
+                <!--android:id="@+id/gv_rec"-->
+                <!--android:numColumns="2"-->
+                <!--android:layout_width="match_parent" android:layout_height="wrap_content"-->
+                <!--/>-->
+
+                <com.github.jdsjlzx.recyclerview.LRecyclerView
+                        android:id="@+id/recycler"
                         android:layout_below="@+id/tv_rec"
-                        android:id="@+id/gv_rec"
-                        android:numColumns="2"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
-                />
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="vertical"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
             </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>
 
     <TextView
+            android:id="@+id/tv_buy"
             android:layout_alignParentBottom="true"
             android:text="@string/goods_accept"
             android:background="@drawable/bg_btn_select"
             android:gravity="center"
             android:padding="@dimen/border_padding_10"
+            android:onClick="onclick"
             android:textColor="@color/w4"
             android:layout_margin="@dimen/border_padding_10"
             android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
 
 </RelativeLayout>

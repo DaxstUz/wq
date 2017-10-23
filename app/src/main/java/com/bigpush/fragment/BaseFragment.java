@@ -8,9 +8,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.bigpush.activity.GoodsDetailActivity;
 import com.bigpush.activity.WebActivity;
-import com.github.lzyzsd.jsbridge.BridgeHandler;
-import com.github.lzyzsd.jsbridge.BridgeWebView;
-import com.github.lzyzsd.jsbridge.CallBackFunction;
+import com.bigpush.view.webview.BridgeHandler;
+import com.bigpush.view.webview.CallBackFunction;
+import com.bigpush.view.webview.MyBridgeWebView;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Response;
 
@@ -35,7 +35,7 @@ public class BaseFragment <T> extends Fragment implements OnResponseListener<T> 
 
     }
 
-    protected BridgeWebView wv_show;
+    protected MyBridgeWebView wv_show;
 
     public void setWebParam(String url, String commodityType) {
 

@@ -66,11 +66,14 @@ public class ConsultResultFragment extends BaseFragment {
     }
 
     private void getResult(String key) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.homeType, RequestMethod.POST);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.overallGetResult, RequestMethod.POST);
         Map<String, Object> param = new HashMap<>();
         param.put("userCode", UserUtils.getUserCode(getActivity()));
         param.put("dataType", "info");
         param.put("text", key);
+        param.put("type", "Hot");
+        param.put("value", "desc");
+        param.put("pages", "0");
         jsonObjectRequest.add(param);
 
         CallServer.getInstance().add(CONSULTRESULTWHAT, jsonObjectRequest, this);

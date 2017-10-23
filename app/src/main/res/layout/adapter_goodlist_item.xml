@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/b1">
+
+    <ImageView
+            android:id="@+id/masonry_item_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/wq"
+            android:scaleType="fitXY"/>
+
+    <LinearLayout
+            android:padding="@dimen/border_padding_10"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/iv_type"
+                android:layout_width="@dimen/x50"
+                android:layout_height="@dimen/x50"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/taobao"
+                android:scaleType="fitXY"
+        />
+        <TextView
+                android:maxLines="1"
+                android:textSize="@dimen/z6"
+                android:id="@+id/masonry_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="@dimen/border_padding_10"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/tv_money"
+                android:textSize="@dimen/z3"
+                android:text="¥"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorRed"
+        />
+        <TextView
+                android:textSize="@dimen/z6"
+                android:text="券后价"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorRed"
+        />
+        <TextView
+                android:id="@+id/tv_count"
+                android:textSize="@dimen/z5"
+                android:text="已售0件"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorRed"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="@dimen/border_padding_10"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView
+                android:text="领券购买"
+                android:textSize="@dimen/z4"
+                android:textColor="@color/b1"
+                android:gravity="center"
+                android:padding="@dimen/x10"
+                android:background="@color/colorRed"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+        />
+        <TextView
+                android:id="@+id/tv_q"
+                android:text="0元券"
+                android:textSize="@dimen/z4"
+                android:textColor="@color/colorRed"
+                android:gravity="center"
+                android:background="@drawable/bg_buy"
+                android:padding="@dimen/x10"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+        />
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

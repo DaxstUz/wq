@@ -11,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebViewFragment;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.bigpush.R;
+import com.bigpush.activity.MsgResultActivity;
 import com.bigpush.activity.SearchActivity;
 import com.bigpush.adapter.MyFragmentPagerAdapter;
 import com.bigpush.domain.HomeType;
@@ -45,6 +47,8 @@ public class HomeFragment extends BaseFragment implements NewsTitleHorizontalScr
     private List<HomeType> data=new ArrayList<>();
 
     private LinearLayout ll_search;
+
+    private ImageView iv_msg;
 
     private View view;
 
@@ -101,6 +105,13 @@ public class HomeFragment extends BaseFragment implements NewsTitleHorizontalScr
     private   MyFragmentPagerAdapter mfpa;
     private void initView() {
 
+        iv_msg =view.findViewById(R.id.iv_msg);
+        iv_msg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MsgResultActivity.class));
+            }
+        });
 
         ll_search =view.findViewById(R.id.ll_search);
         ll_search.setOnClickListener(new View.OnClickListener() {

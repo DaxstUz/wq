@@ -1,6 +1,5 @@
 package com.bigpush.fragment;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -26,9 +25,14 @@ import com.bigpush.util.Constant;
 import com.bigpush.util.DataCleanManager;
 import com.bigpush.util.SystemUtils;
 import com.bigpush.util.ToastUtils;
+import com.bigpush.zxing.MyZxingActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMWeb;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,15 +44,18 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 
     private RoundedImageView iv_head;
     private TextView tv_nickname;
+    private TextView tv_cachesite;
 
     private LinearLayout ll_cart;
     private LinearLayout ll_order;
+    private LinearLayout ll_jf;
 
     private RelativeLayout rl_help;
     private RelativeLayout rl_clean;
     private RelativeLayout rl_about;
     private RelativeLayout rl_feedback;
     private RelativeLayout rl_stat;
+    private RelativeLayout rl_share;
 
     private Map<String, String> exParams;//yhhpass参数
 
@@ -70,6 +77,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
+        tv_cachesite = view.findViewById(R.id.tv_cachesite);
 
         iv_head = view.findViewById(R.id.iv_head);
         tv_nickname = view.findViewById(R.id.tv_nickname);
@@ -96,6 +104,12 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         rl_stat = view.findViewById(R.id.rl_stat);
         rl_stat.setOnClickListener(this);
 
+        rl_share = view.findViewById(R.id.rl_share);
+        rl_share.setOnClickListener(this);
+
+        ll_jf = view.findViewById(R.id.ll_jf);
+        ll_jf.setOnClickListener(this);
+
         refeshData();
     }
 
@@ -110,6 +124,16 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .override(100, 100)
                     .into(iv_head);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            tv_cachesite.setText(DataCleanManager.getCacheSize(getActivity().getCacheDir()));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -139,11 +163,19 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             case R.id.rl_feedback:
                 startActivity(new Intent(getActivity(), FeedBackActivity.class));
                 break;
+            case R.id.ll_jf:
+//                Toast.makeText(this.getActivity(), "程序猿们正在努力开发中，敬请期待……", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), MyZxingActivity.class));
+//                startActivity(new Intent(getActivity(), GoodsListActivity.class));
+                break;
             case R.id.rl_stat:
                 startActivity(new Intent(getActivity(), StatActivity.class));
                 break;
             case R.id.rl_about:
                 startActivity(new Intent(getActivity(), AboutActivity.class));
+                break;
+            case R.id.rl_share:
+                share();
                 break;
             case R.id.ll_cart:
                 alibcBasePage = new AlibcMyCartsPage();
@@ -202,4 +234,63 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 
         refeshData();
     }
+
+
+
+    protected void share(){
+        UMWeb umWeb=new UMWeb("http://47.95.202.75:8090/bigpush/share.html?from=groupmessage");
+        umWeb.mText="欢迎使用挖券";
+        umWeb.setTitle("挖券");
+        umWeb.setDescription("一起来挖券吧叭叭叭吧");
+        new ShareAction(getActivity())
+//                .withText("欢迎使用挖券13232")
+//                .withSubject("内容简介填充……")
+//                .withFollow("foolowfff")
+//                .withFile(screenShot())
+//                .withMedia(screenShot())
+                .withMedia(umWeb)
+                .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+                .setCallback(shareListener)
+                .open();
+    }
+
+    private UMShareListener shareListener = new UMShareListener() {
+        /**
+         * @descrption 分享开始的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+
+        }
+
+        /**
+         * @descrption 分享成功的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            Toast.makeText(getActivity(),"成功了",Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @descrption 分享失败的回调
+         * @param platform 平台类型
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            Toast.makeText(getActivity(),"失败"+t.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @descrption 分享取消的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(getActivity(),"取消了",Toast.LENGTH_LONG).show();
+
+        }
+    };
 }

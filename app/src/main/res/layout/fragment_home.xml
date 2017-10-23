@@ -4,30 +4,38 @@
               android:orientation="vertical"
               android:layout_height="match_parent">
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="@dimen/y100"
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
                     android:background="@color/colorRed"
     >
-        <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:layout_centerVertical="true"
-                android:text="首页"
-        />
+        <ImageView
+                android:id="@+id/iv_msg"
+                android:paddingLeft="@dimen/border_padding_10"
+                android:paddingRight="@dimen/border_padding_10"
+                android:src="@mipmap/msg"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
         <LinearLayout
                 android:id="@+id/ll_search"
-                android:layout_toRightOf="@+id/tv_title"
-                android:layout_margin="@dimen/x10"
+                android:layout_toLeftOf="@+id/v_k"
+                android:layout_toRightOf="@+id/iv_msg"
+                android:layout_margin="@dimen/x20"
                 android:background="@drawable/bg_search"
-                android:layout_toLeftOf="@+id/iv_help"
-                android:layout_width="match_parent" android:layout_height="match_parent"></LinearLayout>
-        <ImageView
-                android:id="@+id/iv_help"
-                android:src="@mipmap/help"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent" android:layout_height="match_parent">
+            <ImageView
+                    android:layout_marginLeft="@dimen/border_padding_10"
+                    android:src="@mipmap/search_title"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                    android:hint="请输入关键字"
+                    android:layout_marginLeft="@dimen/border_padding_10"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <View
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x30"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                android:id="@+id/v_k"
+                android:layout_width="@dimen/border_padding_10" android:layout_height="match_parent"/>
     </RelativeLayout>
 
 

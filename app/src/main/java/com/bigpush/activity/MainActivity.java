@@ -20,7 +20,6 @@ import com.ali.auth.third.login.callback.LogoutCallback;
 import com.ali.auth.third.ui.context.CallbackContext;
 import com.alibaba.baichuan.android.trade.adapter.login.AlibcLogin;
 import com.alibaba.baichuan.android.trade.callback.AlibcLoginCallback;
-import com.bigpush.MyApplication;
 import com.bigpush.R;
 import com.bigpush.fragment.*;
 import com.bigpush.util.*;
@@ -49,7 +48,7 @@ public class MainActivity extends FragmentActivity implements OnResponseListener
 
     private LayoutInflater mLayoutInflater;
 
-    private Class mFragmentArray[] = {HomeFragment.class, HospitalFragment.class,
+    private Class mFragmentArray[] = {HomeFragment.class, GetQuanFragment.class,
             QuatoFragment.class, MyFragment.class};
     /**
      * 标签卡图标
@@ -61,7 +60,7 @@ public class MainActivity extends FragmentActivity implements OnResponseListener
     /**
      * 标签名字
      */
-    private String mTextArray[] = {"首页", "挖券", "9.9", "我的"};
+    private String mTextArray[] = {"首页", "挖券", "9块9", "我的"};
 
 
     @Override

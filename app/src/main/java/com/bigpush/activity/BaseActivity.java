@@ -1,5 +1,7 @@
 package com.bigpush.activity;
 
+import android.graphics.Bitmap;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -12,9 +14,13 @@ import com.github.lzyzsd.jsbridge.CallBackFunction;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Request;
 import com.yanzhenjie.nohttp.rest.Response;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class BaseActivity <T>  extends AppCompatActivity implements OnResponseListener<T> {
 
@@ -68,9 +74,11 @@ public class BaseActivity <T>  extends AppCompatActivity implements OnResponseLi
 
     }
 
-    public void share(){
+    protected void share(){
         new ShareAction(this)
                 .withText("hello")
+//                .withFile(screenShot())
+                .withMedia(screenShot())
                 .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
                 .setCallback(shareListener)
                 .open();
@@ -153,4 +161,37 @@ public class BaseActivity <T>  extends AppCompatActivity implements OnResponseLi
         }
 
     }
+
+    /**
+     * 截屏
+     */
+    private UMImage screenShot(){
+        // 获取屏幕
+        View dView = getWindow().getDecorView();
+        dView.setDrawingCacheEnabled(true);
+        dView.buildDrawingCache();
+        Bitmap bmp = dView.getDrawingCache();
+        if (bmp != null)
+        {
+
+            try {
+                // 获取内置SD卡路径
+                String sdCardPath = Environment.getExternalStorageDirectory().getPath();
+//                String sdCardPath = BaseActivity.this.getCacheDir().getPath();
+                // 图片文件路径
+                String filePath = sdCardPath + File.separator + "screenshot.png";
+
+                File file = new File(filePath);
+                FileOutputStream os = new FileOutputStream(file);
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, os);
+                os.flush();
+                os.close();
+                return new UMImage(this,file);
+            } catch (Exception e) {
+            }
+        }
+
+        return null;
+    }
+
 }

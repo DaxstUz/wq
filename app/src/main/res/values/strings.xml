@@ -45,6 +45,7 @@
     <string name="my_about">关于</string>
 
     <string name="my_stat">免责声明</string>
+    <string name="app_stat">提醒您：在使用本产品前，请您务必仔细阅读并透彻理解本声明。您可以选择不使用，但如果您使用，您的使用行为将被视为对本声明全部内容的认可。\n\n 1.其他一切因使用本产品而可能遭致的意外、疏忽、侵权及其造成的损失（包括因下载被搜索链接到的第三方网站内容 而感染电脑病毒），对其概不负责，亦不承担任何法律责任。\n\n"2.您应该对使用购买的结果自行承担风险。我们不做任何形式的保证：不保证展示信息结果满足您的要求，不保证购买服务不中断，不保证搜索结果的安全性、正确性、及时性、 合法性。因网络状况、通讯线路、第三方网站等任何原因而导致您不能正常使用，我们不承担任何法律责任。\n\n3.任何单位或个人认为通过本产品搜索链接到的第三方网页 内容可能涉嫌侵犯其信息网络传播权，应该及时向我们提出 书面权利通知，并提供身份证明、权属证明及详细侵权情况 证明。在收到上述法律文件后，将会依法尽快断开相关链接 内容。详情参见特定频道的著作权保护声明。</string>
 
     <string name="goods_accept">领券购买</string>
 
@@ -52,6 +53,7 @@
 
     <string name="my_order">淘宝订单</string>
     <string name="my_cart">购物车</string>
+    <string name="my_jf">更多</string>
 
     <string name="person_head">头像</string>
     <string name="person_nickname">昵称</string>
@@ -67,4 +69,8 @@
 
     <string name="search_search">搜索</string>
     <string name="search_canser">取消</string>
+
+    <string name="commit">提交</string>
+    <string name="type">类型</string>
+    <string name="link">联系方式</string>
 </resources>

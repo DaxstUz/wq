@@ -7,5 +7,10 @@
     <include layout="@layout/common_title" />
 
 
+    <TextView
+            android:padding="@dimen/border_padding_10"
+            android:id="@+id/tv_stat"
+            android:text="@string/app_stat"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 </LinearLayout>

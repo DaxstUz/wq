@@ -16,6 +16,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 
     <!-- Required -->
@@ -39,6 +41,7 @@
             android:largeHeap="true"
             android:roundIcon="@mipmap/wq"
             android:supportsRtl="true"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
@@ -73,7 +76,19 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
         <activity
+                android:name=".zxing.MyZxingActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.MsgResultActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
                 android:name=".activity.SearchActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.GoodsListActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
         <activity
@@ -251,7 +266,6 @@
         <!-- Required  . Enable it you can get statistics data with channel -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
         <meta-data android:name="JPUSH_APPKEY" android:value="396afdfb38f7140f3b34f4a3"/> <!--  </>值来自开发者平台取得的AppKey-->
-
 
         <meta-data
                 android:name="UMENG_APPKEY"
