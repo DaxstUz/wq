@@ -22,6 +22,9 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
 
+//    compileSdkVersion 25
+//    buildToolsVersion '25.0.2'
+
     defaultConfig {
         applicationId "com.bigpush"
         minSdkVersion 15
@@ -67,17 +70,106 @@ android {
             versionName '1.0'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
-//        A360 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "A360"]
-//            applicationId 'com.bigpush'
-//            minSdkVersion 15
-//            signingConfig signingConfigs.signconfig
-//            targetSdkVersion 26
-//            versionCode 1
-//            versionName '1.0'
-//            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-//        }
-
+        yingyongbao { //应用宝渠道
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+            applicationId 'com.bigpush'//个性定制，小米市场包名不同
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
+        A360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "A360"]
+            applicationId 'com.bigpush'
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
+        huawei {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
+            applicationId 'com.bigpush'
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
+        meizu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
+            applicationId 'com.bigpush'
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
+        lenovo {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "lenovo"]
+            applicationId 'com.bigpush'
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
+        oppo {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oppo"]
+            applicationId 'com.bigpush'
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+            applicationId 'com.bigpush'
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
+        taobao {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "taobao"]
+            applicationId 'com.bigpush'
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
+        gfen {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "gfen"]
+            applicationId 'com.bigpush'
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
+        baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+            applicationId 'com.bigpush'
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 1
+            versionName '1.0'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
     }
 
 }
@@ -87,7 +179,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
+
+//    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.github.jdsjlzx:LRecyclerView:1.4.3'
+    compile 'jp.wasabeef:recyclerview-animators:2.2.3'//recycle配套动画
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.yanzhenjie.nohttp:nohttp:1.1.4'
     compile 'com.yanzhenjie.nohttp:okhttp:1.1.4'
@@ -101,7 +196,12 @@ dependencies {
 
     compile 'com.linsea:universalvideoview:1.1.0@aar' //视频播放
 
+    compile 'com.bigkoo:convenientbanner:2.0.5' //轮播图
+
     compile 'com.github.lzyzsd:jsbridge:1.0.4'
+
+    compile 'com.google.zxing:core:3.3.0'
+    compile 'com.google.zxing:android-core:3.3.0'
 
     /*  引入百川sdk*/
     //fastjson
@@ -128,5 +228,7 @@ dependencies {
     //电商SDK
     compile 'com.alibaba.sdk.android:alibc_trade_sdk:3.1.1.11@aar'
 
-     compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+
+    compile 'pub.devrel:easypermissions:1.0.1'//动态获取权限
 }
