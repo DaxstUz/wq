@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@mipmap/bg_login"
+              android:orientation="vertical"
+              android:padding="@dimen/x100"
+              android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y60"
+            android:src="@mipmap/loging_wq"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+    <EditText
+            android:id="@+id/et_code"
+            android:layout_gravity="center_horizontal"
+            android:inputType="number"
+           android:hint="请输入邀请码"
+            android:layout_marginTop="@dimen/y100"
+            android:maxLines="1"
+            android:padding="@dimen/border_padding_10"
+            android:background="@drawable/bg_edit"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+<TextView
+        android:id="@+id/tv_commit"
+        android:onClick="onclick"
+        android:layout_marginTop="@dimen/y100"
+        android:layout_gravity="center_horizontal"
+        android:text="立刻登录"
+        android:padding="@dimen/border_padding_10"
+        android:background="@drawable/bg_copy"
+        android:textColor="@color/b1"
+        android:gravity="center"
+        android:layout_width="match_parent" android:layout_height="wrap_content"/>
+<TextView
+        android:id="@+id/tv_reg"
+        android:onClick="onclick"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/y10"
+        android:layout_gravity="right"
+        android:text="重新注册设备"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+<TextView
+        android:layout_marginTop="@dimen/y100"
+        android:layout_gravity="center_horizontal"
+        android:text="温馨提示"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+<TextView
+        android:layout_marginTop="@dimen/y100"
+        android:layout_gravity="center_horizontal"
+        android:text="App需要填写优惠码才能使用，找分享二维码给你的人要优惠码吧＾＾"        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+</LinearLayout>

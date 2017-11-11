@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/y400"
+              android:background="@color/b1">
+
+    <LinearLayout
+            android:layout_weight="2"
+            android:padding="@dimen/border_padding_5"
+            android:layout_width="0dp" android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/masonry_item_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+        />
+    </LinearLayout>
+
+    <RelativeLayout
+            android:padding="@dimen/border_padding_5"
+            android:gravity="center_vertical"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+        <TextView
+                android:maxLines="2"
+                android:textSize="@dimen/z6"
+                android:id="@+id/masonry_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+        />
+
+        <TextView
+                android:layout_below="@+id/masonry_item_title"
+                android:id="@+id/tv_intro"
+                android:textSize="@dimen/z5"
+                android:maxLines="4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorRed"
+        />
+
+
+        <RelativeLayout
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/border_padding_10"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/tv_time"
+                    android:text="10-22"
+                    android:textColor="@color/colorDivideLine"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <RadioButton
+                        android:layout_centerInParent="true"
+                        android:id="@+id/rb_zan"
+                        android:button="@null"
+                        android:drawablePadding="@dimen/x20"
+                        android:textColor="@color/colorDivideLine"
+                        android:drawableRight="@mipmap/zanm"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                <RadioButton
+                        android:id="@+id/rb_view"
+                        android:button="@null"
+                        android:textColor="@color/colorDivideLine"
+                        android:text="100"
+                        android:drawablePadding="@dimen/x20"
+                        android:layout_alignParentRight="true"
+                        android:drawableRight="@mipmap/viewm"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

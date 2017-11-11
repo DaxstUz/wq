@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:background="@color/b1"
+              android:layout_height="match_parent">
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+                      android:background="@color/colorRed"
+>
+    <View
+            android:id="@+id/iv_msg"
+            android:paddingLeft="@dimen/border_padding_10"
+            android:paddingRight="@dimen/border_padding_10"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/border_padding_10"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:id="@+id/ll_search"
+            android:layout_toLeftOf="@+id/tv_wq_search"
+            android:layout_toRightOf="@+id/iv_msg"
+            android:layout_margin="@dimen/x20"
+            android:background="@drawable/bg_search"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent" android:layout_height="match_parent">
+        <ImageView
+                android:layout_marginLeft="@dimen/border_padding_10"
+                android:src="@mipmap/search_title"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <EditText
+                android:id="@+id/et_key"
+                android:hint="请输入（商品）关键字"
+                android:layout_marginLeft="@dimen/border_padding_10"
+                android:background="@color/b1"
+                android:textSize="@dimen/z4"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView
+            android:layout_alignParentRight="true"
+            android:text="搜索"
+            android:paddingRight="@dimen/border_padding_10"
+            android:paddingLeft="@dimen/border_padding_10"
+            android:paddingTop="@dimen/border_padding_5"
+            android:paddingBottom="@dimen/border_padding_5"
+            android:layout_marginLeft="@dimen/border_padding_5"
+            android:layout_marginRight="@dimen/border_padding_5"
+            android:gravity="center"
+            android:textColor="@color/b1"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_copy"
+            android:id="@+id/tv_wq_search"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+</RelativeLayout>
+
+    <RadioGroup
+            android:id="@+id/rg_tab"
+            android:orientation="horizontal"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RadioButton
+                android:id="@+id/rb_search"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="搜哇券"
+                android:textColor="@drawable/textcolortab"
+                android:checked="true"
+                android:button="@null"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+        <RadioButton
+                android:id="@+id/rb_big_search"
+                android:layout_weight="1"
+                android:text="超级搜"
+                android:textColor="@drawable/textcolortab"
+                android:gravity="center"
+                android:button="@null"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+    </RadioGroup>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/myViewPagerSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    />
+
+</LinearLayout>

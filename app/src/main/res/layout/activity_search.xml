@@ -43,15 +43,22 @@
             android:orientation="vertical"
             android:padding="@dimen/border_padding_10"
             android:layout_width="match_parent" android:layout_height="wrap_content">
-        <TextView
-                android:text="热门搜索"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <LinearLayout
+                android:id="@+id/ll_hot"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
 
-        <com.bigpush.view.DragFlowLayout
-                android:id="@+id/mDragFlowLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-        />
+            <TextView
+                    android:text="热门搜索"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+            <com.bigpush.view.DragFlowLayout
+                    android:id="@+id/mDragFlowLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+            />
+        </LinearLayout>
 
         <TextView
                 android:text="搜索历史"

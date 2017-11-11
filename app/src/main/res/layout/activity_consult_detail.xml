@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:background="@color/b1"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/common_title" />
+
+    <ScrollView
+            android:id="@+id/sv_main"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout
+                android:padding="@dimen/border_padding_10"
+                android:orientation="vertical"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageView
+                    android:id="@+id/iv_consult_main"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent" android:layout_height="@dimen/y500"/>
+
+            <TextView
+                    android:id="@+id/tv_consult_detail_title"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/z3"
+                    android:maxLines="2"
+            />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:id="@+id/tv_consult_detail_intro"
+                      android:textColor="@color/colorRed"
+            />
+
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/tv_consult_detail_time"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textColor="@color/colorDivideLine"
+                        android:textSize="@dimen/z3"
+                        android:maxLines="2"
+                />
+                <TextView
+                        android:layout_toLeftOf="@+id/tv_consult_detail_time"
+                        android:layout_marginRight="@dimen/border_padding_10"
+                        android:id="@+id/tv_consult_detail_view"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textColor="@color/colorDivideLine"
+                        android:textSize="@dimen/z3"
+                        android:maxLines="2"
+                />
+
+            </RelativeLayout>
+
+            <ImageView
+                    android:id="@+id/iv_consult_intro"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent" android:layout_height="@dimen/y500"/>
+
+            <TextView
+                    android:id="@+id/tv_consult_detail_content"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/z3"
+                    android:maxLines="2"
+            />
+
+
+            <RelativeLayout
+                    android:layout_marginTop="@dimen/y50"
+                    android:layout_width="match_parent" android:layout_height="wrap_content">
+               <!-- <TextView
+                        android:layout_marginLeft="@dimen/x100"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorDivideLine"
+                        android:textSize="@dimen/z6"
+                        android:maxLines="2"
+                        android:text="已有100人我要点赞"
+                />-->
+
+               <!-- <ImageView
+                        android:layout_toLeftOf="@+id/tv_consult_detail_zan"
+                        android:src="@mipmap/zanm"
+                        android:layout_marginRight="@dimen/border_padding_10"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView
+
+                        android:layout_marginRight="@dimen/x100"
+                        android:id="@+id/tv_consult_detail_zan"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorDivideLine"
+                        android:textSize="@dimen/z6"
+                        android:maxLines="2"
+                        android:text="我要点赞"
+                />-->
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

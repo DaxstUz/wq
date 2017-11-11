@@ -4,9 +4,18 @@
               android:orientation="vertical"
               android:layout_height="match_parent">
 
-    <include layout="@layout/common_title" />
+    <include layout="@layout/common_title"/>
+    <include layout="@layout/person_item"/>
 
-    <include layout="@layout/person_item" />
-
+    <TextView
+            android:id="@+id/tv_logout"
+            android:onClick="logout"
+            android:layout_margin="@dimen/x50"
+            android:gravity="center"
+            android:background="@drawable/bg_copy"
+            android:padding="@dimen/border_padding_10"
+            android:text="取消授权"
+            android:textColor="@color/b1"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 </LinearLayout>

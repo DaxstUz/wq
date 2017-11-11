@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="center"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+    <RadioGroup
+            android:id="@+id/rg_tab"
+            android:orientation="horizontal"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RadioButton
+                android:id="@+id/rb_hot"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/hot"
+                android:textColor="@drawable/textcolortab"
+                android:checked="true"
+                android:button="@null"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+        <RadioButton
+                android:id="@+id/rb_sal"
+                android:layout_weight="1"
+                android:text="@string/sale"
+                android:textColor="@drawable/textcolortab"
+                android:gravity="center"
+                android:button="@null"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+        <RadioButton
+                android:id="@+id/rb_price"
+                android:layout_weight="1"
+                android:text="@string/price"
+                android:textColor="@drawable/textcolortab"
+                android:button="@null"
+                android:drawableRight="@mipmap/down"
+                android:gravity="center"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+        <RadioButton
+                android:id="@+id/rb_coupon"
+                android:layout_weight="1"
+                android:text="@string/coupon"
+                android:textColor="@drawable/textcolortab"
+                android:gravity="center"
+                android:button="@null"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+    </RadioGroup>
+</LinearLayout>

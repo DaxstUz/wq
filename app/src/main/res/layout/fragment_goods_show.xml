@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="@color/b1"
+              android:orientation="vertical"
               android:layout_height="match_parent">
 
-    <com.bigpush.view.webview.MyBridgeWebView
+    <!--<com.bigpush.view.webview.MyBridgeWebView
             android:id="@+id/wv_show"
             android:layerType="software"
-            android:layout_width="match_parent" android:layout_height="match_parent"/>
-<!--
-    <com.github.lzyzsd.jsbridge.BridgeWebView
-            android:id="@+id/wv_show"
-            android:layerType="software"
-            android:layout_width="match_parent" android:layout_height="match_parent"/>
--->
+            android:layout_width="match_parent" android:layout_height="match_parent"/>-->
+
+    <include layout="@layout/common_tab"/>
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
 </LinearLayout>

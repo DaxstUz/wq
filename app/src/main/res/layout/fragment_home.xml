@@ -38,46 +38,40 @@
                 android:layout_width="@dimen/border_padding_10" android:layout_height="match_parent"/>
     </RelativeLayout>
 
-
+<android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl"
+        android:layout_width="match_parent"
+                                              android:layout_height="match_parent">
     <LinearLayout
-            android:id="@+id/news_fragment_main_horizontalscrollview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lyj_title_bar_layout_main"
-            android:orientation="horizontal">
-
-        <com.bigpush.view.NewsTitleHorizontalScrollView
-                android:id="@+id/myHorizeontal"
-                android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout
+                android:id="@+id/news_fragment_main_horizontalscrollview"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fillViewport="true"
-                android:layout_below="@+id/news_activity_main_title_down"
-                android:layout_weight="5"
-                android:scrollbars="none" />
+                android:layout_below="@+id/lyj_title_bar_layout_main"
+                android:orientation="horizontal">
 
-        <!--<LinearLayout
-                android:id="@+id/news_fragment_main_layout_addtitle"
-                android:layout_width="0dp"
-                android:layout_height="28dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:gravity="center"
-                android:orientation="vertical">
+            <com.bigpush.view.NewsTitleHorizontalScrollView
+                    android:id="@+id/myHorizeontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true"
+                    android:layout_below="@+id/news_activity_main_title_down"
+                    android:layout_weight="5"
+                    android:scrollbars="none" />
 
-            <ImageButton
-                    android:layout_width="20dp"
-                    android:layout_height="11dp"
-                    android:scaleType="fitXY"
-                    android:clickable="false"
-                    android:duplicateParentState="true"
-                    android:background="@drawable/biz_news_column_edit_arrow_down"/>
-        </LinearLayout>-->
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+                android:id="@+id/myViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+        />
+
     </LinearLayout>
 
-    <android.support.v4.view.ViewPager
-            android:id="@+id/myViewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-    />
+</android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

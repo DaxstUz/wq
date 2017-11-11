@@ -38,6 +38,8 @@
     <string name="show_cart">显示我的购物车</string>
 
     <string name="shar_down">分享下载</string>
+    <string name="agent">申请成为代理</string>
+    <string name="parter">合伙人系统</string>
 
     <string name="my_help">客户帮助</string>
     <string name="my_return">意见反馈</string>
@@ -59,6 +61,7 @@
     <string name="person_nickname">昵称</string>
     <string name="person_code">邀请码</string>
     <string name="person_qq">客服QQ</string>
+    <string name="person_weixin">客服微信</string>
     <string name="person_taobao">淘宝账号授权状态</string>
 
     <string name="news_title_ttTxt">头条</string>
@@ -73,4 +76,11 @@
     <string name="commit">提交</string>
     <string name="type">类型</string>
     <string name="link">联系方式</string>
+
+    <string name="hot">最新</string>
+    <string name="sale">销量</string>
+    <string name="price">价格</string>
+    <string name="coupon">券面值</string>
+
+    <string name="about_content">  哇券每日上新全网最新优惠券，涵盖购物攻略，好货挑选，每天上万优惠券免费抢，抢到就是赚到，让你惊奇让你尖叫，如双十一般省钱，似实体购物般体验！\n\n【每日上新】每天最新精选优惠券排行，衣食住行全覆盖，随手翻一下就能享受低价优质，还有意外惊喜哦。\n\n【哇券日报】一天当中最给力的优惠信息汇总，当日必看日报，有助于您发现更好的优惠信息。\n\n【哇券精选】网购达人晒单聚集地，分享网购经验心得，体验式购物，近期流行全覆盖，治愈选择困难症。\n\n【必抢神券】品牌货，良心价，各类大牌内部优惠券汇集地，只有想不到，没有领不到。\n\n【9.9包邮】用券后不超9.9元，还包邮。居家日常必备没事多看看。\n\n【视频购物】宝贝细节全方位预览，网购新潮流，大小视频随意看，高逼格购物。\n</string>
 </resources>

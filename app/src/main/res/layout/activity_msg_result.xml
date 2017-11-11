@@ -29,38 +29,43 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RadioGroup
+android:background="@drawable/bg_msg_title"
             android:layout_margin="@dimen/border_padding_10"
+            android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
-            android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content" android:layout_height="wrap_content">
 
-        <TextView
+        <RadioButton
+                android:checked="true"
+                android:button="@null"
                 android:id="@+id/tv_goods"
                 android:onClick="onclick"
-                android:paddingLeft="@dimen/border_padding_10"
-                android:paddingRight="@dimen/border_padding_10"
+                android:paddingLeft="@dimen/x100"
+                android:paddingRight="@dimen/x100"
                 android:paddingTop="@dimen/border_padding_5"
                 android:paddingBottom="@dimen/border_padding_5"
-                android:background="@drawable/bg_btn_default"
-                android:layout_marginRight="@dimen/border_padding_10"
-                android:layout_marginLeft="@dimen/border_padding_10"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="商品"
-                android:textColor="@color/b1"
+                android:background="@drawable/btn_msg_title_left"
+                android:textColor="@drawable/textcolor2"
         />
 
-        <TextView
+        <RadioButton
+                android:button="@null"
                 android:id="@+id/tv_consult"
                 android:onClick="onclick"
-                android:padding="@dimen/border_padding_5"
-                android:background="@drawable/bg_btn_select"
+                android:paddingLeft="@dimen/x100"
+                android:paddingRight="@dimen/x100"
+                android:paddingTop="@dimen/border_padding_5"
+                android:paddingBottom="@dimen/border_padding_5"
+                android:background="@drawable/btn_msg_title_right"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="资讯"
-                android:textColor="@color/b1"
+                android:textColor="@drawable/textcolor2"
         />
-    </LinearLayout>
+    </RadioGroup>
 
     <FrameLayout
             android:id="@+id/realtabcontent"

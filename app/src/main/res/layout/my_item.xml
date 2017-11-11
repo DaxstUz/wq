@@ -6,6 +6,29 @@
               android:layout_height="match_parent">
 
     <RelativeLayout
+            android:id="@+id/rl_agent"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:padding="@dimen/border_padding_10">
+        <ImageView android:id="@+id/iv_agent" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@mipmap/about"/>
+        <TextView
+                android:id="@+id/tv_agent"
+                android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_agent"
+                  android:layout_marginLeft="@dimen/border_padding_5"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <ImageView android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"
+                   android:layout_width="wrap_content"
+                   android:layout_marginRight="@dimen/border_padding_5"
+                   android:src="@mipmap/go"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorDivideLine"
+          android:layout_marginLeft="@dimen/border_padding_5"
+          android:layout_marginRight="@dimen/border_padding_5"
+    />
+    <RelativeLayout
             android:id="@+id/rl_share"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:padding="@dimen/border_padding_10">
@@ -36,6 +59,28 @@
                    android:src="@mipmap/help"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_2"
                   android:text="@string/my_help"
+                  android:layout_marginLeft="@dimen/border_padding_5"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <ImageView android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"
+                   android:layout_width="wrap_content"
+                   android:layout_marginRight="@dimen/border_padding_5"
+                   android:src="@mipmap/go"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorDivideLine"
+          android:layout_marginLeft="@dimen/border_padding_5"
+          android:layout_marginRight="@dimen/border_padding_5"
+    />
+    <RelativeLayout
+            android:id="@+id/rl_info"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:padding="@dimen/border_padding_10">
+        <ImageView android:id="@+id/iv_info" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@mipmap/set"/>
+        <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_info"
+                  android:text="个人设置"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <ImageView android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"

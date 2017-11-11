@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+            android:padding="@dimen/border_padding_5"
+            android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.github.jdsjlzx.recyclerview.LRecyclerView
+                android:layout_marginTop="@dimen/border_padding_10"
+                android:id="@+id/recyclerItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="今日优惠快报"
+                  android:textColor="@color/colorRed"
+        />
+    </LinearLayout>
+</LinearLayout>

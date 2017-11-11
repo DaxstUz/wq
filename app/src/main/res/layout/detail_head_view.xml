@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              xmlns:my="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_height="wrap_content">
+    <com.bigpush.view.ScaleLinearLayout
+            android:layout_height="wrap_content"
+            my:aspectRatio="1.0"
+            my:aspectRatioBase="-1"
+            android:layout_width="match_parent" >
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <!--<include
+                    layout="@layout/view_video"/>-->
+            <FrameLayout
+                    android:id="@+id/video_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:background="@color/b1">
+
+                <com.universalvideoview.UniversalVideoView
+                        android:id="@+id/videoView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        my:uvv_autoRotation="true"
+                        my:uvv_fitXY="false" />
+
+                <com.universalvideoview.UniversalMediaController
+                        android:id="@+id/media_controller"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        my:uvv_scalable="true" />
+            </FrameLayout>
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv_goods_pic"
+                    android:scaleType="fitXY"
+                    android:visibility="gone"
+            />
+        </RelativeLayout>
+
+    </com.bigpush.view.ScaleLinearLayout>
+
+    <LinearLayout
+            android:background="@color/b1"
+            android:orientation="vertical"
+            android:padding="@dimen/border_padding_10"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RelativeLayout
+                android:id="@+id/ll_title"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageView
+                    android:id="@+id/tv_goods_icon"
+                    android:src="@mipmap/taobao"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tv_goods_title"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textColor="@color/colorDivideLine"
+                    android:textSize="@dimen/z3"
+                    android:maxLines="2"
+            />
+        </RelativeLayout>
+
+        <TextView
+                android:layout_marginBottom="@dimen/border_padding_5"
+                android:layout_marginTop="@dimen/border_padding_5"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:id="@+id/tv_goods_intro"
+                  android:textColor="@color/colorRed"
+        />
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tv_goods_price"
+                      android:textColor="@color/colorRed"
+            />
+            <TextView
+                    android:layout_toRightOf="@+id/tv_goods_price"
+                    android:textSize="@dimen/z6"
+                    android:paddingLeft="@dimen/border_padding_5"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/colorDivideLine"
+                    android:text="券后"
+            />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/tv_goods_count"
+                      android:layout_alignParentRight="true"
+                      android:layout_centerVertical="true"
+                      android:textSize="@dimen/z5"
+                      android:layout_marginRight="@dimen/border_padding_10"
+                      android:textColor="@color/w2"
+            />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+            android:id="@+id/rl_more"
+            android:padding="@dimen/border_padding_10"
+            android:onClick="onclick"
+            android:layout_marginTop="@dimen/border_padding_10"
+            android:background="@color/b1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView
+                android:text="查看图文详情"
+                android:id="@+id/tv_detail"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+        />
+        <TextView
+                android:layout_toRightOf="@+id/tv_detail"
+                android:textColor="@color/w6"
+                android:text="（点击可展开）"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+        />
+
+        <ImageView
+                android:id="@+id/iv_more"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/down"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <com.github.lzyzsd.jsbridge.BridgeWebView
+            android:id="@+id/wv_show"
+            android:visibility="gone"
+            android:layout_width="match_parent" android:layout_height="match_parent"/>
+
+        <TextView
+                android:padding="@dimen/border_padding_10"
+                android:background="@color/b1"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/border_padding_10"
+                android:id="@+id/tv_rec"
+                android:layout_centerHorizontal="true"
+                android:text="———— 精品推荐 ————"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="@color/colorMainBg"
+              android:orientation="vertical"
+              android:layout_height="match_parent">
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <ImageView
+            android:id="@+id/iv_backtop"
+            android:padding="@dimen/border_padding_10"
+            android:background="@mipmap/rolltop"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/b1"
+            android:layout_marginBottom="@dimen/border_padding_10"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+</RelativeLayout>

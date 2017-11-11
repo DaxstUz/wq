@@ -32,4 +32,10 @@
         </android.support.v4.app.FragmentTabHost>
     </LinearLayout>
 
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@mipmap/welcome"
+    />
+
 </FrameLayout>

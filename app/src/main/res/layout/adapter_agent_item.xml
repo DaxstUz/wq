@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="@dimen/border_padding_10"
+              android:background="@color/b1">
+
+    <TextView
+            android:id="@+id/tv_agent_name"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_below="@+id/tv_agent_name"
+            android:id="@+id/tv_agent_time"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <TextView
+            android:layout_below="@+id/tv_agent_name"
+            android:layout_alignParentRight="true"
+            android:text="通过"
+            android:textColor="@color/b1"
+            android:padding="@dimen/border_padding_10"
+            android:background="@drawable/bg_copy"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+</RelativeLayout>

@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <FrameLayout
+   <!-- <FrameLayout
             android:id="@+id/video_layout"
             android:layout_width="fill_parent"
             android:layout_height="200dp"
@@ -25,7 +25,9 @@
                 android:layout_height="fill_parent"
                 app:uvv_scalable="true" />
 
-    </FrameLayout>
+    </FrameLayout>-->
+
+    <include layout="@layout/view_video"/>
 
     <LinearLayout
             android:id="@+id/bottom_layout"

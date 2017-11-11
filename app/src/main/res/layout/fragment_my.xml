@@ -114,5 +114,6 @@
         </LinearLayout>
     </ScrollView>
 
+    <include layout="@layout/help_view" />
 
 </RelativeLayout>

@@ -38,7 +38,7 @@
                 android:gravity="center"/>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
             android:layout_marginTop="@dimen/border_padding_10"
             android:gravity="bottom"
             android:orientation="horizontal"
@@ -52,8 +52,10 @@
                 android:textColor="@color/colorRed"
         />
         <TextView
+                android:layout_toRightOf="@+id/tv_money"
                 android:textSize="@dimen/z6"
                 android:text="券后价"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorRed"
@@ -62,12 +64,14 @@
                 android:id="@+id/tv_count"
                 android:textSize="@dimen/z5"
                 android:text="已售0件"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorRed"
         />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
             android:layout_marginTop="@dimen/border_padding_10"

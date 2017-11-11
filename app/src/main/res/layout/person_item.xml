@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:background="@android:color/white"
               android:orientation="vertical"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content">
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_1" android:text="@string/person_head"
@@ -63,7 +63,9 @@
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_3" android:text="@string/person_code"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <TextView android:layout_centerVertical="true"
+        <TextView
+                android:id="@+id/tv_rec"
+                android:layout_centerVertical="true"
                   android:layout_alignParentRight="true"
                   android:layout_width="wrap_content"
                   android:hint="@string/notext"
@@ -78,7 +80,27 @@
     />
 
     <RelativeLayout
-            android:id="@+id/rl_clean"
+            android:id="@+id/rl_weixin"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
+        <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_4" android:text="@string/person_weixin"
+                  android:layout_marginLeft="@dimen/border_padding_5"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:layout_centerVertical="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_width="wrap_content"
+                  android:hint="@string/notext"
+                  android:id="@+id/tv_weixin"
+                  android:layout_marginRight="@dimen/border_padding_5"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/colorDivideLine"
+          android:layout_marginLeft="@dimen/border_padding_5"
+          android:layout_marginRight="@dimen/border_padding_5"
+    />
+    <RelativeLayout
+            android:id="@+id/rl_qq"
             android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="@dimen/border_padding_10">
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_4" android:text="@string/person_qq"
                   android:layout_marginLeft="@dimen/border_padding_5"
@@ -87,6 +109,7 @@
                   android:layout_alignParentRight="true"
                   android:layout_width="wrap_content"
                   android:hint="@string/notext"
+                  android:id="@+id/tv_qq"
                   android:layout_marginRight="@dimen/border_padding_5"
                   android:layout_height="wrap_content"/>
     </RelativeLayout>
