@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
+import android.widget.LinearLayout;
 import com.alibaba.fastjson.JSON;
 import com.bigpush.R;
-import com.bigpush.activity.GoodsDetailActivity;
-import com.bigpush.adapter.GoodsListAdapter;
+import com.bigpush.activity.*;
+import com.bigpush.adapter.ConsultListAdapter;
+import com.bigpush.adapter.ConsultRecItemAdapter;
 import com.bigpush.adapter.SpacesItemDecoration;
-import com.bigpush.resp.GoodsListResp;
+import com.bigpush.resp.ConsultRecItemResp;
+import com.bigpush.resp.ConsultResultResp;
 import com.bigpush.util.CallServer;
 import com.bigpush.util.Constant;
 import com.bigpush.util.SystemUtils;
@@ -38,35 +41,44 @@ import java.util.Map;
 public class GetQuanFragment extends BaseFragment {
 
     private int NINEWHAI = Constant.NET_WHAT++;
+    private int ITEMWHAI = Constant.NET_WHAT++;
 
+    private LinearLayout ll_search;
     private LRecyclerView recyclerView;
     private View v;
 
-    private List<GoodsListResp.DataBean> data = new ArrayList<>();
-    private GoodsListAdapter goodsListAdapter;
+    private ConsultListAdapter goodsListAdapter;
+
+    private List<ConsultResultResp.DataBean> data = new ArrayList<>();
+
+    private List<ConsultRecItemResp.DataBean> itemData=new ArrayList<>();
+    private LRecyclerView recyclerItem;
+    private ConsultRecItemAdapter homeRecItemAdapter;
+
+    View header;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        if(v!=null){
-            ViewGroup parent= (ViewGroup) v.getParent();
-            if(parent!=null){
-                parent.removeView(v);
-            }
-            return v;
-        }
+//        if(v!=null){
+//            ViewGroup parent= (ViewGroup) v.getParent();
+//            if(parent!=null){
+//                parent.removeView(v);
+//            }
+//            return v;
+//        }
 
         v = inflater.inflate(R.layout.fragment_quan, container, false);
-
+        header = inflater.inflate(R.layout.view_consult_head, container, false);
         initView();
+        getItemData();
         getData();
-
         return v;
     }
     private int page = 0;
 
     private void getData() {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.ninePointNineCommodityList, RequestMethod.POST);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.infoList, RequestMethod.POST);
         Map<String, Object> param = new HashMap<>();
         param.put("userCode", UserUtils.getUserCode(getActivity()));
         param.put("type", "Hot");
@@ -77,13 +89,54 @@ public class GetQuanFragment extends BaseFragment {
         CallServer.getInstance().add(NINEWHAI, jsonObjectRequest, this);
 
     }
+    private void getItemData() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.infoRecommendItem, RequestMethod.POST);
+        Map<String, Object> param = new HashMap<>();
+        param.put("userCode", UserUtils.getUserCode(getActivity()));
+        jsonObjectRequest.add(param);
+
+        CallServer.getInstance().add(ITEMWHAI, jsonObjectRequest, this);
+
+    }
 
     private void initView() {
+        recyclerItem = header.findViewById(R.id.recyclerItem);
+        recyclerItem.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        homeRecItemAdapter = new ConsultRecItemAdapter(itemData, getActivity());
+        LRecyclerViewAdapter lRecyclerViewAdapterRec = new LRecyclerViewAdapter(homeRecItemAdapter);
+
+        recyclerItem.setAdapter(lRecyclerViewAdapterRec);
+        recyclerItem.setLoadMoreEnabled(false);
+        recyclerItem.setPullRefreshEnabled(false);
+
+        lRecyclerViewAdapterRec.setOnItemClickListener(new com.github.jdsjlzx.interfaces.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if(itemData.get(position)!=null){
+                    Intent intent = new Intent(getActivity(), ConsultListActivity.class);
+                    intent.putExtra("item", itemData.get(position));
+                    startActivity(intent);
+                }
+            }
+
+        });
+
+
+        ll_search = v.findViewById(R.id.ll_search);
+        ll_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), SearchConsultActivity.class);
+                intent.putExtra("type","info");
+                startActivity(intent);
+            }
+        });
+
         //set recycleview
         recyclerView = v.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
 
-        goodsListAdapter = new GoodsListAdapter(data, getActivity());
+        goodsListAdapter = new ConsultListAdapter(data, getActivity());
 
         AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
         adapter.setFirstOnly(false);
@@ -101,13 +154,15 @@ public class GetQuanFragment extends BaseFragment {
         lRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                Toast.makeText(getActivity(), data.get(position).getRow().getTitle(), Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(getActivity(),GoodsDetailActivity.class);
-                intent.putExtra("commodityCode",data.get(position).getRow().getCommodityCode());
+                Intent intent=new Intent(getActivity(),ConsultDetailActivity.class);
+                intent.putExtra("infoCode",data.get(position).getRow().getInfoCode());
                 startActivity(intent);
             }
 
         });
+
+
+        lRecyclerViewAdapter.addHeaderView(header);
 
         //设置头部加载颜色
         recyclerView.setHeaderViewColor(R.color.colorAccent, R.color.b4, android.R.color.white);
@@ -148,7 +203,7 @@ public class GetQuanFragment extends BaseFragment {
         super.onSucceed(what, response);
 
         if (what == NINEWHAI) {
-            GoodsListResp consultResultResp = JSON.parseObject(response.get().toString(), GoodsListResp.class);
+            ConsultResultResp consultResultResp = JSON.parseObject(response.get().toString(), ConsultResultResp.class);
             recyclerView.refreshComplete(10);
             if (1 == consultResultResp.getStatus()) {
                 if (consultResultResp != null && consultResultResp.getData() != null && consultResultResp.getData().size() > 0) {
@@ -163,7 +218,28 @@ public class GetQuanFragment extends BaseFragment {
             } else {
                 SystemUtils.showText(consultResultResp.getErrorMsg());
             }
+        }else  if (what == ITEMWHAI) {
+            ConsultRecItemResp consultRecItemResp = JSON.parseObject(response.get().toString(), ConsultRecItemResp.class);
+            recyclerView.refreshComplete(10);
+            if (1 == consultRecItemResp.getStatus()) {
+                if (consultRecItemResp != null && consultRecItemResp.getData() != null && consultRecItemResp.getData().size() > 0) {
+                    itemData.clear();
+                    itemData.addAll(consultRecItemResp.getData());
+                    homeRecItemAdapter.notifyDataSetChanged();
+                    goodsListAdapter.notifyDataSetChanged();
+                } else {
+                    recyclerView.setNoMore(true);
+                }
+            } else {
+                SystemUtils.showText(consultRecItemResp.getErrorMsg());
+            }
         }
     }
 
+    @Override
+    public void onFailed(int what, Response response) {
+        super.onFailed(what, response);
+
+        SystemUtils.showText("接口地址请求失败"+response.getException());
+    }
 }

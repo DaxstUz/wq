@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -36,20 +37,23 @@
             tools:replace="android:allowBackup"
             android:name=".MyApplication"
             android:allowBackup="true"
-            android:icon="@mipmap/wq"
+            android:icon="@mipmap/wqicon"
             android:label="@string/app_name"
             android:largeHeap="true"
             android:roundIcon="@mipmap/wq"
             android:supportsRtl="true"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+                android:name=".activity.MainActivity"
+                android:screenOrientation="portrait"/>
         <activity
                 android:name=".activity.AliSdkOrderActivity"
                 android:screenOrientation="portrait"/>
@@ -61,6 +65,30 @@
                 android:screenOrientation="portrait"/>
         <activity
                 android:name=".activity.VideoPlayActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.GoodsListActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.RollTextActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.ConsultDetailActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.ConsultListActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.ApplyAgentActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.BigSearchResultActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
         <activity
@@ -76,6 +104,26 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
         <activity
+                android:name=".activity.SearchConsultActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.ShopResultActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.GoodsShareActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.InfoResultActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.AgentListActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
                 android:name=".zxing.MyZxingActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
@@ -88,7 +136,11 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
         <activity
-                android:name=".activity.GoodsListActivity"
+                android:name=".activity.GoodsShowActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.GoodsListDemoActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
         <activity

@@ -52,6 +52,6 @@
 <TextView
         android:layout_marginTop="@dimen/y100"
         android:layout_gravity="center_horizontal"
-        android:text="App需要填写优惠码才能使用，找分享二维码给你的人要优惠码吧＾＾"        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        android:text="App需要填写优惠码才能使用，找分享二维码给你的人要哇券码吧＾＾"        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
 </LinearLayout>

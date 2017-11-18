@@ -10,13 +10,13 @@ import android.widget.TextView;
 import com.bigpush.R;
 import com.bigpush.base.ListBaseAdapter;
 import com.bigpush.resp.GoodsListResp;
+import com.bigpush.util.HttpUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
 public class GoodsListAdapter extends ListBaseAdapter {
-//    private List<Product> products;
     private List<GoodsListResp.DataBean> products;
     private Context context;
 
@@ -36,11 +36,11 @@ public class GoodsListAdapter extends ListBaseAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 //        ((GoodsListAdapter.GoodsViewHolder)holder).imageView.setImageResource(products.get(position).getImg());
         Glide.with(context)
-                .load(products.get(position).getRow().getPicUrl())
+                .load(HttpUtil.getUrl(products.get(position).getRow().getPicUrl()))
                 .placeholder(R.mipmap.wq)
 //                .error(R.drawable.error)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .override(100, 100)
+//                .override(100, 100)
                 .into(((GoodsListAdapter.GoodsViewHolder)holder).imageView);
 
         ((GoodsListAdapter.GoodsViewHolder)holder).textView.setText(products.get(position).getRow().getTitle());

@@ -75,6 +75,7 @@ public class FeedBackActivity extends BaseActivity {
         if(what==FEEDBACKWHAT){
             HomeTypeResp homeTypeResp= JSON.parseObject(response.get().toString(),HomeTypeResp.class);
             if(1==homeTypeResp.getStatus()){
+                SystemUtils.showText("提交成功");
                 finish();
             }else{
                 SystemUtils.showText(homeTypeResp.getErrorMsg());

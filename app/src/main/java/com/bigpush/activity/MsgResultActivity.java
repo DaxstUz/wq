@@ -5,56 +5,65 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.RadioButton;
 import com.bigpush.R;
 import com.bigpush.fragment.ConsultMsgFragment;
 import com.bigpush.fragment.GoodsResultFragment;
+import com.bigpush.fragment.SystemMsgFragment;
 
 public class MsgResultActivity extends BaseActivity {
 
     private FragmentManager fm;
     private FragmentTransaction ft;
 
-    private ConsultMsgFragment consultResultFragment;
     private GoodsResultFragment goodsResultFragment;
+    private ConsultMsgFragment consultResultFragment;
+    private SystemMsgFragment systemMsgFragment;
 
-    private TextView tv_consult;
-    private TextView tv_goods;
+    private RadioButton tv_msg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_msg_result);
-        String key=getIntent().getStringExtra("key");
         setTitle("消息列表");
+
+        tv_msg= (RadioButton) findViewById(R.id.tv_msg);
+
+       int selectIndex= getIntent().getIntExtra("selectIndex",0);
 
         fm=getSupportFragmentManager();
 
-        consultResultFragment=ConsultMsgFragment.newInstance(key);
-        goodsResultFragment=GoodsResultFragment.newInstance(key);
+        goodsResultFragment=GoodsResultFragment.newInstance();
+        consultResultFragment=ConsultMsgFragment.newInstance();
+        systemMsgFragment=SystemMsgFragment.newInstance();
 
         ft=fm.beginTransaction();
-        ft.replace(R.id.realtabcontent,consultResultFragment);
+        if(selectIndex!=0){
+            ft.replace(R.id.realtabcontent,systemMsgFragment);
+            tv_msg.setChecked(true);
+        }else{
+            ft.replace(R.id.realtabcontent,consultResultFragment);
+        }
         ft.commit();
 
-        tv_consult= (TextView) findView(R.id.tv_consult);
-        tv_goods= (TextView) findView(R.id.tv_goods);
     }
 
     public void onclick(View view) {
         switch (view.getId()) {
             case R.id.tv_consult:
-                tv_consult.setBackgroundResource(R.drawable.bg_btn_select);
-                tv_goods.setBackgroundResource(R.drawable.bg_btn_default);
                 ft=fm.beginTransaction();
                 ft.replace(R.id.realtabcontent,consultResultFragment);
                 ft.commit();
                 break;
             case R.id.tv_goods:
-                tv_goods.setBackgroundResource(R.drawable.bg_btn_select);
-                tv_consult.setBackgroundResource(R.drawable.bg_btn_default);
                 ft=fm.beginTransaction();
                 ft.replace(R.id.realtabcontent,goodsResultFragment);
+                ft.commit();
+                break;
+            case R.id.tv_msg:
+                ft=fm.beginTransaction();
+                ft.replace(R.id.realtabcontent,systemMsgFragment);
                 ft.commit();
                 break;
             case R.id.iv_back:

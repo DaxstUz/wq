@@ -48,4 +48,77 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     </RelativeLayout>
+    <RelativeLayout
+            android:layout_marginTop="@dimen/border_padding_10"
+            android:padding="@dimen/border_padding_10"
+            android:background="@drawable/bg_dialog_main"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/iv_ms"
+                android:src="@mipmap/ms"
+                android:layout_width="@dimen/x70" android:layout_height="@dimen/x70"/>
+
+        <TextView
+                android:layout_toRightOf="@+id/iv_ms"
+                android:id="@+id/tv_day"
+                android:layout_marginTop="@dimen/x4"
+                android:layout_marginLeft="@dimen/border_padding_5"
+                android:text="每日秒杀"
+                android:textColor="@color/colorDivideLine"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <LinearLayout
+                android:layout_marginLeft="@dimen/border_padding_10"
+                android:layout_marginTop="@dimen/x4"
+                android:layout_toRightOf="@+id/tv_day"
+                android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView
+                    android:layout_marginLeft="@dimen/border_padding_10"
+                    android:text="距离"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                    android:layout_marginLeft="@dimen/border_padding_10"
+                    android:text="01"
+                    android:textColor="@color/b1"
+                    android:background="@color/colorBlack"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                    android:text="："
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                    android:text="47"
+                    android:textColor="@color/b1"
+                    android:background="@color/colorBlack"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                    android:text="："
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tv_second"
+                    android:text="59"
+                    android:textColor="@color/b1"
+                    android:background="@color/colorBlack"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView
+                    android:layout_marginLeft="@dimen/border_padding_10"
+                    android:text="结束"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <com.github.jdsjlzx.recyclerview.LRecyclerView
+                android:layout_below="@+id/tv_day"
+                android:layout_marginTop="@dimen/border_padding_10"
+                android:id="@+id/recycler_day"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y500"
+                android:scrollbars="horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    </RelativeLayout>
+
+
 </LinearLayout>

@@ -60,14 +60,24 @@ android {
     }
 
     productFlavors {//多渠道打包
+        wq { //
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wq"]
+            applicationId 'com.bigpush'//个性定制，小米市场包名不同
+            minSdkVersion 15
+            signingConfig signingConfigs.signconfig
+            targetSdkVersion 26
+            versionCode 122
+            versionName '1.2.2'
+            testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        }
         xiaomi { //小米渠道
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
             applicationId 'com.bigpush'//个性定制，小米市场包名不同
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         yingyongbao { //应用宝渠道
@@ -76,8 +86,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         A360 {
@@ -86,8 +96,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         huawei {
@@ -96,8 +106,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         meizu {
@@ -106,8 +116,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         lenovo {
@@ -116,8 +126,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         oppo {
@@ -126,8 +136,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         wandoujia {
@@ -136,8 +146,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         taobao {
@@ -146,8 +156,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         gfen {
@@ -156,8 +166,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         baidu {
@@ -166,8 +176,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 1
-            versionName '1.0'
+            versionCode 122
+            versionName '1.2.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
     }

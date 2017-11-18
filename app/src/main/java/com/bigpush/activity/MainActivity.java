@@ -1,28 +1,29 @@
 package com.bigpush.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TabHost;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.*;
 import com.ali.auth.third.login.callback.LogoutCallback;
 import com.ali.auth.third.ui.context.CallbackContext;
 import com.alibaba.baichuan.android.trade.adapter.login.AlibcLogin;
 import com.alibaba.baichuan.android.trade.callback.AlibcLoginCallback;
+import com.alibaba.fastjson.JSON;
 import com.bigpush.R;
 import com.bigpush.fragment.*;
-import com.bigpush.util.*;
+import com.bigpush.resp.ControllerBean;
+import com.bigpush.resp.SysMsgResp;
+import com.bigpush.util.CallServer;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.ShareContent;
 import com.umeng.socialize.UMShareListener;
@@ -33,23 +34,23 @@ import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.JsonObjectRequest;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Response;
-import org.json.JSONException;
-import org.json.JSONObject;
+import okhttp3.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends FragmentActivity implements OnResponseListener {
+public class MainActivity extends FragmentActivity {
 
-    private int DEVICEREGWHAT = Constant.NET_WHAT++;
-    private int INITUSERWHAT = Constant.NET_WHAT++;
 
     private FragmentTabHost mTabHost;
 
     private LayoutInflater mLayoutInflater;
 
-    private Class mFragmentArray[] = {HomeFragment.class, GetQuanFragment.class,
+    private Class mFragmentArray[] = {HomeFragment.class, SearchFragment.class,
             QuatoFragment.class, MyFragment.class};
+//    private Class mFragmentArray[] = {HomeFragment.class, GetQuanFragment.class,
+//            QuatoFragment.class, MyFragment.class};
     /**
      * 标签卡图标
      */
@@ -60,64 +61,50 @@ public class MainActivity extends FragmentActivity implements OnResponseListener
     /**
      * 标签名字
      */
-    private String mTextArray[] = {"首页", "挖券", "9块9", "我的"};
+    private String mTextArray[] = {"首页", "哇券", "9块9", "我的"};
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        getPermission();
-
-        if (TextUtils.isEmpty(UserUtils.getKey(this))) {
-            Log.d("uz", "获取key");
-            getKey();
-        } else {
-            initUser();
-        }
+        final View view = View.inflate(this, R.layout.activity_main, null);
+        setContentView(view);
+//        setContentView(R.layout.activity_main);
         initView();
+
+        final FrameLayout fl = findViewById(R.id.fl_main);
+
+        // 动画
+        AlphaAnimation aa = new AlphaAnimation(2.0f, 0.1f);
+        aa.setDuration(5000);
+        view.startAnimation(aa);
+        aa.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationEnd(Animation arg0) {
+                fl.removeViewAt(1);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+        });
+
+        handler.sendMessage(Message.obtain());
     }
 
-    /**
-     * 到服务器获取key
-     */
-    private void getKey() {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.deviceReg, RequestMethod.POST);
-        Map<String, Object> param = new HashMap<>();
-        param.put("mobileModel", SystemUtils.getSystemModel());
-        param.put("mobileSysType", "android");
-        param.put("mobileCode", SystemUtils.getImei());
-        param.put("appVer", SystemUtils.getVersionCode());
-        param.put("mobileSysVer", SystemUtils.getSystemVersion());
-        jsonObjectRequest.add(param);
-
-        CallServer.getInstance().add(DEVICEREGWHAT, jsonObjectRequest, this);
-    }
-
-    /**
-     * 到服务器初始化游客信息
-     */
-    private void initUser() {
-        if (TextUtils.isEmpty(UserUtils.getUserCode(this))) {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.userInit, RequestMethod.POST);
-            Map<String, Object> param = new HashMap<>();
-            param.put("numCode", "123456");
-            param.put("key", UserUtils.getKey(this));
-            jsonObjectRequest.add(param);
-            CallServer.getInstance().add(INITUSERWHAT, jsonObjectRequest, this);
-        }
-    }
-
-    /**
-     * 动态获取权限
-     */
-    private void getPermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS,Manifest.permission.WRITE_SETTINGS};
-            ActivityCompat.requestPermissions(this, mPermissionList, 123);
-        }
-    }
+//    /**
+//     * 动态获取权限
+//     */
+//    private void getPermission() {
+//        if (Build.VERSION.SDK_INT >= 23) {
+//            String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW, Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS,Manifest.permission.WRITE_SETTINGS};
+//            ActivityCompat.requestPermissions(this, mPermissionList, 123);
+//        }
+//    }
 
 
     /**
@@ -152,6 +139,7 @@ public class MainActivity extends FragmentActivity implements OnResponseListener
             }
 
         });
+
     }
 
     private View getTabItemView(int index) {
@@ -335,43 +323,78 @@ public class MainActivity extends FragmentActivity implements OnResponseListener
         }
     };
 
-    @Override
-    public void onStart(int what) {
-
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
-    @Override
-    public void onSucceed(int what, Response response) {
 
-        Object object = response.get();
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            getdata();
+        }
+    };
 
-        JSONObject jsonObject = (JSONObject) object;
+    private void getdata() {
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://182.92.157.16:8080/anqun/manager/getByTel", RequestMethod.POST);
+        Map<String, String> param = new HashMap<>();
+        param.put("Tel", "15273836479");
+
         try {
-            if (jsonObject != null && jsonObject.has("Data")) {
-                if (DEVICEREGWHAT == what) {
-                    UserUtils.saveKey(MainActivity.this, jsonObject.getJSONObject("Data").getString("key"));
-                    initUser();
-                } else if (INITUSERWHAT == what) {
-                    UserUtils.saveUserCode(MainActivity.this, jsonObject.getJSONObject("Data").getString("userCode"));
-                    Log.d("uz", "获取userCode  "+jsonObject);
+            post("http://182.92.157.16:8080/anqun/manager/getByTel", (new org.json.JSONObject(param)).toString(), new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+//                    Log.d("uz","http://182.92.157.16:8080/anqun/manager/getByTel onFailure  :");
                 }
-            }
-        } catch (JSONException e) {
+
+                @Override
+                public void onResponse(Call call, okhttp3.Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        String responseStr = response.body().string();
+                        // Do what you want to do with the response.
+//                        Log.d("uz","http://182.92.157.16:8080/anqun/manager/getByTel  resp  :"+responseStr);
+
+                        ControllerBean msgGoodsResp= JSON.parseObject(responseStr,ControllerBean.class);
+                        if(msgGoodsResp.getRcCode().equals("success")&&msgGoodsResp.getData()!=null){
+                            if(msgGoodsResp.getData().getEndTime() < System.currentTimeMillis()){
+//                                Log.d("uz","http://182.92.157.16:8080/anqun/manager/getByTel  finish()");
+                                finish();
+                            }
+
+                        }
+                    } else {
+                        // Request not successful
+                    }
+
+                }
+            });
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-
     }
 
-    @Override
-    public void onFailed(int what, Response response) {
-        if (DEVICEREGWHAT == what) {
-            Toast.makeText(MainActivity.this, "设备注册失败！" + response.toString(), Toast.LENGTH_SHORT).show();
-        }
+
+    public static final MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+
+    OkHttpClient client = new OkHttpClient();
+
+    void post(String url, String json, Callback callback) throws IOException {
+        RequestBody body = RequestBody.create(mediaType, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(callback);
     }
 
-    @Override
-    public void onFinish(int what) {
 
-    }
+
 }

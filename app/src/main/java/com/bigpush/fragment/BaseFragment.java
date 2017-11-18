@@ -2,12 +2,14 @@ package com.bigpush.fragment;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.bigpush.activity.GoodsDetailActivity;
 import com.bigpush.activity.WebActivity;
+import com.bigpush.util.SystemUtils;
 import com.bigpush.view.webview.BridgeHandler;
 import com.bigpush.view.webview.CallBackFunction;
 import com.bigpush.view.webview.MyBridgeWebView;
@@ -18,21 +20,23 @@ public class BaseFragment <T> extends Fragment implements OnResponseListener<T> 
 
     @Override
     public void onStart(int what) {
+//        Log.d("uz","BaseFragment onStart "+what);
     }
 
     @Override
     public void onSucceed(int what, Response<T> response) {
-
+//        Log.d("uz","BaseFragment onSucceed"+what+" "+response.get().toString());
     }
 
     @Override
     public void onFailed(int what, Response<T> response) {
-
+        SystemUtils.showText("网络错误");
+//        Log.d("uz","BaseFragment onFailed"+what);
     }
 
     @Override
     public void onFinish(int what) {
-
+//        Log.d("uz","BaseFragment onFinish"+what);
     }
 
     protected MyBridgeWebView wv_show;
@@ -93,5 +97,10 @@ public class BaseFragment <T> extends Fragment implements OnResponseListener<T> 
             });
         }
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

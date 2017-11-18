@@ -9,6 +9,16 @@ public class GoodsDetailResp implements Serializable {
 
     private GoodsDetail Data;
 
+    private String errorMsg;
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
     public int getStatus() {
         return status;
     }

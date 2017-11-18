@@ -8,6 +8,7 @@ import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
 import com.alibaba.baichuan.android.trade.adapter.ut.AlibcUserTracker;
 import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.ut.mini.internal.UTTeamWork;
@@ -26,7 +27,7 @@ import java.util.Map;
 public class MyApplication extends Application {
 
     static{
-        PlatformConfig.setWeixin("wxa9defcd81f24ca06", "f5faf415809a985a28e9d27b15bce0cd");
+        PlatformConfig.setWeixin("wx19177ac6addf1450", "968ab7c3a1758cff42963dd76952f364");
         PlatformConfig.setQQZone("1106386079", "UPvsJUHNCm1J8Xpk");
         PlatformConfig.setSinaWeibo("4172881057", "ae15fd6cb12f3e50c727b3a469f6dacc", "http://sns.whalecloud.com");
     }
@@ -36,7 +37,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
 
@@ -44,14 +44,13 @@ public class MyApplication extends Application {
         UMShareAPI.get(this);
 
         application=this;
-
         initNet();
-
         initAli();
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+        UMConfigure.setEncryptEnabled(true);
 
         MultiDex.install(this);
     }
-
 
 
     /**
@@ -69,6 +68,7 @@ public class MyApplication extends Application {
                 Map utMap = new HashMap<>();
                 utMap.put("debug_api_url","http://muvp.alibaba-inc.com/online/UploadRecords.do");
                 utMap.put("debug_key","baichuan_sdk_utDetection");
+//                utMap.put("taokeAppkey","24663819");
                 UTTeamWork.getInstance().turnOnRealTimeDebug(utMap);
                 AlibcUserTracker.getInstance().sendInitHit4DAU();
 

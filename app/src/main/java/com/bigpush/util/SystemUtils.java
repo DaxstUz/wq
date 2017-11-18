@@ -15,6 +15,7 @@ import java.util.*;
 public class SystemUtils {
 
     public static Set<String> cachKeys=new HashSet<>();
+    public static Set<String> cachConsultKeys=new HashSet<>();
 
     public static void saveKeys(Activity context, Set<String> data) {
         SharedPreferences sp = context.getSharedPreferences("systeminfo", 0);
@@ -23,9 +24,21 @@ public class SystemUtils {
         editor.commit();
 
     }
+    public static void saveKeysConsult(Activity context, Set<String> data) {
+        SharedPreferences sp = context.getSharedPreferences("systeminfo", 0);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putStringSet("keysConsult",data);
+        editor.commit();
+
+    }
     public static Set<String> getKeys(Activity context) {
         SharedPreferences sp = context.getSharedPreferences("systeminfo", 0);
        return   sp.getStringSet("keys",new HashSet<String>());
+    }
+
+    public static Set<String> getKeysConsult(Activity context) {
+        SharedPreferences sp = context.getSharedPreferences("systeminfo", 0);
+       return   sp.getStringSet("keysConsult",new HashSet<String>());
     }
 
 
