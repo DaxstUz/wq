@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:background="@color/colorMainBg"
+              android:id="@+id/ll_page"
+              android:clickable="true"
+              android:layout_height="match_parent">
+
+
+    <include layout="@layout/common_title"/>
+
+    <!--<include layout="@layout/common_tab"/>-->
+
+    <RadioGroup
+            android:background="@color/b1"
+            android:id="@+id/rg_tab"
+            android:orientation="horizontal"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <RadioButton
+                android:id="@+id/rb_hot"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="综合"
+                android:textColor="@drawable/textcolortab"
+                android:checked="true"
+                android:button="@null"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+        <RadioButton
+                android:id="@+id/rb_sal"
+                android:layout_weight="1"
+                android:text="只看有券"
+                android:textColor="@drawable/textcolortab"
+                android:gravity="center"
+                android:button="@null"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+        <RadioButton
+                android:id="@+id/rb_price"
+                android:layout_weight="1"
+                android:text="券后价"
+                android:textColor="@drawable/textcolortab"
+                android:button="@null"
+                android:drawableRight="@mipmap/down"
+                android:gravity="center"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+        <RadioButton
+                android:id="@+id/rb_coupon"
+                android:layout_weight="1"
+                android:text="只看天猫"
+                android:textColor="@drawable/textcolortab"
+                android:gravity="center"
+                android:button="@null"
+                android:padding="@dimen/border_padding_10"
+                android:layout_width="0dp" android:layout_height="wrap_content"/>
+    </RadioGroup>
+
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+</LinearLayout>

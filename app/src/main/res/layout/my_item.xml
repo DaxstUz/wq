@@ -13,6 +13,7 @@
                    android:src="@mipmap/about"/>
         <TextView
                 android:id="@+id/tv_agent"
+                android:textColor="@color/colorBlack"
                 android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_agent"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
@@ -36,6 +37,7 @@
                    android:src="@mipmap/share"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_1"
                   android:text="@string/shar_down"
+                  android:textColor="@color/colorBlack"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <ImageView android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"
@@ -59,6 +61,7 @@
                    android:src="@mipmap/help"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_2"
                   android:text="@string/my_help"
+                  android:textColor="@color/colorBlack"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <ImageView android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"
@@ -81,6 +84,7 @@
                    android:src="@mipmap/set"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_info"
                   android:text="个人设置"
+                  android:textColor="@color/colorBlack"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <ImageView android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"
@@ -104,6 +108,7 @@
                    android:src="@mipmap/feedback"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_3"
                   android:text="@string/my_return"
+                  android:textColor="@color/colorBlack"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <ImageView android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"
@@ -125,6 +130,7 @@
                    android:src="@mipmap/clear"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_4"
                   android:text="@string/my_clean"
+                  android:textColor="@color/colorBlack"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
@@ -132,6 +138,7 @@
                 android:id="@+id/tv_cachesite"
                 android:layout_toLeftOf="@+id/iv_clean"
                 android:layout_centerVertical="true"
+                android:textColor="@color/colorBlack"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/border_padding_10"/>
 
@@ -159,6 +166,7 @@
                    android:src="@mipmap/stat"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_5"
                   android:text="@string/my_stat"
+                  android:textColor="@color/colorBlack"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <ImageView android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"
@@ -182,6 +190,7 @@
                    android:src="@mipmap/about"/>
         <TextView android:layout_centerVertical="true" android:layout_toRightOf="@+id/iv_6"
                   android:text="@string/my_about"
+                  android:textColor="@color/colorBlack"
                   android:layout_marginLeft="@dimen/border_padding_5"
                   android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <ImageView android:layout_centerVertical="true" android:text=">" android:layout_alignParentRight="true"

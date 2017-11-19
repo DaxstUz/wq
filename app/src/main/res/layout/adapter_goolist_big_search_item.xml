@@ -28,6 +28,7 @@
                 <TextView
                         android:text="65656565"
                         android:maxLines="1"
+                        android:textColor="@color/colotexth"
                         android:textSize="@dimen/z6"
                         android:id="@+id/masonry_item_title"
                         android:layout_width="match_parent"
@@ -93,13 +94,13 @@
                 android:id="@+id/tv_buy2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:text="领券购买"
+                android:text="购买"
                 android:textSize="@dimen/z4"
                 android:textColor="@color/b1"
                 android:gravity="center"
                 android:padding="@dimen/x10"
                 android:background="@color/colorRed"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/x220"
                 android:layout_height="wrap_content"
         />
     </RelativeLayout>

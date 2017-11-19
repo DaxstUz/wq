@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +52,10 @@ public class PersonInfoActivity extends BaseActivity {
         user= (UserResp.DataBean) getIntent().getSerializableExtra("user");
 
         initView();
+
+        setCanClose(true);//设置可以左滑返回
+        LinearLayout ll_page= (LinearLayout) findViewById(R.id.ll_page);
+        ll_page.setOnTouchListener(this);
     }
 
     private void initView() {

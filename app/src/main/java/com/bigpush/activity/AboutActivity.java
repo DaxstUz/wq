@@ -5,10 +5,17 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.bigpush.R;
+import com.bigpush.util.SystemUtils;
 
 /**
  * 商品详情页
@@ -21,6 +28,7 @@ public class AboutActivity extends BaseActivity {
     private TextView tv_version;
 
     private int count;
+    private double x1,x2,y1,y2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +57,50 @@ public class AboutActivity extends BaseActivity {
                 }
             }
         });
+
+        LinearLayout ll_page= (LinearLayout) findViewById(R.id.ll_page);
+        ll_page.setOnTouchListener(this);
+
+//        ll_page.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SystemUtils.showText("d点击");
+//            }
+//        });
+
+//        ll_page.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent event) {
+//                Log.d("tag","onTouch");
+//                //继承了Activity的onTouchEvent方法，直接监听点击事件
+//                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    //当手指按下的时候
+//                    x1 = event.getX();
+//                    y1 = event.getY();
+//                    Log.d("tag","onTouch ACTION_DOWN");
+//                }
+//                if(event.getAction() == MotionEvent.ACTION_UP) {
+//                    Log.d("tag","onTouch ACTION_UP");
+//                    //当手指离开的时候
+//                    x2 = event.getX();
+//                    y2 = event.getY();
+//                    if(y1 - y2 > 50) {
+//                        Toast.makeText(AboutActivity.this, "向上滑动", Toast.LENGTH_SHORT).show();
+//                    } else if(y2 - y1 > 50) {
+//                        Toast.makeText(AboutActivity.this, "向下滑动", Toast.LENGTH_SHORT).show();
+//                    } else if(x1 - x2 > 50) {
+//                        Toast.makeText(AboutActivity.this, "向左滑动", Toast.LENGTH_SHORT).show();
+//                    } else if(x2 - x1 > 50) {
+//                        Toast.makeText(AboutActivity.this, "向右滑动", Toast.LENGTH_SHORT).show();
+////                if(canClose){
+////                    canClose=false;
+////                        finish();
+////                }
+//                    }
+//                }
+//                return false;
+//            }
+//        });
     }
 
     private static PackageInfo getPackageInfo(Context context) {

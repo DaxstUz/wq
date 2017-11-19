@@ -47,7 +47,7 @@ public class AgentResp {
 
         private String userCode;
         private String nickName;
-        private String createDate;
+        private String createTime;
 
         public String getUserCode() {
             return userCode;
@@ -65,12 +65,12 @@ public class AgentResp {
             this.nickName = nickName;
         }
 
-        public String getCreateDate() {
-            return createDate;
+        public String getCreateTime() {
+            return createTime;
         }
 
-        public void setCreateDate(String createDate) {
-            this.createDate = createDate;
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
         }
     }
 }

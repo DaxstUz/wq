@@ -2,6 +2,7 @@ package com.bigpush.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,8 @@ public class AgentAdapter extends ListBaseAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ((AgentAdapter.GoodsViewHolder)holder).tv_agent_name.setText(products.get(position).getNickName());
-        ((AgentAdapter.GoodsViewHolder)holder).tv_agent_time.setText(products.get(position).getCreateDate());
+        Log.d("uz","getCreateDate  "+products.get(position).getCreateTime());
+        ((AgentAdapter.GoodsViewHolder)holder).tv_agent_time.setText(products.get(position).getCreateTime());
     }
 
 

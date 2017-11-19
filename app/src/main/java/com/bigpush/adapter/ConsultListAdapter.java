@@ -44,7 +44,7 @@ public class ConsultListAdapter extends ListBaseAdapter {
                 .override(100, 100)
                 .into(((ConsultListAdapter.GoodsViewHolder)holder).imageView);
 
-        ((ConsultListAdapter.GoodsViewHolder)holder).textView.setText(products.get(position).getRow().getTitle());
+        ((ConsultListAdapter.GoodsViewHolder)holder).textView.setText(products.get(position).getRow().getSubTitle());
         ((ConsultListAdapter.GoodsViewHolder)holder).tv_intro.setText(products.get(position).getRow().getSynopsis());
         ((ConsultListAdapter.GoodsViewHolder)holder).rb_view.setText(products.get(position).getRow().getOkCount()+"");
         ((ConsultListAdapter.GoodsViewHolder)holder).rb_zan.setText(products.get(position).getRow().getClickCount()+"");

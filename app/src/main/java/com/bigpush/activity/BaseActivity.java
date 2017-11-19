@@ -238,11 +238,13 @@ public class BaseActivity <T>  extends AppCompatActivity implements OnResponseLi
     public boolean onTouch(View view, MotionEvent event) {
         //继承了Activity的onTouchEvent方法，直接监听点击事件
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            Log.d("tag","onTouch ACTION_DOWN");
             //当手指按下的时候
             x1 = event.getX();
             y1 = event.getY();
         }
         if(event.getAction() == MotionEvent.ACTION_UP) {
+            Log.d("tag","onTouch ACTION_UP");
             //当手指离开的时候
             x2 = event.getX();
             y2 = event.getY();
@@ -254,10 +256,10 @@ public class BaseActivity <T>  extends AppCompatActivity implements OnResponseLi
 //                        Toast.makeText(ConsultDetailActivity.this, "向左滑动", Toast.LENGTH_SHORT).show();
             } else if(x2 - x1 > 50) {
 //                        Toast.makeText(ConsultDetailActivity.this, "向右滑动", Toast.LENGTH_SHORT).show();
-                if(canClose){
-                    canClose=false;
+//                if(canClose){
+//                    canClose=false;
                     finish();
-                }
+//                }
             }
         }
         return false;

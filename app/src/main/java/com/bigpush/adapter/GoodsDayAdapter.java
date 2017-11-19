@@ -1,6 +1,7 @@
 package com.bigpush.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bigpush.R;
+import com.bigpush.activity.GoodsDetailActivity;
 import com.bigpush.base.ListBaseAdapter;
 import com.bigpush.resp.GoodsListResp;
 import com.bigpush.util.HttpUtil;
@@ -29,7 +31,7 @@ public class GoodsDayAdapter extends ListBaseAdapter {
     @Override
     public GoodsDayAdapter.GoodsViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_goolist_day_item, viewGroup, false);
-        return new GoodsDayAdapter.GoodsViewHolder(view);
+        return new GoodsDayAdapter.GoodsViewHolder(view,i);
     }
 
 
@@ -74,7 +76,7 @@ public class GoodsDayAdapter extends ListBaseAdapter {
         private TextView tv_sal;
 
 
-        public GoodsViewHolder(View itemView){
+        public GoodsViewHolder(View itemView, final int index){
             super(itemView);
             iv_type= itemView.findViewById(R.id.iv_type );
             imageView= itemView.findViewById(R.id.masonry_item_img );
@@ -84,8 +86,28 @@ public class GoodsDayAdapter extends ListBaseAdapter {
 //            tv_q= itemView.findViewById(R.id.tv_q);
             tv_sal= itemView.findViewById(R.id.tv_sal);
             tv_sal.setPaintFlags(tv_sal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    listener.onItemClick(view,index);
+
+                    if(mOnItemClickListener!=null){
+                        mOnItemClickListener.onItemClick(view,index);
+                    }
+                }
+            });
         }
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mOnItemClickListener = listener;
+    }
+
+    private static OnItemClickListener mOnItemClickListener = null;
+
+    public static interface OnItemClickListener {
+        void onItemClick(View view , int position);
+    }
 
 }

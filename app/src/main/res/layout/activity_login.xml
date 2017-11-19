@@ -17,7 +17,7 @@
             android:id="@+id/et_code"
             android:layout_gravity="center_horizontal"
             android:inputType="number"
-           android:hint="请输入邀请码"
+           android:hint="请输入哇券码"
             android:layout_marginTop="@dimen/y100"
             android:maxLines="1"
             android:padding="@dimen/border_padding_10"

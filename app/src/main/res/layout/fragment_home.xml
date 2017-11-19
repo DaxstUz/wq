@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_height="match_parent">
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="46dp"
                     android:background="@color/colorRed"
     >
         <ImageView
@@ -41,7 +41,7 @@
 <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl"
         android:layout_width="match_parent"
-                                              android:layout_height="match_parent">
+        android:layout_height="match_parent">
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent" android:layout_height="match_parent">
@@ -51,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lyj_title_bar_layout_main"
                 android:orientation="horizontal">
-
             <com.bigpush.view.NewsTitleHorizontalScrollView
                     android:id="@+id/myHorizeontal"
                     android:layout_width="0dp"
@@ -60,7 +59,6 @@
                     android:layout_below="@+id/news_activity_main_title_down"
                     android:layout_weight="5"
                     android:scrollbars="none" />
-
         </LinearLayout>
 
         <android.support.v4.view.ViewPager

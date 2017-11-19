@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
+              android:layout_width="@dimen/x300"
+              android:layout_height="@dimen/y500"
               android:orientation="vertical"
               android:background="@color/b1">
 
     <RelativeLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content">
+            android:layout_width="match_parent" android:layout_height="@dimen/x300">
         <ImageView
                 android:id="@+id/masonry_item_img"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/x300"
                 android:layout_height="@dimen/x300"
                 android:adjustViewBounds="true"
                 android:src="@mipmap/wq"
@@ -29,7 +29,7 @@
     </RelativeLayout>
     <RelativeLayout
             android:padding="@dimen/border_padding_10"
-            android:layout_width="match_parent" android:layout_height="@dimen/x310">
+            android:layout_width="match_parent" android:layout_height="@dimen/x200">
         <LinearLayout
                 android:gravity="center_vertical"
                 android:orientation="vertical"
@@ -48,7 +48,8 @@
                 <TextView
                         android:text="65656565"
                         android:maxLines="1"
-                        android:textSize="@dimen/z6"
+                        android:textColor="@color/colotexth"
+                        android:textSize="@dimen/z4"
                         android:id="@+id/masonry_item_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -62,7 +63,7 @@
                     android:layout_width="match_parent" android:layout_height="wrap_content">
                 <TextView
                         android:id="@+id/tv_money"
-                        android:textSize="@dimen/z6"
+                        android:textSize="@dimen/z4"
                         android:text="¥5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -73,7 +74,7 @@
                         android:layout_alignParentRight="true"
                         android:gravity="right"
                         android:id="@+id/tv_sal"
-                        android:textSize="@dimen/z6"
+                        android:textSize="@dimen/z4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorDivideLine"

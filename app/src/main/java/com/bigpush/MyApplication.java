@@ -1,6 +1,8 @@
 package com.bigpush;
 
 import android.app.Application;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.widget.Toast;
 import cn.jpush.android.api.JPushInterface;
@@ -34,6 +36,9 @@ public class MyApplication extends Application {
 
     public static MyApplication application = null;
 
+    // 在Android进行通知处理，首先需要重系统哪里获得通知管理器NotificationManager，它是一个系统Service。
+    public static   NotificationManager manager;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -50,6 +55,11 @@ public class MyApplication extends Application {
         UMConfigure.setEncryptEnabled(true);
 
         MultiDex.install(this);
+
+        manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "umlbl0ra0gk3l8aux4v8qxd9orvwhfaw");
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL );
     }
 
 

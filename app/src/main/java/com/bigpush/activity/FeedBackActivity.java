@@ -3,10 +3,7 @@ package com.bigpush.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
+import android.widget.*;
 import com.alibaba.fastjson.JSON;
 import com.bigpush.R;
 import com.bigpush.resp.HomeTypeResp;
@@ -35,6 +32,9 @@ public class FeedBackActivity extends BaseActivity {
         setTitle("意见反馈");
 
         initView();
+
+        LinearLayout ll_page= (LinearLayout) findViewById(R.id.ll_page);
+        ll_page.setOnTouchListener(this);
     }
 
     private void initView() {

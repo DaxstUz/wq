@@ -13,10 +13,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import cn.jpush.android.api.JPushInterface;
 import com.alibaba.baichuan.android.trade.utils.StringUtils;
 import com.bigpush.R;
 import com.bigpush.activity.BigSearchResultActivity;
 import com.bigpush.activity.InfoResultActivity;
+import com.bigpush.activity.SearchActivity;
 import com.bigpush.activity.ShopResultActivity;
 import com.bigpush.adapter.MyFragmentPagerAdapter;
 import com.bigpush.util.SystemUtils;
@@ -39,7 +41,7 @@ public class SearchFragment extends BaseFragment {
     private MyFragmentPagerAdapter mfpa;
 
     private TextView tv_wq_search;
-private EditText et_key;
+    private EditText et_key;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,6 +69,10 @@ private EditText et_key;
 
                 if(!TextUtils.isEmpty(et_key.getText())){
                     Intent intent;
+
+                    SystemUtils.cachKeys.add(et_key.getText().toString());
+                    SystemUtils.saveKeys(getActivity(),SystemUtils.cachKeys);
+
                     if(rb_search.isChecked()){
                         intent=new Intent(getActivity(),ShopResultActivity.class);
                     }else{
@@ -132,5 +138,11 @@ private EditText et_key;
 
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        et_key.setText(""+ JPushInterface.getRegistrationID(getActivity()));
     }
 }

@@ -3,7 +3,9 @@
                 android:layout_height="match_parent"
 >
 
-    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_alignParentTop="true" android:layout_toRightOf="@+id/include"
+                android:layout_toEndOf="@+id/include">
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -70,6 +72,7 @@
                         <TextView
                                 android:layout_marginTop="5dp"
                                 android:text="@string/my_order"
+                                android:textColor="@color/colorBlack"
                                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#dbdbdb"/>
@@ -87,6 +90,7 @@
                         <TextView
                                 android:layout_marginTop="5dp"
                                 android:text="@string/my_cart"
+                                android:textColor="@color/colorBlack"
                                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#dbdbdb"/>
@@ -104,6 +108,7 @@
                         <TextView
                                 android:layout_marginTop="5dp"
                                 android:text="@string/my_jf"
+                                android:textColor="@color/colorBlack"
                                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -114,6 +119,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <include layout="@layout/help_view" />
+    <include layout="@layout/help_view" android:id="@+id/include"/>
 
 </RelativeLayout>

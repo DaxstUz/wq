@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
                 android:background="@color/colorRed"
-              android:layout_height="40dp">
+              android:layout_height="46dp">
 
     <ImageView
             android:id="@+id/iv_back"
             android:onClick="onclick"
             android:paddingLeft="@dimen/border_padding_10"
-            android:paddingRight="@dimen/border_padding_10"
+            android:paddingTop="@dimen/border_padding_5"
+            android:paddingBottom="@dimen/border_padding_5"
+            android:paddingRight="@dimen/x50"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:src="@mipmap/back"

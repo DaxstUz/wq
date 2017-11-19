@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:padding="@dimen/border_padding_10"
               android:orientation="vertical"
@@ -9,7 +9,7 @@
 
         <ImageView
                 android:id="@+id/masonry_item_img"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@mipmap/wq"
@@ -18,7 +18,8 @@
     <TextView
             android:text="654654646"
             android:id="@+id/tv_item"
-            android:textSize="@dimen/z6"
+            android:textSize="@dimen/z5"
+            android:textColor="@color/colorBlack"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
 </LinearLayout>

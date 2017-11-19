@@ -7,16 +7,15 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
 import com.alibaba.fastjson.JSON;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -26,7 +25,6 @@ import com.bigpush.R;
 import com.bigpush.activity.ConsultDetailActivity;
 import com.bigpush.activity.GoodsDetailActivity;
 import com.bigpush.activity.GoodsListActivity;
-import com.bigpush.activity.RollTextActivity;
 import com.bigpush.adapter.GoodsDayAdapter;
 import com.bigpush.adapter.GoodsHomeTypeAdapter;
 import com.bigpush.adapter.HomeRecItemAdapter;
@@ -46,11 +44,10 @@ import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
+import com.umeng.analytics.MobclickAgent;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.JsonObjectRequest;
 import com.yanzhenjie.nohttp.rest.Response;
-import jp.wasabeef.recyclerview.adapters.AnimationAdapter;
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,7 +73,7 @@ public class GoodsAllFragment extends BaseFragment {
     private List<HomeRecItemResp.DataBean> recItemData = new ArrayList<>();
     private HomeRecItemAdapter homeRecItemAdapter;
 
-    private LRecyclerView recycler_day;
+    private RecyclerView recycler_day;
     private List<GoodsListResp.DataBean> dayData = new ArrayList<>();
     private GoodsDayAdapter dayAdapter;
 
@@ -129,7 +126,11 @@ public class GoodsAllFragment extends BaseFragment {
             @Override
             public void onTick(long millisUntilFinished) {
                 second--;
-                tv_second.setText(second+"");
+                if(second<10){
+                    tv_second.setText("0"+second+"");
+                }else{
+                    tv_second.setText(second+"");
+                }
             }
 
             @Override
@@ -164,12 +165,12 @@ public class GoodsAllFragment extends BaseFragment {
         }
     };
 
-    private ViewFlipper flipper;
+//    private ViewFlipper flipper;
 
     private void initView() {
         tv_second = headView.findViewById(R.id.tv_second);
 
-        flipper = headView.findViewById(R.id.view_flipper);
+//        flipper = headView.findViewById(R.id.view_flipper);
 
         iv_backtop = v.findViewById(R.id.iv_backtop);
         iv_backtop.setOnClickListener(new View.OnClickListener() {
@@ -182,33 +183,36 @@ public class GoodsAllFragment extends BaseFragment {
 
         //set recycleview
         recycler_day = headView.findViewById(R.id.recycler_day);
-        recycler_day.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+//        recycler_day.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+//        recycler_day.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL));
+//        //设置布局管理器
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recycler_day.setLayoutManager(linearLayoutManager);
+
         dayAdapter = new GoodsDayAdapter(dayData, getActivity());
 
-        LRecyclerViewAdapter lRecyclerViewAdapterDay = new LRecyclerViewAdapter(dayAdapter);
-        recycler_day.setAdapter(lRecyclerViewAdapterDay);
+        recycler_day.setAdapter(dayAdapter);
 
-        lRecyclerViewAdapterDay.setOnItemClickListener(new com.github.jdsjlzx.interfaces.OnItemClickListener() {
+        dayAdapter.setOnItemClickListener(new GoodsDayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
                 intent.putExtra("commodityCode", dayData.get(position).getRow().getCommodityCode());
                 startActivity(intent);
             }
-
         });
-
 
         //set recycleview
         recyclerView = v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
 
         goodsListAdapter = new GoodsHomeTypeAdapter(data, getActivity());
-        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
-        adapter.setFirstOnly(false);
-        adapter.setDuration(500);
-        adapter.setInterpolator(new OvershootInterpolator(.5f));
-        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(adapter);
+//        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
+//        adapter.setFirstOnly(false);
+//        adapter.setDuration(500);
+//        adapter.setInterpolator(new OvershootInterpolator(.5f));
+        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(goodsListAdapter);
 
         homeRecItemAdapter = new HomeRecItemAdapter(recItemData, getActivity());
         recyclerItem = headView.findViewById(R.id.recyclerItem);
@@ -217,7 +221,7 @@ public class GoodsAllFragment extends BaseFragment {
         LRecyclerViewAdapter lRecyclerViewAdapterRec = new LRecyclerViewAdapter(homeRecItemAdapter);
 
         recyclerItem.setAdapter(lRecyclerViewAdapterRec);
-        SpacesItemDecoration decoration = new SpacesItemDecoration(10);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(2);
 
         lRecyclerViewAdapter.addHeaderView(headView);
         recyclerView.setAdapter(lRecyclerViewAdapter);
@@ -228,6 +232,12 @@ public class GoodsAllFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 if (recItemData.get(position) != null) {
+
+                    HashMap<String,String> map = new HashMap<String,String>();
+                    map.put("rectype",recItemData.get(position).getRow().getTitle());
+                    MobclickAgent.onEvent(getActivity(), "homeRecItem", map);
+//                    MobclickAgent.onEvent(getActivity(), "recitem");
+
                     Intent intent = new Intent(getActivity(), GoodsListActivity.class);
                     intent.putExtra("item", recItemData.get(position));
                     startActivity(intent);
@@ -277,6 +287,8 @@ public class GoodsAllFragment extends BaseFragment {
                 getBannerData();
                 getData();
                 getRecItemData();
+                getDayData();
+
             }
         });
 
@@ -308,14 +320,14 @@ public class GoodsAllFragment extends BaseFragment {
 
                 TextView tv = (TextView) view.findViewById(R.id.tv_content);
                 tv.setText(dataBeans.get(i).getRow().getTitle());
-                flipper.addView(view);
+//                flipper.addView(view);
 
             }
 
 
-            flipper.setInAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.push_up_in));
-            flipper.setOutAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.push_up_out));
-            flipper.startFlipping();
+//            flipper.setInAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.push_up_in));
+//            flipper.setOutAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.push_up_out));
+//            flipper.startFlipping();
         }
     }
 
@@ -436,6 +448,7 @@ public class GoodsAllFragment extends BaseFragment {
         super.onResume();
         //开始自动翻页
         convenientBanner.startTurning(5000);
+        MobclickAgent.onResume(getActivity());       //统计时长
     }
 
     // 停止自动翻页
@@ -444,6 +457,7 @@ public class GoodsAllFragment extends BaseFragment {
         super.onPause();
         //停止翻页
         convenientBanner.stopTurning();
+        MobclickAgent.onPause(getActivity());
     }
 
     @Override
@@ -455,7 +469,9 @@ public class GoodsAllFragment extends BaseFragment {
             recyclerView.refreshComplete(10);
             if (1 == consultResultResp.getStatus()) {
                 if (consultResultResp != null && consultResultResp.getData() != null && consultResultResp.getData().size() > 0) {
+                    dayData.clear();
                     dayData.addAll(consultResultResp.getData());
+                    Log.d("uz","dayData  "+dayData.size());
                     dayAdapter.notifyDataSetChanged();
                 }
 //                else {

@@ -598,4 +598,16 @@ public class DateUtil {
         }
         return "";
     }
+	public  static  String forMatData2(String strTime){
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat simpleDateFormat2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date date=simpleDateFormat2.parse(strTime);
+            System.out.println(simpleDateFormat.format(date));
+            return simpleDateFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }

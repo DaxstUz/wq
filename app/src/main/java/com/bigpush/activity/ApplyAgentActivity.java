@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import com.alibaba.fastjson.JSON;
@@ -90,7 +91,12 @@ public class ApplyAgentActivity extends BaseActivity {
             UserResp userResp = JSON.parseObject(response.get().toString(), UserResp.class);
             if (1 == userResp.getStatus()) {
 //                MyFragment.newInstance().getUser();
-                finish();
+                InputMethodManager imm =  (InputMethodManager)getSystemService(ApplyAgentActivity.this.INPUT_METHOD_SERVICE);
+                if(imm != null) {
+                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),
+                            0);
+                }
+                    finish();
             }else{
                 SystemUtils.showText(userResp.getErrorMsg());
             }

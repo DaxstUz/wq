@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import com.bigpush.R;
 import com.bigpush.util.SystemUtils;
 import com.tencent.smtt.sdk.WebSettings;
@@ -74,5 +75,9 @@ public class WebActivity extends BaseActivity {
 
         wv_show.loadUrl(url);
 //        wv_show.loadUrl("https://api.sir66.com/6web/test.html");
+
+        setCanClose(true);//设置可以左滑返回
+        LinearLayout ll_page= (LinearLayout) findViewById(R.id.ll_page);
+        ll_page.setOnTouchListener(this);
     }
 }

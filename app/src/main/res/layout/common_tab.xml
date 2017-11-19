@@ -2,6 +2,7 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:gravity="center"
+        android:background="@color/b1"
         android:layout_width="match_parent" android:layout_height="wrap_content">
     <RadioGroup
             android:id="@+id/rg_tab"

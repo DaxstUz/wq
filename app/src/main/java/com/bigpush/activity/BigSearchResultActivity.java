@@ -64,7 +64,7 @@ public class BigSearchResultActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result_shop);
+        setContentView(R.layout.activity_result_bigshop);
         key=getIntent().getStringExtra("key");
         setTitle("超级搜索“"+key+"”");
 
@@ -76,7 +76,9 @@ public class BigSearchResultActivity extends BaseActivity {
         }
 
         initView();
-        getUrl="https://pub.alimama.com/items/search.json?_t=1510289981237&dpyhq=1&q="+key+"&queryType=0&toPage=1&yxjh=-1";
+//        getUrl="https://pub.alimama.com/items/search.json?_t=1510289981237&dpyhq=1&q="+key+"&queryType=0&toPage=1&yxjh=-1";
+        getUrl="https://pub.alimama.com/items/search.json?auctionTag=&perPageSize=50&q="+key+"&shopTag=&startPrice=0.5&toPage=1";
+
         getData();
     }
 
@@ -97,7 +99,8 @@ public class BigSearchResultActivity extends BaseActivity {
                 dpyhq = 1;
                 queryType = 0;
                 sortType = "9";
-                getUrl="https://pub.alimama.com/items/search.json?_t=1510290080370&dpyhq=1&q="+key+"&queryType=0&sortType=9&toPage=1&yxjh=-1";
+//                getUrl="https://pub.alimama.com/items/search.json?_t=1510290080370&dpyhq=1&q="+key+"&queryType=0&sortType=9&toPage=1&yxjh=-1";
+                getUrl="https://pub.alimama.com/items/search.json?auctionTag=&perPageSize=50&q="+key+"&shopTag=b2c&startPrice=0.5&toPage=1";
                 getData();
             }
         });
@@ -118,12 +121,14 @@ public class BigSearchResultActivity extends BaseActivity {
                     rb_price.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);//这个方法可以使用图片固有的宽度和高度;
 //                rb_price.setCompoundDrawablePadding(5); //设置drawable与new_button的间距
                     order = "asc";
-                    getUrl="https://pub.alimama.com/items/search.json?_t=1510290063221&dpyhq=1&q="+key+"&queryType=0&sortType=4&toPage=1&yxjh=-1";
+//                    getUrl="https://pub.alimama.com/items/search.json?_t=1510290063221&dpyhq=1&q="+key+"&queryType=0&sortType=4&toPage=1&yxjh=-1";
+                    getUrl="https://pub.alimama.com/items/search.json?auctionTag=&dpyhq=1&perPageSize=50&q="+key+"&queryType=0&shopTag=&sortType=4&startPrice=0.5&toPage=1";
                 } else {
                     sortType = "4";
                     drawable = getResources().getDrawable(R.mipmap.down);//得到drawable对象
                     order = "desc";
-                    getUrl="https://pub.alimama.com/items/search.json?_t=1510290063221&dpyhq=1&q="+key+"&queryType=0&sortType=3&toPage=1&yxjh=-1";
+//                    getUrl="https://pub.alimama.com/items/search.json?_t=1510290063221&dpyhq=1&q="+key+"&queryType=0&sortType=3&toPage=1&yxjh=-1";
+                    getUrl="https://pub.alimama.com/items/search.json?auctionTag=&dpyhq=1&perPageSize=50&q="+key+"&queryType=0&shopTag=&sortType=3&startPrice=0.5&toPage=1";
                 }
                 rb_price.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);//这个方法可以使用图片固有的宽度和高度;
 
@@ -138,7 +143,8 @@ public class BigSearchResultActivity extends BaseActivity {
                 dpyhq = 1;
                 queryType = 2;
                 sortType = "";
-                getUrl="https://pub.alimama.com/items/search.json?_t=1510290008168&dpyhq=1&q="+key+"&queryType=2&toPage=1&yxjh=-1";
+//                getUrl="https://pub.alimama.com/items/search.json?_t=1510290008168&dpyhq=1&q="+key+"&queryType=2&toPage=1&yxjh=-1";
+                getUrl="https://pub.alimama.com/items/search.json?auctionTag=&dpyhq=1&perPageSize=50&q="+key+"&queryType=0&shopTag=dpyhq&startPrice=0.5&toPage=1";
                 getData();
             }
         });
@@ -150,7 +156,8 @@ public class BigSearchResultActivity extends BaseActivity {
                 dpyhq = 1;
                 queryType = 0;
                 sortType = "";
-                getUrl="https://pub.alimama.com/items/search.json?_t=1510289981237&dpyhq=1&q="+key+"&queryType=0&toPage=1&yxjh=-1";
+//                getUrl="https://pub.alimama.com/items/search.json?_t=1510289981237&dpyhq=1&q="+key+"&queryType=0&toPage=1&yxjh=-1";
+                getUrl="https://pub.alimama.com/items/search.json?auctionTag=&perPageSize=50&q="+key+"&shopTag=&startPrice=0.5&toPage=1";
                 getData();
             }
         });
@@ -161,15 +168,15 @@ public class BigSearchResultActivity extends BaseActivity {
 
         goodsListAdapter = new GoodsBigSearchAdapter(data, this);
 
-        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
-        adapter.setFirstOnly(false);
-        adapter.setDuration(500);
-        adapter.setInterpolator(new OvershootInterpolator(.5f));
+//        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
+//        adapter.setFirstOnly(false);
+//        adapter.setDuration(500);
+//        adapter.setInterpolator(new OvershootInterpolator(.5f));
 
-        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(adapter);
+        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(goodsListAdapter);
 
         recyclerView.setAdapter(lRecyclerViewAdapter);
-        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(2);
         recyclerView.addItemDecoration(decoration);
 //        SpacesItemDecoration decoration=SpacesItemDecoration.newInstance(R.dimen.x20,R.dimen.y20,2,R.color.b1);
 //        recyclerView.addItemDecoration(decoration);

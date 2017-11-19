@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import com.alibaba.fastjson.JSON;
 import com.bigpush.R;
@@ -63,6 +64,9 @@ public class GoodsListActivity extends BaseActivity {
         getData();
 
 //        setCanTouch(true);//设置可以左滑返回
+
+        LinearLayout ll_page= (LinearLayout) findViewById(R.id.ll_page);
+        ll_page.setOnTouchListener(this);
     }
 
     private int page = 0;
@@ -76,15 +80,15 @@ public class GoodsListActivity extends BaseActivity {
 
         goodsListAdapter = new GoodsHomeTypeAdapter(data, GoodsListActivity.this);
 
-        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
-        adapter.setFirstOnly(false);
-        adapter.setDuration(500);
-        adapter.setInterpolator(new OvershootInterpolator(.5f));
+//        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
+//        adapter.setFirstOnly(false);
+//        adapter.setDuration(500);
+//        adapter.setInterpolator(new OvershootInterpolator(.5f));
 
-        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(adapter);
+        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(goodsListAdapter);
 
         recyclerView.setAdapter(lRecyclerViewAdapter);
-        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(2);
         recyclerView.addItemDecoration(decoration);
 //        SpacesItemDecoration decoration=SpacesItemDecoration.newInstance(R.dimen.x20,R.dimen.y20,2,R.color.b1);
 //        recyclerView.addItemDecoration(decoration);

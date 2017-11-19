@@ -121,6 +121,9 @@ public class GoodSearchFragment extends BaseFragment {
 //                et_search.setText(mDragFlowLayout.getItemContent(position));
                 key=mDragFlowLayout.getItemContent(position);
 
+                SystemUtils.cachKeys.add(key);
+                SystemUtils.saveKeys(getActivity(),SystemUtils.cachKeys);
+
                 Intent intent;
                 if("shop".equals(type)){
                     intent=new Intent(getActivity(),ShopResultActivity.class);
@@ -169,6 +172,9 @@ public class GoodSearchFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         if(recentKeyAdapter!=null){
+            cacheKey.clear();
+            SystemUtils.cachKeys=SystemUtils.getKeys(getActivity());
+            cacheKey.addAll(SystemUtils.cachKeys);
             recentKeyAdapter.notifyDataSetChanged();
         }
     }

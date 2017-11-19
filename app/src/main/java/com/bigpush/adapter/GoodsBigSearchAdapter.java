@@ -47,6 +47,11 @@ public class GoodsBigSearchAdapter extends ListBaseAdapter {
         ((GoodsBigSearchAdapter.GoodsViewHolder)holder).tv_money.setText("¥"+(products.get(position).getZkPrice()-products.get(position).getCouponAmount()));
 //        ((GoodsBigSearchAdapter.GoodsViewHolder)holder).tv_count.setText("已售"+products.get(position).getRow().getVolume()+"件");
         ((GoodsBigSearchAdapter.GoodsViewHolder)holder).tv_q.setText(products.get(position).getCouponAmount()+"元券");
+        if(products.get(position).getCouponAmount()>0){
+            ((GoodsBigSearchAdapter.GoodsViewHolder)holder).tv_buy2.setText("领券购买");
+        }else{
+            ((GoodsBigSearchAdapter.GoodsViewHolder)holder).tv_buy2.setText("购买");
+        }
 //        ((GoodsBigSearchAdapter.GoodsViewHolder)holder).tv_sal.setText("原价"+products.get(position).getRow().getPrice());
 //
 //        if("B".equals(products.get(position).getRow().getShopType())){
@@ -68,6 +73,7 @@ public class GoodsBigSearchAdapter extends ListBaseAdapter {
         private TextView tv_money;
         private TextView tv_q;
         private TextView tv_sal;
+        private TextView tv_buy2;
 
 
         public GoodsViewHolder(View itemView){
@@ -77,6 +83,7 @@ public class GoodsBigSearchAdapter extends ListBaseAdapter {
             tv_money= itemView.findViewById(R.id.tv_money);
             tv_q= itemView.findViewById(R.id.tv_q);
             tv_sal= itemView.findViewById(R.id.tv_sal);
+            tv_buy2= itemView.findViewById(R.id.tv_buy2);
         }
     }
 

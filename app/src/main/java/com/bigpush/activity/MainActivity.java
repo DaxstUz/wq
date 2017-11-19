@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.*;
+import cn.jpush.android.api.JPushInterface;
 import com.ali.auth.third.login.callback.LogoutCallback;
 import com.ali.auth.third.ui.context.CallbackContext;
 import com.alibaba.baichuan.android.trade.adapter.login.AlibcLogin;
@@ -76,7 +77,7 @@ public class MainActivity extends FragmentActivity {
 
         // 动画
         AlphaAnimation aa = new AlphaAnimation(2.0f, 0.1f);
-        aa.setDuration(5000);
+        aa.setDuration(3000);
         view.startAnimation(aa);
         aa.setAnimationListener(new Animation.AnimationListener() {
             @Override

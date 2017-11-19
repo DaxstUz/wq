@@ -155,15 +155,15 @@ public class NinePriceFragment extends BaseFragment {
 
         goodsListAdapter = new GoodsListAdapter(data, getActivity());
 
-        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
-        adapter.setFirstOnly(false);
-        adapter.setDuration(500);
-        adapter.setInterpolator(new OvershootInterpolator(.5f));
+//        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
+//        adapter.setFirstOnly(false);
+//        adapter.setDuration(500);
+//        adapter.setInterpolator(new OvershootInterpolator(.5f));
 
-        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(adapter);
+        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(goodsListAdapter);
 
         recyclerView.setAdapter(lRecyclerViewAdapter);
-        SpacesItemDecoration decoration = new SpacesItemDecoration(16);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(2);
         recyclerView.addItemDecoration(decoration);
 //        SpacesItemDecoration decoration=SpacesItemDecoration.newInstance(R.dimen.x20,R.dimen.y20,2,R.color.b1);
 //        recyclerView.addItemDecoration(decoration);

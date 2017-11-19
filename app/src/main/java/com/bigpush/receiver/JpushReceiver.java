@@ -1,13 +1,19 @@
 package com.bigpush.receiver;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.RemoteViews;
 import cn.jpush.android.api.JPushInterface;
 import com.alibaba.fastjson.JSON;
+import com.bigpush.MyApplication;
+import com.bigpush.R;
 import com.bigpush.activity.*;
 import com.bigpush.resp.MsgReciveResp;
 import org.json.JSONException;
@@ -16,7 +22,12 @@ import org.json.JSONObject;
 import java.util.Iterator;
 
 public class JpushReceiver extends BroadcastReceiver {
+
+
+    private static final int NOTIFICATION_FLAG = 1;
+
     private static final String TAG = "JIGUANG-Example";
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -33,8 +44,27 @@ public class JpushReceiver extends BroadcastReceiver {
                 //send the Registration Id to your server...
 
             } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-                Log.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
+                Log.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " +bundle.getString(JPushInterface.EXTRA_MESSAGE) );
 //                processCustomMessage(context, bundle);
+
+//                MsgReciveResp msgReciveResp= JSON.parseObject(bundle.getString(JPushInterface.EXTRA_EXTRA), MsgReciveResp.class);
+//
+//                // "自定义通知：您有新短信息了，请注意查收！", System.currentTimeMillis());
+//                Notification myNotify = new Notification();
+//                myNotify.icon = R.mipmap.wqicon;
+//                myNotify.tickerText = "TickerText:您有新短消息，请注意查收！";
+//                myNotify.when = System.currentTimeMillis();
+//                myNotify.flags = Notification.FLAG_NO_CLEAR;// 不能够自动清除
+//                RemoteViews rv = new RemoteViews(getPackageName(),
+//                        R.layout.my_notification);
+//                rv.setTextViewText(R.id.text_content, "hello wrold!");
+//                myNotify.contentView = rv;
+//                Intent intentno = new Intent(Intent.ACTION_MAIN);
+//                PendingIntent contentIntent = PendingIntent.getActivity(context, 1,
+//                        intentno, 1);
+//                myNotify.contentIntent = contentIntent;
+//                MyApplication.manager.notify(NOTIFICATION_FLAG, myNotify);
+
 
             } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
                 Log.d(TAG, "[MyReceiver] 接收到推送下来的通知");

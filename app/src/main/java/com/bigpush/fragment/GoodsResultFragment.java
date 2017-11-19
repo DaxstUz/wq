@@ -78,12 +78,12 @@ public class GoodsResultFragment extends  BaseFragment {
 
         consultAdapter=new MsgGoodsAdapter(getActivity(),data);
 
-        AnimationAdapter adapter = new ScaleInAnimationAdapter(consultAdapter);
-        adapter.setFirstOnly(false);
-        adapter.setDuration(500);
-        adapter.setInterpolator(new OvershootInterpolator(.5f));
+//        AnimationAdapter adapter = new ScaleInAnimationAdapter(consultAdapter);
+//        adapter.setFirstOnly(false);
+//        adapter.setDuration(500);
+//        adapter.setInterpolator(new OvershootInterpolator(.5f));
 
-        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(adapter);
+        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(consultAdapter);
 
         recyclerView.setAdapter(lRecyclerViewAdapter);
         SpacesItemDecoration decoration = new SpacesItemDecoration(16);

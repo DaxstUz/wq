@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
+              android:background="@color/colorDivideLine"
               android:layout_height="wrap_content">
 
     <com.bigkoo.convenientbanner.ConvenientBanner
@@ -13,14 +15,13 @@
     />
 
     <com.github.jdsjlzx.recyclerview.LRecyclerView
-            android:layout_marginTop="@dimen/border_padding_10"
             android:id="@+id/recyclerItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="horizontal"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <RelativeLayout
+  <!--  <RelativeLayout
             android:layout_marginTop="@dimen/border_padding_10"
             android:padding="@dimen/border_padding_10"
             android:background="@drawable/bg_dialog_main"
@@ -47,9 +48,10 @@
                 android:src="@mipmap/newc"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </RelativeLayout>-->
+
     <RelativeLayout
-            android:layout_marginTop="@dimen/border_padding_10"
+            android:layout_marginTop="@dimen/x2"
             android:padding="@dimen/border_padding_10"
             android:background="@drawable/bg_dialog_main"
             android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -65,7 +67,7 @@
                 android:layout_marginTop="@dimen/x4"
                 android:layout_marginLeft="@dimen/border_padding_5"
                 android:text="每日秒杀"
-                android:textColor="@color/colorDivideLine"
+                android:textColor="@color/colorRed"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         <LinearLayout
                 android:layout_marginLeft="@dimen/border_padding_10"
@@ -109,14 +111,13 @@
                     android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <com.github.jdsjlzx.recyclerview.LRecyclerView
+        <android.support.v7.widget.RecyclerView
                 android:layout_below="@+id/tv_day"
                 android:layout_marginTop="@dimen/border_padding_10"
                 android:id="@+id/recycler_day"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/y500"
-                android:scrollbars="horizontal"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        />
 
     </RelativeLayout>
 

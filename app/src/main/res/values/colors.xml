@@ -5,11 +5,12 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorRed">#F25058</color>
-    <color name="colorBlack">#000000</color>
+    <color name="colorBlack">#303030</color>
 
     <color name="colorDivideLine">#dbdbdb</color>
+    <color name="colotexth">#969696</color>
 
-    <color name="colorMainBg">#dbdbdb</color>
+    <color name="colorMainBg">#f1f1f1</color>
 
     <color name="uvv_green">#ff50b100</color>
     <color name="uvv_black">#ff000000</color>

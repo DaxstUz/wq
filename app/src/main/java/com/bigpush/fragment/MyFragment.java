@@ -104,6 +104,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 //        }
         view = inflater.inflate(R.layout.fragment_my, container, false);
 
+        Log.d("uzinfo","RegistrationID   "+ JPushInterface.getRegistrationID(getActivity()));
+
         initView(view);
 
         exParams = new HashMap<>();
@@ -171,6 +173,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                     // 将文本内容放到系统剪贴板里。
                     cm.setText(user.getTaobaoKeInfo().getWeixin());
                     Toast.makeText(getActivity(), "复制微信成功", Toast.LENGTH_LONG).show();
+                    rl_help_view.setVisibility(View.GONE);
                 }else{
                     Toast.makeText(getActivity(), "获取微信失败", Toast.LENGTH_LONG).show();
                 }
@@ -184,6 +187,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                     // 将文本内容放到系统剪贴板里。
                     cm.setText(user.getTaobaoKeInfo().getQq());
                     Toast.makeText(getActivity(), "复制qq成功", Toast.LENGTH_LONG).show();
+                    rl_help_view.setVisibility(View.GONE);
                 }else{
                     Toast.makeText(getActivity(), "获取qq失败", Toast.LENGTH_LONG).show();
                 }
@@ -219,6 +223,10 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
 //                    .override(100, 100)
                     .into(iv_head);
+
+            if(user.getTaobaoKeInfo()!=null&&user.getTaobaoKeInfo().getTaobaoKeCode()!=null){
+                JPushInterface.setAlias(getActivity(),0,user.getTaobaoKeInfo().getTaobaoKeCode());
+            }
         }
     }
 
@@ -303,6 +311,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 Toast.makeText(this.getActivity(), "程序猿们正在努力开发中，敬请期待……", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(getActivity(), MyZxingActivity.class));
 //                startActivity(new Intent(getActivity(), GoodsListDemoActivity.class));
+//                startActivity(new Intent(getActivity(), HlistActivity.class));
 //                startActivity(new Intent(getActivity(), VideoPlayActivity.class));
 //                startActivity(new Intent(getActivity(), AliSdkTransactionActivity.class));
 //                startActivity(new Intent(getActivity(), RollTextActivity.class));
@@ -334,15 +343,15 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 AlibcTrade.show(this.getActivity(), alibcBasePage, Constant.alibcShowParams, null, exParams, new DemoTradeCallback());
                 break;
 
-//            case R.id.rl_help://客户帮助
-//                rl_help_view.setVisibility(View.VISIBLE);
-////                String qqNum = "2416738717";
-////                if (checkApkExist(this.getActivity(), "com.tencent.mobileqq")) {
-////                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("mqqwpa://im/chat?chat_type=wpa&uin=" + qqNum + "&version=1")));
-////                } else {
-////                    Toast.makeText(this.getActivity(), "本机未安装QQ应用", Toast.LENGTH_SHORT).show();
-////                }
-//                break;
+            case R.id.rl_help://客户帮助
+                rl_help_view.setVisibility(View.VISIBLE);
+//                String qqNum = "2416738717";
+//                if (checkApkExist(this.getActivity(), "com.tencent.mobileqq")) {
+//                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("mqqwpa://im/chat?chat_type=wpa&uin=" + qqNum + "&version=1")));
+//                } else {
+//                    Toast.makeText(this.getActivity(), "本机未安装QQ应用", Toast.LENGTH_SHORT).show();
+//                }
+                break;
             case R.id.rl_clean:
                 ToastUtils.askToast(getActivity(), "确定清理缓存?", new ToastUtils.ToalstListener() {
                     @Override

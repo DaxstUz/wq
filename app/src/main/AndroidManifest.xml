@@ -53,6 +53,7 @@
         </activity>
         <activity
                 android:name=".activity.MainActivity"
+                android:windowSoftInputMode="adjustPan|stateHidden"
                 android:screenOrientation="portrait"/>
         <activity
                 android:name=".activity.AliSdkOrderActivity"
@@ -153,6 +154,10 @@
                 android:screenOrientation="portrait"/>
         <activity
                 android:name=".activity.StatActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".activity.HlistActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
         <activity

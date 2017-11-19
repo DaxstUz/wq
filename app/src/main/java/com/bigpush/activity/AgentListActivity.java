@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.widget.LinearLayout;
 import com.alibaba.fastjson.JSON;
 import com.bigpush.R;
 import com.bigpush.adapter.AgentAdapter;
@@ -51,6 +53,10 @@ public class AgentListActivity extends BaseActivity {
         initView();
 
         getData();
+
+        setCanClose(true);//设置可以左滑返回
+        LinearLayout ll_page= (LinearLayout) findViewById(R.id.ll_page);
+        ll_page.setOnTouchListener(this);
     }
 
     private int page = 0;
@@ -61,12 +67,12 @@ public class AgentListActivity extends BaseActivity {
 
         goodsListAdapter = new AgentAdapter(data, AgentListActivity.this);
 
-        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
-        adapter.setFirstOnly(false);
-        adapter.setDuration(500);
-        adapter.setInterpolator(new OvershootInterpolator(.5f));
+//        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
+//        adapter.setFirstOnly(false);
+//        adapter.setDuration(500);
+//        adapter.setInterpolator(new OvershootInterpolator(.5f));
 
-        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(adapter);
+        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(goodsListAdapter);
 
         recyclerView.setAdapter(lRecyclerViewAdapter);
         SpacesItemDecoration decoration = new SpacesItemDecoration(16);
@@ -136,6 +142,7 @@ public class AgentListActivity extends BaseActivity {
         super.onSucceed(what, response);
 
         if (what == GOODSWHAI) {
+            Log.d("uz","getCreateDate  "+response.get().toString());
             AgentResp agentResp = JSON.parseObject(response.get().toString(), AgentResp.class);
             recyclerView.refreshComplete(10);
             if (1 == agentResp.getStatus()) {

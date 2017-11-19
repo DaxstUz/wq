@@ -31,7 +31,7 @@
         />
         <TextView
                 android:maxLines="1"
-                android:textSize="@dimen/z6"
+                android:textSize="@dimen/z5"
                 android:id="@+id/masonry_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
