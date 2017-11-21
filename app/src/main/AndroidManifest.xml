@@ -40,7 +40,7 @@
             android:icon="@mipmap/wqicon"
             android:label="@string/app_name"
             android:largeHeap="true"
-            android:roundIcon="@mipmap/wq"
+            android:roundIcon="@mipmap/wqicon"
             android:supportsRtl="true"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:theme="@style/AppTheme">
@@ -164,6 +164,20 @@
                 android:name=".activity.PersonInfoActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
+
+        <activity
+                android:name="com.tencent.smtt.sdk.VideoActivity"
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:exported="false"
+                android:launchMode="singleTask"
+                android:alwaysRetainTaskState="true">
+            <intent-filter>
+                <action android:name="com.tencent.smtt.tbs.video.PLAY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
         <activity
                 android:name=".wxapi.WXEntryActivity"
                 android:screenOrientation="portrait"/>

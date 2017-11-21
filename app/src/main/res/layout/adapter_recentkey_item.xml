@@ -18,6 +18,7 @@
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
     <ImageView
+            android:paddingLeft="@dimen/x80"
             android:layout_marginRight="@dimen/border_padding_10"
             android:id="@+id/iv_move"
             android:layout_centerVertical="true"

@@ -108,6 +108,16 @@ public class GoodSearchFragment extends BaseFragment {
         recentKeyAdapter = new RecentKeyAdapter(getActivity(), cacheKey);
         lv_history.setAdapter(recentKeyAdapter);
 
+        recentKeyAdapter.setDeleteListerer(new RecentKeyAdapter.DeleteListerer() {
+            @Override
+            public void del(String key) {
+                cacheKey.remove(key);
+                SystemUtils.cachKeys.remove(key);
+                SystemUtils.saveKeys(getActivity(),SystemUtils.cachKeys);
+                recentKeyAdapter.notifyDataSetChanged();
+
+            }
+        });
 
         mDragFlowLayout = (DragFlowLayout) v.findViewById(R.id.mDragFlowLayout);
 

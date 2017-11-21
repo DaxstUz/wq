@@ -163,7 +163,7 @@ public class NinePriceFragment extends BaseFragment {
         LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(goodsListAdapter);
 
         recyclerView.setAdapter(lRecyclerViewAdapter);
-        SpacesItemDecoration decoration = new SpacesItemDecoration(2);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(1);
         recyclerView.addItemDecoration(decoration);
 //        SpacesItemDecoration decoration=SpacesItemDecoration.newInstance(R.dimen.x20,R.dimen.y20,2,R.color.b1);
 //        recyclerView.addItemDecoration(decoration);
@@ -172,7 +172,7 @@ public class NinePriceFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-                intent.putExtra("commodityCode", data.get(position).getRow().getCommodityCode());
+                intent.putExtra("commodityCode", data.get(position));
                 startActivity(intent);
             }
 

@@ -170,7 +170,7 @@ public class GoodsShowFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-                intent.putExtra("commodityCode", data.get(position).getRow().getCommodityCode());
+                intent.putExtra("commodityCode", data.get(position));
                 startActivity(intent);
             }
 

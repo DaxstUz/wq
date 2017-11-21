@@ -1,5 +1,6 @@
 package com.bigpush.resp;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class GoodsListResp {
@@ -38,7 +39,7 @@ public class GoodsListResp {
         this.Data = Data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * type : commodity
          * row : {"campaignId":"4919365","couponRate":33,"numId":"530364304256","onlines":0,"couponPrice":5,"isVideo":"0","title":"开档丝袜性感交叉四面透视连身袜黑白肉彩色大码连裤袜超薄防勾丝","isGoldServ":"0","couponAfterPrice":9.9,"commission":3.8,"commissionType":3,"juEndTime":"2017-10-26 23:59:59","picUrl":"https://img.alicdn.com/imgextra/i3/2410700595/TB2hE8vj2BNTKJjy0FdXXcPpVXa_!!2410700595.jpg","clickCount":0,"videoUrl":"","juStartTime":"2017-10-20 00:00:00","couponId":"078f283e53864a0da4d8bff526933311","intro":"全网爆款，塑形瘦腿，不勾丝，弹力舒适，修身显瘦，防寒保暖，美腿立现苗条身材！","isOverseas":"0","isJuBuying":"0","commissionRate":3800,"shopType":"C","price":14.9,"shortTitle":"开档丝袜四面透视连身袜超薄防勾丝","sellerId":"129412612","volume":66,"introPhoto":"http://img.wntaoke.com/wenan/ysd_530364304256.jpg","shopkeeperId":"18801986","typeId":3,"isQiang":"0","commodityCode":"A665206C09696DBFC11E26CCF4326E07","addTime":"2017-10-20 16:29:28"}
@@ -63,7 +64,7 @@ public class GoodsListResp {
             this.row = row;
         }
 
-        public static class RowBean {
+        public static class RowBean  implements Serializable{
             /**
              * campaignId : 4919365
              * couponRate : 33

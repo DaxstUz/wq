@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.bigpush.R;
 
@@ -14,7 +15,17 @@ public class RecentKeyAdapter extends BaseAdapter {
     private Context context;
     private List<String> cacheKey;
 
-    public RecentKeyAdapter(Context context,List<String> cacheKey) {
+    private DeleteListerer deleteListerer;
+
+    public DeleteListerer getDeleteListerer() {
+        return deleteListerer;
+    }
+
+    public void setDeleteListerer(DeleteListerer deleteListerer) {
+        this.deleteListerer = deleteListerer;
+    }
+
+    public RecentKeyAdapter(Context context, List<String> cacheKey) {
         this.context=context;
         this.cacheKey=cacheKey;
     }
@@ -35,10 +46,26 @@ public class RecentKeyAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         view=LayoutInflater.from(context).inflate(R.layout.adapter_recentkey_item,null);
         TextView tv_recentkey=view.findViewById(R.id.tv_recentkey);
+        ImageView iv_move=view.findViewById(R.id.iv_move);
         tv_recentkey.setText(cacheKey.get(i));
+
+        iv_move.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(deleteListerer!=null){
+                    deleteListerer.del(cacheKey.get(i));
+                }
+            }
+        });
+
+
         return view;
+    }
+
+    public interface DeleteListerer{
+        public void del(String key);
     }
 }

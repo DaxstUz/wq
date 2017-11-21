@@ -29,6 +29,7 @@ import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
@@ -57,6 +58,13 @@ public class GoodsListActivity extends BaseActivity {
 
         setContentView(R.layout.activity_goods_list);
         HomeRecItemResp.DataBean dataBean= (HomeRecItemResp.DataBean) getIntent().getSerializableExtra("item");
+
+        HashMap<String,String> map = new HashMap<String,String>();
+        map.put("rectype",dataBean.getRow().getTitle());
+        MobclickAgent.onEvent(this, "homeRecItem", map);
+
+        MobclickAgent.onEvent(this, dataBean.getRow().getItemCode().trim());
+
         itemCode=dataBean.getRow().getItemCode();
         setTitle(dataBean.getRow().getTitle());
         initView();
@@ -97,7 +105,7 @@ public class GoodsListActivity extends BaseActivity {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(GoodsListActivity.this, GoodsDetailActivity.class);
-                intent.putExtra("commodityCode", data.get(position).getRow().getCommodityCode());
+                intent.putExtra("commodityCode", data.get(position));
                 startActivity(intent);
             }
 
@@ -164,5 +172,13 @@ public class GoodsListActivity extends BaseActivity {
         }
     }
 
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
 }

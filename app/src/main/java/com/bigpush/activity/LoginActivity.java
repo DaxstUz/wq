@@ -67,12 +67,12 @@ public class LoginActivity extends BaseActivity {
 //            android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.READ_LOGS, android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.SET_DEBUG_APP, android.Manifest.permission.SYSTEM_ALERT_WINDOW, android.Manifest.permission.GET_ACCOUNTS, android.Manifest.permission.WRITE_APN_SETTINGS, Manifest.permission.WRITE_SETTINGS
 //            String[] mPermissionList = new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.READ_LOGS, android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.SET_DEBUG_APP, android.Manifest.permission.SYSTEM_ALERT_WINDOW, android.Manifest.permission.GET_ACCOUNTS, android.Manifest.permission.WRITE_APN_SETTINGS, Manifest.permission.WRITE_SETTINGS};
 //            ActivityCompat.requestPermissions(this, mPermissionList, 123);
-            if(EasyPermissions.hasPermissions(this, Manifest.permission.READ_PHONE_STATE)&&EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+            if(EasyPermissions.hasPermissions(this, Manifest.permission.READ_PHONE_STATE)){
                 gotoMainAtivity();
             }else{
 //                String[] mPermissionList = new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,  android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.READ_EXTERNAL_STORAGE};
-                String[] mPermissionList = new String[]{android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.READ_EXTERNAL_STORAGE};
-//                String[] mPermissionList = new String[]{android.Manifest.permission.READ_PHONE_STATE};
+//                String[] mPermissionList = new String[]{android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.READ_EXTERNAL_STORAGE};
+                String[] mPermissionList = new String[]{android.Manifest.permission.READ_PHONE_STATE};
                 ActivityCompat.requestPermissions(this, mPermissionList, 123);
 
 //                EasyPermissions.requestPermissions(
@@ -161,7 +161,9 @@ public class LoginActivity extends BaseActivity {
                     finish();
                 }
             }else{
-//                Toast.makeText(LoginActivity.this, jsonObject.getString("errorMsg"), Toast.LENGTH_SHORT).show();
+                if (INITUSERWHAT == what) {
+                    Toast.makeText(LoginActivity.this, jsonObject.getString("errorMsg"), Toast.LENGTH_SHORT).show();
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -172,6 +174,8 @@ public class LoginActivity extends BaseActivity {
     public void onFailed(int what, Response response) {
         if (DEVICEREGWHAT == what) {
             Toast.makeText(LoginActivity.this, "设备注册失败！", Toast.LENGTH_SHORT).show();
+        }else if (INITUSERWHAT == what) {
+            Toast.makeText(LoginActivity.this, "哇券码无效！", Toast.LENGTH_SHORT).show();
         }
     }
 

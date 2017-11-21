@@ -150,7 +150,7 @@ public class ShopResultActivity extends BaseActivity {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(ShopResultActivity.this, GoodsDetailActivity.class);
-                intent.putExtra("commodityCode", data.get(position).getRow().getCommodityCode());
+                intent.putExtra("commodityCode", data.get(position));
                 startActivity(intent);
             }
 

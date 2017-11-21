@@ -17,6 +17,7 @@ import com.bigpush.adapter.ConsultAdapter;
 import com.bigpush.adapter.MsgGoodsAdapter;
 import com.bigpush.adapter.SpacesItemDecoration;
 import com.bigpush.resp.ConsultResultResp;
+import com.bigpush.resp.GoodsListResp;
 import com.bigpush.resp.MsgGoodsResp;
 import com.bigpush.resp.SysMsgResp;
 import com.bigpush.util.CallServer;
@@ -95,7 +96,25 @@ public class GoodsResultFragment extends  BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-                intent.putExtra("commodityCode", data.get(position).getExtend().getCommodityCode());
+
+                GoodsListResp.DataBean.RowBean rowBean=new GoodsListResp.DataBean.RowBean();
+                rowBean.setTitle(data.get(position).getExtend().getTitle());
+                rowBean.setShortTitle(data.get(position).getExtend().getShortTitle());
+                rowBean.setPicUrl(data.get(position).getExtend().getPicUrl());
+                rowBean.setVideoUrl(data.get(position).getExtend().getVideoUrl());
+                rowBean.setCouponPrice(data.get(position).getExtend().getCouponPrice());
+                rowBean.setCouponAfterPrice(data.get(position).getExtend().getCouponAfterPrice());
+                rowBean.setCommodityCode(data.get(position).getExtend().getCommodityCode());
+                rowBean.setJuStartTime(data.get(position).getExtend().getJuStartTime());
+                rowBean.setJuEndTime(data.get(position).getExtend().getJuEndTime());
+                rowBean.setClickCount(data.get(position).getExtend().getClickCount());
+                rowBean.setVolume(data.get(position).getExtend().getVolume());
+                rowBean.setNumId(data.get(position).getExtend().getNumId());
+                rowBean.setShopType(data.get(position).getExtend().getShopType());
+                intentBean.setRow(rowBean);
+                intent.putExtra("commodityCode", intentBean);
+
+//                intent.putExtra("commodityCode", data.get(position).getExtend().getCommodityCode());
                 startActivity(intent);
             }
 
@@ -127,6 +146,7 @@ public class GoodsResultFragment extends  BaseFragment {
         });
     }
 
+    private    GoodsListResp.DataBean intentBean=new GoodsListResp.DataBean();
     private int page = 0;
 
     private void getResult() {

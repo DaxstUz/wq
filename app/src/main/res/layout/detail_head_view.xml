@@ -12,8 +12,25 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <!--<include
-                    layout="@layout/view_video"/>-->
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv_goods_pic"
+                    android:scaleType="fitXY"
+            />
+
+            <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/iv_play"
+                    android:onClick="onclick"
+                    android:layout_centerInParent="true"
+                    android:textSize="@dimen/z2"
+                    android:gravity="center"
+                    android:src="@mipmap/play"
+                    android:textColor="@color/colotexth"
+                    android:layout_width="@dimen/x200" android:layout_height="@dimen/x200"/>
+
             <FrameLayout
                     android:id="@+id/video_layout"
                     android:layout_width="fill_parent"
@@ -28,7 +45,7 @@
                         android:layout_height="fill_parent"
                         android:layout_gravity="center"
                         my:uvv_autoRotation="true"
-                        my:uvv_fitXY="false" />
+                        my:uvv_fitXY="true" />
 
                 <com.universalvideoview.UniversalMediaController
                         android:id="@+id/media_controller"
@@ -37,13 +54,8 @@
                         my:uvv_scalable="true" />
             </FrameLayout>
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/iv_goods_pic"
-                    android:scaleType="fitXY"
-                    android:visibility="gone"
-            />
+
+
 
             <ImageView
                     android:visibility="gone"
@@ -91,6 +103,7 @@
                         android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:id="@+id/tv_goods_price"
+                      android:textSize="@dimen/z2"
                       android:textColor="@color/colorRed"
             />
             <TextView
@@ -164,6 +177,7 @@
             android:layout_width="match_parent" android:layout_height="wrap_content">
         <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
             <ImageView
+                    android:id="@+id/iv_shop_tm"
                     android:layout_marginRight="@dimen/border_padding_10"
                     android:src="@mipmap/tianmao"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"/>

@@ -4,11 +4,13 @@ import android.app.Application;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 import android.widget.Toast;
 import cn.jpush.android.api.JPushInterface;
 import com.alibaba.baichuan.android.trade.AlibcTradeSDK;
 import com.alibaba.baichuan.android.trade.adapter.ut.AlibcUserTracker;
 import com.alibaba.baichuan.android.trade.callback.AlibcTradeInitCallback;
+import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
@@ -60,6 +62,24 @@ public class MyApplication extends Application {
 
         UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "umlbl0ra0gk3l8aux4v8qxd9orvwhfaw");
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL );
+
+
+        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+
+            @Override
+            public void onViewInitFinished(boolean b) {
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+                Log.d("app", " onViewInitFinished is " + b);
+            }
+
+            @Override
+            public void onCoreInitFinished() {
+                // TODO Auto-generated method stub
+            }
+        };
+
+        //x5内核初始化接口
+        QbSdk.initX5Environment(getApplicationContext(), cb);
     }
 
 

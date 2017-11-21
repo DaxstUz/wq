@@ -71,8 +71,6 @@ public class MainActivity extends FragmentActivity {
         final View view = View.inflate(this, R.layout.activity_main, null);
         setContentView(view);
 //        setContentView(R.layout.activity_main);
-        initView();
-
         final FrameLayout fl = findViewById(R.id.fl_main);
 
         // 动画
@@ -95,6 +93,8 @@ public class MainActivity extends FragmentActivity {
         });
 
         handler.sendMessage(Message.obtain());
+
+        initView();
     }
 
 //    /**
@@ -175,6 +175,8 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    public void onclick(View view){
+    }
 
     /**
      * 登录

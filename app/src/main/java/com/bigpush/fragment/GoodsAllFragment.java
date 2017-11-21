@@ -150,18 +150,6 @@ public class GoodsAllFragment extends BaseFragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             timer.start();
-//            while (true){
-//                tv_second.setText(second+"");
-//                second--;
-//                try {
-//                    Thread.sleep(1000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                if(0==second){
-//                    second=59;
-//                }
-//            }
         }
     };
 
@@ -198,7 +186,8 @@ public class GoodsAllFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-                intent.putExtra("commodityCode", dayData.get(position).getRow().getCommodityCode());
+//                intent.putExtra("commodityCode", dayData.get(position).getRow().getCommodityCode());
+                intent.putExtra("commodityCode", dayData.get(position));
                 startActivity(intent);
             }
         });
@@ -232,12 +221,6 @@ public class GoodsAllFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 if (recItemData.get(position) != null) {
-
-                    HashMap<String,String> map = new HashMap<String,String>();
-                    map.put("rectype",recItemData.get(position).getRow().getTitle());
-                    MobclickAgent.onEvent(getActivity(), "homeRecItem", map);
-//                    MobclickAgent.onEvent(getActivity(), "recitem");
-
                     Intent intent = new Intent(getActivity(), GoodsListActivity.class);
                     intent.putExtra("item", recItemData.get(position));
                     startActivity(intent);
@@ -250,7 +233,8 @@ public class GoodsAllFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
-                intent.putExtra("commodityCode", data.get(position).getRow().getCommodityCode());
+//                intent.putExtra("commodityCode", data.get(position).getRow().getCommodityCode());
+                intent.putExtra("commodityCode", data.get(position));
                 startActivity(intent);
             }
 
@@ -300,6 +284,8 @@ public class GoodsAllFragment extends BaseFragment {
             }
         });
     }
+
+    GoodsListResp.DataBean intentBean=new GoodsListResp.DataBean();
 
     private void initFlid(final List<ConsultResultResp.DataBean> dataBeans) {
         if (dataBeans != null && dataBeans.size() > 0) {
@@ -408,7 +394,23 @@ public class GoodsAllFragment extends BaseFragment {
                 Intent intent;
                 if ("commodity".equals(bannerData.get(position).getType())) {
                     intent = new Intent(getActivity(), GoodsDetailActivity.class);
-                    intent.putExtra("commodityCode", bannerData.get(position).getRow().getCommodityCode());
+                    GoodsListResp.DataBean.RowBean rowBean=new GoodsListResp.DataBean.RowBean();
+                    rowBean.setTitle(bannerData.get(position).getRow().getTitle());
+                    rowBean.setShortTitle(bannerData.get(position).getRow().getShortTitle());
+                    rowBean.setPicUrl(bannerData.get(position).getRow().getPicUrl());
+                    rowBean.setVideoUrl(bannerData.get(position).getRow().getVideoUrl());
+                    rowBean.setCouponPrice(bannerData.get(position).getRow().getCouponPrice());
+                    rowBean.setCouponAfterPrice(bannerData.get(position).getRow().getCouponAfterPrice());
+                    rowBean.setCommodityCode(bannerData.get(position).getRow().getCommodityCode());
+                    rowBean.setJuStartTime(bannerData.get(position).getRow().getJuStartTime());
+                    rowBean.setJuEndTime(bannerData.get(position).getRow().getJuEndTime());
+                    rowBean.setClickCount(bannerData.get(position).getRow().getClickCount());
+                    rowBean.setVolume(bannerData.get(position).getRow().getVolume());
+                    rowBean.setNumId(bannerData.get(position).getRow().getNumId());
+                    rowBean.setShopType(bannerData.get(position).getRow().getShopType());
+                    intentBean.setRow(rowBean);
+                    intent.putExtra("commodityCode", intentBean);
+//                    intent.putExtra("commodityCode", bannerData.get(position).getRow().getCommodityCode());
                 } else {
                     intent = new Intent(getActivity(), ConsultDetailActivity.class);
                     intent.putExtra("infoCode", bannerData.get(position).getRow().getInfoCode());
@@ -469,7 +471,9 @@ public class GoodsAllFragment extends BaseFragment {
             recyclerView.refreshComplete(10);
             if (1 == consultResultResp.getStatus()) {
                 if (consultResultResp != null && consultResultResp.getData() != null && consultResultResp.getData().size() > 0) {
-                    dayData.clear();
+                    if(page==0){
+                        dayData.clear();
+                    }
                     dayData.addAll(consultResultResp.getData());
                     Log.d("uz","dayData  "+dayData.size());
                     dayAdapter.notifyDataSetChanged();
@@ -485,6 +489,9 @@ public class GoodsAllFragment extends BaseFragment {
             recyclerView.refreshComplete(10);
             if (1 == consultResultResp.getStatus()) {
                 if (consultResultResp != null && consultResultResp.getData() != null && consultResultResp.getData().size() > 0) {
+                    if(page==0){
+                        data.clear();
+                    }
                     data.addAll(consultResultResp.getData());
                     homeRecItemAdapter.notifyDataSetChanged();
                     dayAdapter.notifyDataSetChanged();

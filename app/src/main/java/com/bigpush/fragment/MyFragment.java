@@ -56,6 +56,9 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     private TextView tv_cachesite;
     private TextView tv_agent;
 
+    private TextView tv_weixin_num;
+    private TextView tv_qq_num;
+
     private TextView tv_canser;
 
     private LinearLayout ll_cart;
@@ -104,8 +107,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 //        }
         view = inflater.inflate(R.layout.fragment_my, container, false);
 
-        Log.d("uzinfo","RegistrationID   "+ JPushInterface.getRegistrationID(getActivity()));
-
         initView(view);
 
         exParams = new HashMap<>();
@@ -117,7 +118,10 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initView(View view) {
-        rl_help_view = view.findViewById(R.id.rl_help_view);
+        rl_help_view = view.findViewById(R.id.include);
+
+        tv_weixin_num = view.findViewById(R.id.tv_weixin_num);
+        tv_qq_num = view.findViewById(R.id.tv_qq_num);
 
         tv_cachesite = view.findViewById(R.id.tv_cachesite);
         tv_agent = view.findViewById(R.id.tv_agent);
@@ -225,7 +229,14 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                     .into(iv_head);
 
             if(user.getTaobaoKeInfo()!=null&&user.getTaobaoKeInfo().getTaobaoKeCode()!=null){
-                JPushInterface.setAlias(getActivity(),0,user.getTaobaoKeInfo().getTaobaoKeCode());
+                if(user.getTaobaoKeInfo().getWeixin()!=null){
+                    tv_weixin_num.setText("客户微信号："+user.getTaobaoKeInfo().getWeixin());
+                }
+                if(user.getTaobaoKeInfo().getQq()!=null){
+                    tv_qq_num.setText("客户QQ号："+user.getTaobaoKeInfo().getQq());
+                }
+
+
             }
         }
     }
@@ -234,7 +245,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("uz","onResume");
         getUser();
         try {
             if(!Constant.clean){
@@ -448,7 +458,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
          */
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            Toast.makeText(getActivity(),"成功了",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getActivity(),"成功了",Toast.LENGTH_LONG).show();
         }
 
         /**
@@ -458,7 +468,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
          */
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(getActivity(),"失败"+t.getMessage(),Toast.LENGTH_LONG).show();
+//            Toast.makeText(getActivity(),"失败"+t.getMessage(),Toast.LENGTH_LONG).show();
         }
 
         /**
@@ -467,7 +477,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
          */
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(getActivity(),"取消了",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getActivity(),"取消了",Toast.LENGTH_LONG).show();
 
         }
     };
@@ -486,7 +496,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 UserUtils.saveRec(getActivity(),user.getNumCode());
                 hideView();
             }else{
-                SystemUtils.showText(userResp.getErrorMsg());
+//                SystemUtils.showText(userResp.getErrorMsg());
                 if("A00001".equals(userResp.getErrorCode())){
                     if(AlibcLogin.getInstance().isLogin()){
                         AlibcLogin.getInstance().logout(getActivity(), new LogoutCallback() {

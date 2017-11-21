@@ -1,9 +1,13 @@
 package com.bigpush.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +34,7 @@ import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.lzyzsd.jsbridge.BridgeWebView;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.tencent.smtt.sdk.TbsVideo;
 import com.universalvideoview.UniversalMediaController;
 import com.universalvideoview.UniversalVideoView;
 import com.yanzhenjie.nohttp.NoHttp;
@@ -39,6 +44,7 @@ import com.yanzhenjie.nohttp.rest.Request;
 import com.yanzhenjie.nohttp.rest.Response;
 import jp.wasabeef.recyclerview.adapters.AnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import pub.devrel.easypermissions.EasyPermissions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,14 +65,16 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
     private BridgeWebView mWebView;
 
     private ImageView iv_share;
+    private ImageView iv_play;
     private ImageView iv_shopicon;
+    private ImageView iv_shop_tm;
     private ImageView tv_goods_icon;
     private TextView tv_goods_title;
     private TextView tv_goods_price;
     private RoundedImageView iv_goods_pic;
     private TextView tv_goods_intro;
     private TextView tv_goods_count;
-    private GoodsDetail goodsDetail;
+    private GoodsDetail goodsDetail=new GoodsDetail();
 
     private TextView tv_shopTitle;
     private TextView tv_goodsdesc;
@@ -101,7 +109,9 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
         setContentView(R.layout.activity_goods_detail);
         detail_head_view = LayoutInflater.from(this).inflate(R.layout.detail_head_view, null);
         initWebView();
-        String commodityCode = getIntent().getStringExtra("commodityCode");
+        GoodsListResp.DataBean dataBean= (GoodsListResp.DataBean) getIntent().getSerializableExtra("commodityCode");
+//        String commodityCode = getIntent().getStringExtra("commodityCode");
+        String commodityCode = dataBean.getRow().getCommodityCode();
         getData(commodityCode);
 
 //        alibcShowParams = new AlibcShowParams(OpenType.Native, false);//淘宝方式打开
@@ -110,6 +120,50 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
 //        exParams.put("isv_code", "appisvcode");
 //        exParams.put("alibaba", "阿里巴巴");//自定义参数部分，可任意增删改
 //        exParams.put("taokeAppkey","24663819");
+        getPermission();
+
+        goodsDetail.setJuStartTime(dataBean.getRow().getJuStartTime());
+        goodsDetail.setJuEndTime(dataBean.getRow().getJuEndTime());
+        goodsDetail.setClickCount(dataBean.getRow().getClickCount()+"");
+        goodsDetail.setCouponPrice(dataBean.getRow().getCouponPrice()+"");
+        goodsDetail.setCouponAfterPrice(dataBean.getRow().getCouponAfterPrice()+"");
+        goodsDetail.setShortTitle(dataBean.getRow().getShortTitle());
+        goodsDetail.setTitle(dataBean.getRow().getTitle());
+        goodsDetail.setPicUrl(dataBean.getRow().getPicUrl());
+        goodsDetail.setVideoUrl(dataBean.getRow().getVideoUrl());
+        goodsDetail.setIsVideo(dataBean.getRow().getIsVideo());
+        goodsDetail.setVolume(dataBean.getRow().getVolume()+"");
+        goodsDetail.setOnlines("0");
+        goodsDetail.setShopType(dataBean.getRow().getShopType());
+
+        getGoodDetailParent(dataBean.getRow().getNumId());
+
+        refreshData();
+
+        if (goodsDetail.getVideoUrl() != null && goodsDetail.getVideoUrl().length() > 6) {
+            iv_play.setVisibility(View.VISIBLE);
+        }
+
+//        //判断当前Tbs播放器是否已经可以使用。
+//        if (TbsVideo.canUseTbsPlayer(this)) {
+//
+//            if(!TextUtils.isEmpty(goodsDetail.getVideoUrl())){
+//                //直接调用播放接口，传入视频流的url
+//                TbsVideo.openVideo(this, goodsDetail.getVideoUrl());
+//            }
+//        }
+    }
+
+    /**
+     * 动态获取权限
+     */
+    private void getPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if(!EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+                String[] mPermissionList = new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE};
+                ActivityCompat.requestPermissions(this, mPermissionList, 123);
+            }
+        }
     }
 
     private void getData(String commodityCode) {
@@ -183,7 +237,6 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
             if (goodsDetailResp != null && goodsDetailResp.getData() != null) {
                 goodsDetail = goodsDetailResp.getData();
                 refreshData();
-                getGoodDetailParent(goodsDetail.getNumId());
             }else {
                 SystemUtils.showText(goodsDetailResp.getErrorMsg());
             }
@@ -193,10 +246,13 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
             if (goodsDetailgRecResp != null && goodsDetailgRecResp.getData() != null) {
                 data.addAll(goodsDetailgRecResp.getData());
                 goodsListAdapter.notifyDataSetChanged();
+                iv_nogood.setVisibility(View.GONE);
             }
             else {
                 iv_nogood.setVisibility(View.VISIBLE);
-                SystemUtils.showText(goodsDetailgRecResp.getErrorMsg());
+
+                goodsDetail.setOnlines("1");
+//                SystemUtils.showText(goodsDetailgRecResp.getErrorMsg());
             }
         } else if (goodDetailWhat == what) {
             JSONObject detail = JSON.parseObject(response.get().toString());
@@ -246,6 +302,8 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
     private void initWebView() {
         iv_more = detail_head_view.findViewById(R.id.iv_more);
         iv_shopicon = detail_head_view.findViewById(R.id.iv_shopicon);
+        iv_shop_tm = detail_head_view.findViewById(R.id.iv_shop_tm);
+        iv_play = detail_head_view.findViewById(R.id.iv_play);
 
         iv_share = (ImageView) findViewById(R.id.iv_share);
         tv_goods_icon = detail_head_view.findViewById(R.id.tv_goods_icon);
@@ -290,12 +348,12 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
 
         goodsListAdapter = new GoodsListAdapter(data, this);
 
-        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
-        adapter.setFirstOnly(false);
-        adapter.setDuration(500);
-        adapter.setInterpolator(new OvershootInterpolator(.5f));
+//        AnimationAdapter adapter = new ScaleInAnimationAdapter(goodsListAdapter);
+//        adapter.setFirstOnly(false);
+//        adapter.setDuration(500);
+//        adapter.setInterpolator(new OvershootInterpolator(.5f));
 
-        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(adapter);
+        LRecyclerViewAdapter lRecyclerViewAdapter = new LRecyclerViewAdapter(goodsListAdapter);
 
         lRecyclerViewAdapter.addHeaderView(detail_head_view);
         recyclerView.setAdapter(lRecyclerViewAdapter);
@@ -309,7 +367,7 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
             public void onItemClick(View view, int position) {
 //                Toast.makeText(getActivity(), data.get(position).getRow().getTitle(), Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(GoodsDetailActivity.this,GoodsDetailActivity.class);
-                intent.putExtra("commodityCode",data.get(position).getRow().getCommodityCode());
+                intent.putExtra("commodityCode",data.get(position));
                 startActivity(intent);
             }
 
@@ -342,7 +400,12 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
 //                .override(100, 100)
                 .into(iv_goods_pic);
         tv_goods_price.setText("¥" + goodsDetail.getCouponAfterPrice() + "元");
-        tv_goods_title.setText("        "+goodsDetail.getShortTitle());
+        if(TextUtils.isEmpty(goodsDetail.getShortTitle())){
+            tv_goods_title.setText("        "+goodsDetail.getTitle());
+        }else{
+            tv_goods_title.setText("        "+goodsDetail.getShortTitle());
+        }
+
         tv_goods_intro.setText(goodsDetail.getTitle());
         tv_goods_count.setText(goodsDetail.getVolume() + "人已买");
         setTitle(goodsDetail.getShortTitle());
@@ -357,8 +420,16 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
 
         if ("B".equals(goodsDetail.getShopType())) {
             tv_goods_icon.setImageResource(R.mipmap.tianmao);
+            iv_shop_tm.setImageResource(R.mipmap.tianmao);
+        }else{
+            tv_goods_icon.setImageResource(R.mipmap.taobao);
+            iv_shop_tm.setImageResource(R.mipmap.taobao);
         }
 
+
+    }
+
+    public void playVideo(){
         if (goodsDetail.getVideoUrl() != null && goodsDetail.getVideoUrl().length() > 6) {
             VIDEO_URL = goodsDetail.getVideoUrl();
             mVideoLayout.setVisibility(View.VISIBLE);
@@ -377,6 +448,9 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
 
     public void onclick(View view) {
         switch (view.getId()) {
+            case R.id.iv_play:
+                playVideo();
+                break;
             case R.id.tv_buy:
                 if (goodsDetail != null && goodsDetail.getCommodityCode() != null&&"0".equals(goodsDetail.getOnlines())) {
                     buy(goodsDetail.getCommodityCode());
@@ -388,14 +462,27 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
                 }
                 break;
             case R.id.iv_share:
-                Intent intent = new Intent(GoodsDetailActivity.this, GoodsShareActivity.class);
-                intent.putExtra("goodsDetail", goodsDetail);
-                startActivity(intent);
+                if(EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+                    if("0".equals(goodsDetail.getOnlines())){
+                        Intent intent = new Intent(GoodsDetailActivity.this, GoodsShareActivity.class);
+                        intent.putExtra("goodsDetail", goodsDetail);
+                        startActivity(intent);
+                    }
+                }else{
+                    SystemUtils.showText("没有图片读写权限");
+                }
                 break;
             case R.id.tv_sharemain:
-                Intent intent2 = new Intent(GoodsDetailActivity.this, GoodsShareActivity.class);
-                intent2.putExtra("goodsDetail", goodsDetail);
-                startActivity(intent2);
+                if(EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+                    if("0".equals(goodsDetail.getOnlines())){
+                        Intent intent2 = new Intent(GoodsDetailActivity.this, GoodsShareActivity.class);
+                        intent2.putExtra("goodsDetail", goodsDetail);
+                        startActivity(intent2);
+                    }
+                }else{
+                    SystemUtils.showText("没有图片读写权限");
+                }
+
                 break;
             case R.id.iv_back:
                 finish();
@@ -526,6 +613,26 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
             super.onBackPressed();
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List perms) {
+        super.onPermissionsGranted(requestCode, perms);
+//        SystemUtils.showText("onPermissionsGranted");
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List perms) {
+        super.onPermissionsDenied(requestCode, perms);
+        SystemUtils.showText("没有读取图片权限，不能分享！");
+    }
+
 
 //    private String shopId;
 //    private AlibcShowParams alibcShowParams;//页面打开方式，默认，H5，Native

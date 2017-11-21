@@ -94,5 +94,6 @@ public class UserUtils {
         SharedPreferences sp = MyApplication.application.getSharedPreferences("userinfo", 0);
         String userCode = sp.getString("userCode", "");
         return  userCode;
+//        return  "U57176D463B793F911B71075EF9A368C8";
     }
 }
