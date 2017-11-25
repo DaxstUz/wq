@@ -136,11 +136,14 @@ public class GoodsShareActivity extends BaseActivity {
                     public void run() {
                         UMImage umImage = screenShot();
                         new ShareAction(GoodsShareActivity.this)
-                                .withText("hello")
+                                .withText(sharetext)
                                 .withMedia(umImage)
                                 .setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
                                 .setCallback(shareListener)
                                 .open();
+                        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        // 将文本内容放到系统剪贴板里。
+                        cm.setText(tv_share_text.getText());
                     }
                 }, 10);
 
@@ -155,11 +158,14 @@ public class GoodsShareActivity extends BaseActivity {
                     public void run() {
                         UMImage umImage = screenShot();
                         new ShareAction(GoodsShareActivity.this)
-                                .withText("hello")
+                                .withText(sharetext)
                                 .withMedia(umImage)
                                 .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QZONE,SHARE_MEDIA.WEIXIN_CIRCLE)
                                 .setCallback(shareListener)
                                 .open();
+                        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        // 将文本内容放到系统剪贴板里。
+                        cm.setText(tv_share_text.getText());
                     }
                 }, 10);
                 break;
@@ -178,13 +184,16 @@ public class GoodsShareActivity extends BaseActivity {
         }
     }
 
+    private String sharetext;
+
     @Override
     public void onSucceed(int what, Response response) {
         super.onSucceed(what, response);
         if (commendWhat == what) {
             CommendResp commendResp = JSON.parseObject(response.get().toString(), CommendResp.class);
             if (1 == commendResp.getStatus()) {
-                tv_share_text.setText(commendResp.getData().getTitle()+"\n\r"+commendResp.getData().getText());
+                sharetext=commendResp.getData().getTitle()+"\n\r"+commendResp.getData().getText();
+                tv_share_text.setText(sharetext);
                 iv_share_code.setImageBitmap(MyCodeUtil.createQRImage(commendResp.getData().getUrl()));
                 refreshData();
             }

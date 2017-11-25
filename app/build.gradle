@@ -66,8 +66,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         xiaomi { //小米渠道
@@ -76,8 +76,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         yingyongbao { //应用宝渠道
@@ -86,8 +86,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 132
+            versionName '1.3.2'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         A360 {
@@ -96,8 +96,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         huawei {
@@ -106,8 +106,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         meizu {
@@ -116,8 +116,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         lenovo {
@@ -126,8 +126,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         oppo {
@@ -136,8 +136,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         wandoujia {
@@ -146,8 +146,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         taobao {
@@ -156,8 +156,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         gfen {
@@ -166,8 +166,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
         baidu {
@@ -176,8 +176,8 @@ android {
             minSdkVersion 15
             signingConfig signingConfigs.signconfig
             targetSdkVersion 26
-            versionCode 122
-            versionName '1.2.2'
+            versionCode 131
+            versionName '1.3.1'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         }
     }

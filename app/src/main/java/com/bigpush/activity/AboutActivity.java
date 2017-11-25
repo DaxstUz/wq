@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bigpush.R;
 import com.bigpush.util.SystemUtils;
+import com.bigpush.util.UserUtils;
 
 /**
  * 商品详情页
@@ -26,8 +27,11 @@ public class AboutActivity extends BaseActivity {
     private ImageView iv_version;
     private TextView tv_time;
     private TextView tv_version;
+    private TextView tv_usercode;
+    private TextView tv_detailab;
 
     private int count;
+    private int countu;
     private double x1,x2,y1,y2;
 
     @Override
@@ -40,7 +44,10 @@ public class AboutActivity extends BaseActivity {
         iv_version= (ImageView) findViewById(R.id.iv_version);
         tv_time= (TextView) findViewById(R.id.tv_time);
         tv_version= (TextView) findViewById(R.id.tv_version);
+        tv_usercode= (TextView) findViewById(R.id.tv_usercode);
+        tv_detailab= (TextView) findViewById(R.id.tv_detailab);
         tv_version.setText("版本："+getPackageInfo(this).versionName);
+        tv_usercode.setText("usercode："+ UserUtils.getUserCode(this));
 
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +61,15 @@ public class AboutActivity extends BaseActivity {
                 count++;
                 if(count>=3){
                     tv_time.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        tv_detailab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                countu++;
+                if(countu>=3){
+                    tv_usercode.setVisibility(View.VISIBLE);
                 }
             }
         });

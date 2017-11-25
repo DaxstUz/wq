@@ -238,6 +238,10 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
                 goodsDetail = goodsDetailResp.getData();
                 refreshData();
             }else {
+                if("B00001".equals(goodsDetailResp.getErrorCode())){
+                    nogoods=true;
+                    refreshData();
+                }
                 SystemUtils.showText(goodsDetailResp.getErrorMsg());
             }
         } else if (commodityBaseRecommendWhat
@@ -390,6 +394,8 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
         });
     }
 
+    private boolean nogoods=false;
+
     private void refreshData() {
         iv_share.setVisibility(View.VISIBLE);
         Glide.with(this)
@@ -410,7 +416,7 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
         tv_goods_count.setText(goodsDetail.getVolume() + "人已买");
         setTitle(goodsDetail.getShortTitle());
 
-        if(!"0".equals(goodsDetail.getOnlines())){
+        if(nogoods){
             iv_nogood.setVisibility(View.VISIBLE);
         }
 
@@ -452,18 +458,18 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
                 playVideo();
                 break;
             case R.id.tv_buy:
-                if (goodsDetail != null && goodsDetail.getCommodityCode() != null&&"0".equals(goodsDetail.getOnlines())) {
+                if (goodsDetail != null && goodsDetail.getCommodityCode() != null&&!nogoods) {
                     buy(goodsDetail.getCommodityCode());
                 }
                 break;
             case R.id.tv_buymain:
-                if (goodsDetail != null && goodsDetail.getCommodityCode() != null&&"0".equals(goodsDetail.getOnlines())) {
+                if (goodsDetail != null && goodsDetail.getCommodityCode() != null&&!nogoods) {
                     buy(goodsDetail.getCommodityCode());
                 }
                 break;
             case R.id.iv_share:
                 if(EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
-                    if("0".equals(goodsDetail.getOnlines())){
+                    if(!nogoods){
                         Intent intent = new Intent(GoodsDetailActivity.this, GoodsShareActivity.class);
                         intent.putExtra("goodsDetail", goodsDetail);
                         startActivity(intent);
@@ -474,7 +480,7 @@ public class GoodsDetailActivity extends BaseActivity implements UniversalVideoV
                 break;
             case R.id.tv_sharemain:
                 if(EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
-                    if("0".equals(goodsDetail.getOnlines())){
+                    if(!nogoods){
                         Intent intent2 = new Intent(GoodsDetailActivity.this, GoodsShareActivity.class);
                         intent2.putExtra("goodsDetail", goodsDetail);
                         startActivity(intent2);

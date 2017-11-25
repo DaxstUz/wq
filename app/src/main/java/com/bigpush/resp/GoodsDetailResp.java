@@ -10,6 +10,15 @@ public class GoodsDetailResp implements Serializable {
     private GoodsDetail Data;
 
     private String errorMsg;
+    private String errorCode;
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
 
     public String getErrorMsg() {
         return errorMsg;

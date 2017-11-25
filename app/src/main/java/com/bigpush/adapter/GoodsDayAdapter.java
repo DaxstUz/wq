@@ -31,7 +31,7 @@ public class GoodsDayAdapter extends ListBaseAdapter {
     @Override
     public GoodsDayAdapter.GoodsViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_goolist_day_item, viewGroup, false);
-        return new GoodsDayAdapter.GoodsViewHolder(view,i);
+        return new GoodsDayAdapter.GoodsViewHolder(view);
     }
 
 
@@ -52,6 +52,7 @@ public class GoodsDayAdapter extends ListBaseAdapter {
 //        ((GoodsDayAdapter.GoodsViewHolder)holder).tv_q.setText(products.get(position).getRow().getCouponPrice()+"元券");
         ((GoodsDayAdapter.GoodsViewHolder)holder).tv_sal.setText("¥"+products.get(position).getRow().getPrice());
 
+        ((GoodsViewHolder) holder).setIndex(position);
 
         if("B".equals(products.get(position).getRow().getShopType())){
             ((GoodsDayAdapter.GoodsViewHolder)holder).iv_type.setImageResource(R.mipmap.tianmao);
@@ -75,8 +76,17 @@ public class GoodsDayAdapter extends ListBaseAdapter {
 //        private TextView tv_q;
         private TextView tv_sal;
 
+        private int index;
 
-        public GoodsViewHolder(View itemView, final int index){
+        public int getIndex() {
+            return index;
+        }
+
+        public void setIndex(int index) {
+            this.index = index;
+        }
+
+        public GoodsViewHolder(View itemView){
             super(itemView);
             iv_type= itemView.findViewById(R.id.iv_type );
             imageView= itemView.findViewById(R.id.masonry_item_img );

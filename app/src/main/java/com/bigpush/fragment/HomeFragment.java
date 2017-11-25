@@ -1,7 +1,11 @@
 
 package com.bigpush.fragment;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -15,18 +19,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.alibaba.fastjson.JSON;
 import com.bigpush.R;
-import com.bigpush.activity.MsgResultActivity;
-import com.bigpush.activity.SearchActivity;
+import com.bigpush.activity.*;
 import com.bigpush.adapter.MyFragmentPagerAdapter;
 import com.bigpush.domain.HomeType;
+import com.bigpush.resp.GetVersionResp;
 import com.bigpush.resp.HomeTypeResp;
-import com.bigpush.util.CallServer;
-import com.bigpush.util.Constant;
-import com.bigpush.util.SystemUtils;
-import com.bigpush.util.UserUtils;
+import com.bigpush.util.*;
 import com.bigpush.view.NewsTitleHorizontalScrollView;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.JsonObjectRequest;
+import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Response;
 
 import java.util.ArrayList;
@@ -183,9 +185,33 @@ public class HomeFragment extends BaseFragment implements NewsTitleHorizontalScr
                     data.addAll(homeTypeResp.getData());
                     initTab();
                     srl.setEnabled(false);
+                    getVersion();
                 }
             } else {
                 SystemUtils.showText(homeTypeResp.getErrorMsg());
+            }
+        }else
+        if(889==what){
+            final GetVersionResp getVersionResp = JSON.parseObject(response.get().toString(), GetVersionResp.class);
+            if (getVersionResp!=null&&1 == getVersionResp.getStatus()) {
+                if(getVersionResp.getAndroid()!=null&&getVersionResp.getAndroid().getVerNo()!=null){
+                    if(getVersionResp.getAndroid().getVerNo().compareTo(getPackageInfo(getActivity()).versionName)>0){
+                        ToastUtils.askToast(getActivity(), "您的app目前不是最新版本，快去更新吧！", new ToastUtils.ToalstListener() {
+                            @Override
+                            public void clickLeft(AlertDialog alertDialog) {
+                                alertDialog.dismiss();
+                            }
+
+                            @Override
+                            public void clickRight(AlertDialog alertDialog) {
+                                Intent transactionIntent = new Intent(getActivity(), WebDownActivity.class);
+                                transactionIntent.putExtra("url", getVersionResp.getAndroid().getText());
+                                startActivity(transactionIntent);
+                            }
+                        },new String[]{"取消","去更新"});
+                    }
+                }
+
             }
         }
     }
@@ -202,4 +228,24 @@ public class HomeFragment extends BaseFragment implements NewsTitleHorizontalScr
         SystemUtils.showText("接口地址请求失败");
     }
 
+    private void getVersion(){
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.sysGetVer, RequestMethod.POST);
+        CallServer.getInstance().add(889, jsonObjectRequest, this);
+    }
+
+    private static PackageInfo getPackageInfo(Context context) {
+        PackageInfo pi = null;
+
+        try {
+            PackageManager pm = context.getPackageManager();
+            pi = pm.getPackageInfo(context.getPackageName(),
+                    PackageManager.GET_CONFIGURATIONS);
+
+            return pi;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pi;
+    }
 }

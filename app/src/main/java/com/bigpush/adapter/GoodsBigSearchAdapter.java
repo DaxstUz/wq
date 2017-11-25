@@ -43,7 +43,7 @@ public class GoodsBigSearchAdapter extends ListBaseAdapter {
 //                .override(100, 100)
                 .into(((GoodsBigSearchAdapter.GoodsViewHolder)holder).imageView);
 
-        ((GoodsBigSearchAdapter.GoodsViewHolder)holder).textView.setText(Html.fromHtml(products.get(position).getShopTitle()));
+        ((GoodsBigSearchAdapter.GoodsViewHolder)holder).textView.setText(Html.fromHtml(products.get(position).getTitle()));
         ((GoodsBigSearchAdapter.GoodsViewHolder)holder).tv_money.setText("¥"+(products.get(position).getZkPrice()-products.get(position).getCouponAmount()));
 //        ((GoodsBigSearchAdapter.GoodsViewHolder)holder).tv_count.setText("已售"+products.get(position).getRow().getVolume()+"件");
         ((GoodsBigSearchAdapter.GoodsViewHolder)holder).tv_q.setText(products.get(position).getCouponAmount()+"元券");

@@ -113,6 +113,10 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>
         <activity
+                android:name=".activity.WebDownActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"/>
+        <activity
                 android:name=".activity.GoodsShareActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"/>

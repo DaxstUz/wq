@@ -34,6 +34,8 @@
                 android:layout_marginLeft="@dimen/border_padding_10"
                 android:background="@color/b1"
                 android:textSize="@dimen/z4"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
     </LinearLayout>
     <TextView

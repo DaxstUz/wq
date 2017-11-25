@@ -26,6 +26,8 @@
                 android:hint="请输入关键字"
                 android:layout_toLeftOf="@+id/tv_search"
                 android:background="@color/alibc_transparent"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
                 android:layout_width="match_parent" android:layout_height="match_parent"/>
         <TextView
                 android:id="@+id/tv_search"

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +39,10 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMWeb;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.JsonObjectRequest;
+import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Response;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +54,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 
     private int BINDWHAT = Constant.NET_WHAT++;
     private int USERWHAT = Constant.NET_WHAT++;
+    private int INITUSERWHAT = Constant.NET_WHAT++;
 
 
     private RoundedImageView iv_head;
@@ -202,6 +208,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 
     private void hideView(){
         if(user!=null){
+            isbind=false;
             if("2".equals(user.getIsCommission())){
                 rl_agent.setVisibility(View.VISIBLE);
                 tv_agent.setText("申请成为合伙人");
@@ -242,10 +249,13 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     }
 
 
+    private boolean isbind=false;
     @Override
     public void onResume() {
         super.onResume();
-        getUser();
+        if(!isbind){
+            getUser();
+        }
         try {
             if(!Constant.clean){
                 tv_cachesite.setText(DataCleanManager.getCacheSize(getActivity().getCacheDir()));
@@ -268,6 +278,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 //                    getActivity().startActivityForResult(intent,6);
                     MyFragment.this.startActivityForResult(intent,6);
                 }else{
+                    isbind=true;
                     AlibcLogin.getInstance().showLogin(getActivity(), new AlibcLoginCallback() {
                         @Override
                         public void onSuccess() {
@@ -287,6 +298,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                     intent.putExtra("user",user);
                     MyFragment.this.startActivityForResult(intent,0);
                 }else{
+                    isbind=true;
                     AlibcLogin.getInstance().showLogin(getActivity(), new AlibcLoginCallback() {
                         @Override
                         public void onSuccess() {
@@ -345,12 +357,43 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 }
                 break;
             case R.id.ll_cart:
-                alibcBasePage = new AlibcMyCartsPage();
-                AlibcTrade.show(this.getActivity(), alibcBasePage, Constant.alibcShowParams, null, exParams, new DemoTradeCallback());
+
+                if(AlibcLogin.getInstance().isLogin()){
+                    alibcBasePage = new AlibcMyCartsPage();
+                    AlibcTrade.show(this.getActivity(), alibcBasePage, Constant.alibcShowParams, null, exParams, new DemoTradeCallback());
+                }else{
+                    isbind=true;
+                    AlibcLogin.getInstance().showLogin(getActivity(), new AlibcLoginCallback() {
+                        @Override
+                        public void onSuccess() {
+                            bind();
+                        }
+
+                        @Override
+                        public void onFailure(int i, String s) {
+
+                        }
+                    });
+                }
                 break;
             case R.id.ll_order:
-                alibcBasePage = new AlibcMyOrdersPage(orderType, true);
-                AlibcTrade.show(this.getActivity(), alibcBasePage, Constant.alibcShowParams, null, exParams, new DemoTradeCallback());
+                if(AlibcLogin.getInstance().isLogin()){
+                    alibcBasePage = new AlibcMyOrdersPage(orderType, true);
+                    AlibcTrade.show(this.getActivity(), alibcBasePage, Constant.alibcShowParams, null, exParams, new DemoTradeCallback());
+                }else{
+                    isbind=true;
+                    AlibcLogin.getInstance().showLogin(getActivity(), new AlibcLoginCallback() {
+                        @Override
+                        public void onSuccess() {
+                            bind();
+                        }
+                        @Override
+                        public void onFailure(int i, String s) {
+
+                        }
+                    });
+                }
+
                 break;
 
             case R.id.rl_help://客户帮助
@@ -420,6 +463,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         Map<String, Object> param = new HashMap<>();
         param.put("userCode", UserUtils.getUserCode(getActivity()));
         jsonObjectRequest.add(param);
+
+        Log.d("getuser","userCode  "+UserUtils.getUserCode(getActivity()));
 
         CallServer.getInstance().add(USERWHAT, jsonObjectRequest, this);
     }
@@ -515,11 +560,15 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                     Intent intent =new Intent(getActivity(),LoginActivity.class);
                     intent.putExtra("relogin",true);
                     startActivityForResult(intent,222);
+                }else{
+                    UserUtils.saveUserCode(getActivity(),"");
+
+                    initUser();
                 }
             }
         }else if (BINDWHAT == what) {
             UserResp userResp = JSON.parseObject(response.get().toString(), UserResp.class);
-            Log.d("uz","binduser "+response.get().toString());
+            Log.d("uz","getuser binduser "+response.get().toString());
             if (1 == userResp.getStatus()) {
 //                Toast.makeText(getActivity(), "绑定成功 "+response.get().toString(),
 //                        Toast.LENGTH_LONG).show();
@@ -527,12 +576,65 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 //                UserUtils.saveUserInfo(PersonInfoActivity.this,user);
                 UserUtils.saveUserCode(getActivity(),user.getUserCode());
                 UserUtils.saveRec(getActivity(),user.getNumCode());
+                Log.d("uz","binduser hideView ");
+                isbind=false;
                 hideView();
-                getUser();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getUser();
+                    }
+                },1000);
+
             }else{
 //                SystemUtils.showText(userResp.getErrorMsg());
             }
         }
 
+    }
+
+
+    private void initUser() {
+        if (TextUtils.isEmpty(UserUtils.getUserCode(getActivity()))) {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constant.userInit, RequestMethod.POST);
+            Map<String, Object> param = new HashMap<>();
+            param.put("numCode", UserUtils.getRec(getActivity()));
+            param.put("key", UserUtils.getKey(getActivity()));
+            jsonObjectRequest.add(param);
+            CallServer.getInstance().add(INITUSERWHAT, jsonObjectRequest, new OnResponseListener() {
+                @Override
+                public void onStart(int what) {
+//                    Log.d("uz","重新初始化 onStart");
+                }
+
+                @Override
+                public void onSucceed(int what, Response response) {
+//                    Log.d("uz","重新初始化 onSucceed");
+                    Object object = response.get();
+
+                    JSONObject jsonObject = (JSONObject) object;
+                    try {
+                        if (jsonObject != null &&1==jsonObject.getInt("status")&& jsonObject.has("Data")) {
+                            if (INITUSERWHAT == what) {
+                                UserUtils.saveUserCode(getActivity(), jsonObject.getJSONObject("Data").getString("userCode"));
+                                getUser();
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailed(int what, Response response) {
+//                    Log.d("uz","重新初始化 onFailed");
+                }
+
+                @Override
+                public void onFinish(int what) {
+//                    Log.d("uz","重新初始化 onFinish");
+                }
+            });
+        }
     }
 }

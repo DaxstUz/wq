@@ -1,6 +1,10 @@
 package com.bigpush.activity;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,8 +26,13 @@ import com.alibaba.fastjson.JSON;
 import com.bigpush.R;
 import com.bigpush.fragment.*;
 import com.bigpush.resp.ControllerBean;
+import com.bigpush.resp.GetVersionResp;
+import com.bigpush.resp.ReceiveResp;
 import com.bigpush.resp.SysMsgResp;
 import com.bigpush.util.CallServer;
+import com.bigpush.util.Constant;
+import com.bigpush.util.SystemUtils;
+import com.bigpush.util.ToastUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.ShareContent;
@@ -397,7 +406,5 @@ public class MainActivity extends FragmentActivity {
                 .build();
         client.newCall(request).enqueue(callback);
     }
-
-
 
 }

@@ -48,6 +48,7 @@ public class Constant {
     public static final String infoBaseFabulous=HOSTSERVER+"/infoBase/fabulous";//资讯点赞
     public static final String infoRecommendItem=HOSTSERVER+"/info/recommendItem";//资讯页推荐栏目获取
     public static final String commodityBaseGetUrl=HOSTSERVER+"/commodityBase/getUrl";//超级搜商品转链
+    public static final String sysGetVer=HOSTSERVER+"/sys/getVer";//APP获取版本信息
 
 
 }

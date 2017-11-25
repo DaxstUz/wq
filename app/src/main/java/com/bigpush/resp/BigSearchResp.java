@@ -793,11 +793,11 @@ public class BigSearchResp implements Serializable {
             private Long auctionId;
             private Object tkMktStatus;
             private Object couponActivityId;
-            private int reservePrice;
+            private double reservePrice;
             private int couponLeftCount;
             private int couponTotalCount;
-            private int zkPrice;
-            private int couponAmount;
+            private double zkPrice;
+            private double couponAmount;
             private String auctionUrl;
             private int biz30day;
             private int tkRate;
@@ -907,6 +907,31 @@ public class BigSearchResp implements Serializable {
 //                this.sellerId = sellerId;
 //            }
 
+
+            public double getReservePrice() {
+                return reservePrice;
+            }
+
+            public void setReservePrice(double reservePrice) {
+                this.reservePrice = reservePrice;
+            }
+
+            public double getZkPrice() {
+                return zkPrice;
+            }
+
+            public void setZkPrice(double zkPrice) {
+                this.zkPrice = zkPrice;
+            }
+
+            public double getCouponAmount() {
+                return couponAmount;
+            }
+
+            public void setCouponAmount(double couponAmount) {
+                this.couponAmount = couponAmount;
+            }
+
             public String getShopTitle() {
                 return shopTitle;
             }
@@ -947,14 +972,6 @@ public class BigSearchResp implements Serializable {
                 this.couponActivityId = couponActivityId;
             }
 
-            public int getReservePrice() {
-                return reservePrice;
-            }
-
-            public void setReservePrice(int reservePrice) {
-                this.reservePrice = reservePrice;
-            }
-
             public int getCouponLeftCount() {
                 return couponLeftCount;
             }
@@ -969,22 +986,6 @@ public class BigSearchResp implements Serializable {
 
             public void setCouponTotalCount(int couponTotalCount) {
                 this.couponTotalCount = couponTotalCount;
-            }
-
-            public int getZkPrice() {
-                return zkPrice;
-            }
-
-            public void setZkPrice(int zkPrice) {
-                this.zkPrice = zkPrice;
-            }
-
-            public int getCouponAmount() {
-                return couponAmount;
-            }
-
-            public void setCouponAmount(int couponAmount) {
-                this.couponAmount = couponAmount;
             }
 
             public String getAuctionUrl() {

@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -25,6 +27,8 @@ import com.bigpush.util.SystemUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
  * 搜索
@@ -62,6 +66,40 @@ public class SearchFragment extends BaseFragment {
 
     private void initView() {
         et_key = v.findViewById(R.id.et_key);
+
+        et_key.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    // 先隐藏键盘
+                    ((InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE))
+                            .hideSoftInputFromWindow(getActivity().getCurrentFocus()
+                                    .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    //进行搜索操作的方法，在该方法中可以加入mEditSearchUser的非空判断
+
+                    if (!TextUtils.isEmpty(et_key.getText())) {
+                        Intent intent;
+
+                        SystemUtils.cachKeys.add(et_key.getText().toString());
+                        SystemUtils.saveKeys(getActivity(), SystemUtils.cachKeys);
+
+                        if (rb_search.isChecked()) {
+                            intent = new Intent(getActivity(), ShopResultActivity.class);
+                        } else {
+                            intent = new Intent(getActivity(), BigSearchResultActivity.class);
+                        }
+
+                        intent.putExtra("key", et_key.getText().toString().trim());
+                        SystemUtils.cachKeys.add(et_key.getText().toString().trim());
+                        startActivity(intent);
+                    } else {
+                        SystemUtils.showText("请输入关键字");
+                    }
+                }
+                 return false;
+            }
+        });
+
         tv_wq_search = v.findViewById(R.id.tv_wq_search);
         tv_wq_search.setOnClickListener(new View.OnClickListener() {
             @Override
